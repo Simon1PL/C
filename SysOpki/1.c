@@ -57,8 +57,8 @@ int main(){
     free(a);
     
     try_library("ALA");
-    printf("%d\n", size);
-    
+    //printf("%d\n", size);
+
     #ifndef DLL
     dlclose(handle);
     #endif
