@@ -20,8 +20,8 @@ shared:
 
 dll:
 	make clear
-	gcc -c library.c
-	gcc -shared -fPIC -o liblibrary.so library.o
+	gcc -c -fPIC library.c
+	gcc -shared -o liblibrary.so library.o
 	gcc -Wall main.c -o main -L. -ldl -D DLL
 	rm -f *.o
 
