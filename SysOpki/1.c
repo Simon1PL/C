@@ -17,9 +17,8 @@
 int main(){
     #ifdef DLL
     void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
-    if(!handle){printf("error dll\n");}
     void (*try_library)(char*)= dlsym(handle,"try_library");
-    if(dlerror() != NULL){printf("error dll 2\n");}
+    int (*size)=dlsym(handle, "size");
     #endif
     
     sleep(0.005);//w sec
