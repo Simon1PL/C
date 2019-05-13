@@ -14,11 +14,9 @@ shared:
 	make clear
 	gcc -c -fPIC library.c
 	gcc -shared -o liblibrary.so library.o
-	ln –s liblibrary.so liblibrary.so.1.0.1
-	ln –s liblibrary.so liblibrary.so.1
-	#gcc 1.c -llibrary -L ./ -o main
-	gcc 1.c -Wall -o main -L. -llibrary -Wl,-rpath=`pwd`
+	gcc 1.c -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
+	./main
 	
 dll:
 	#Oh, three hours wasted... It was the main reason, why this tutorial was made. Enjoy!
