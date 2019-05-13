@@ -1,29 +1,24 @@
 all:
-	make -s static
+	make -s shared
+
 static:
+	make clear
 	gcc -c library.c
 	ar rcs liblibrary.a library.o
 	gcc -c 1.c
 	gcc 1.o liblibrary.a -o main
 	./main
 	rm -f *.o
-dynamic:
-	make clear
-	#as with static library, we need .o files
-	gcc -Wall -c lib1.c
-	gcc -Wall -c lib2.c
-	#now, cteate library.
-		#-shared -fPIC - options for dynamic library
-		#-o lib<libraryName>.so - our library file
-		#then - .o files
-	gcc -Wall -shared -fPIC -o liblibrary.so lib1.o lib2.o
-	#compile everything together
-		#I'm not sure, what "-Wl,-rpath=`pwd`" options do, but it's necessary :)
-			#tkanks, krk_!
-	gcc main.c -Wall -o main -L. -llibrary -Wl,-rpath=`pwd`
-	#clean up!
-	rm -f *.o
 
+shared:
+	make clear
+	gcc -fPIC –c library.c
+	gcc -shared –W1,-soname,liblibrary.so.1 \ -o liblibrary.so.1.0.1 library.o –lc
+	ln –s liblibrary.so.1.0.1 liblibrary.so.1
+	ln –s liblibrary.so.1 liblibrary.so
+	gcc 1.c -llibrary -L ./ -o main
+	rm -f *.o
+	
 dll:
 	#Oh, three hours wasted... It was the main reason, why this tutorial was made. Enjoy!
 
@@ -45,6 +40,3 @@ dll:
 
 clear:
 	rm -f *.o *.a *.so main
-clean: 
-	make clear
-	rm wynik.txt

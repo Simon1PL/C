@@ -50,5 +50,7 @@ int main(){
     
     try_library("ALA");
     printf("%d\n", size);
+
+    
     return 0;
 }
