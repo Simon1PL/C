@@ -37,8 +37,8 @@ dll:
 
 	#clean up, .o files
 	make clear
-	gcc -Wall -c lib1.c
-	gcc -Wall -c lib2.c
+	gcc -Wall -c -fPIC lib1.c
+	gcc -Wall -c -fPIC lib2.c
 	#create dynamic library
 	gcc -Wall -shared -fPIC -o liblibrary.so lib1.o lib2.o
 	#and now is the magic. For DLL you need some extra code in main.c file, check it out.
