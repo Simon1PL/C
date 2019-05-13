@@ -1,18 +1,17 @@
 all:
-	make -s dll
+	make -s static
 
 static:
-	make clear
-	gcc -Wall -c library.c
+	make -s clear
+	gcc -c library.c
 	ar rcs liblibrary.a library.o
-	#gcc -c 1.c
-	#gcc 1.o liblibrary.a -o main
-	gcc -Wall 1.c -o main -L. -llibrary
+	gcc -c 1.c
+	gcc 1.o liblibrary.a -o main
 	rm -f *.o
 	./main
 
 shared:
-	make clear
+	make -s clear
 	gcc -c -fPIC library.c
 	gcc -shared -o liblibrary.so library.o
 	gcc 1.c -o main -L. -llibrary -Wl,-rpath=`pwd`
@@ -20,11 +19,12 @@ shared:
 	./main
 
 dll:
-	make clear
+	make -s clear
 	gcc -c -fPIC library.c
 	gcc -shared -o liblibrary.so library.o
-	gcc -Wall 1.c -o main -L. -ldl -D DLL
+	gcc 1.c -o main -L. -ldl -D DLL
 	rm -f *.o
+	./main
 
 clear:
 	rm -f *.o *.a *.so main
