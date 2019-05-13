@@ -7,7 +7,12 @@
 #include<stdlib.h> //malloc
 #include <sys/times.h> //czas(tms)
 #include<stdlib.h> //alloc
+#ifdef DLL
 #include <dlfcn.h> //dll
+#endif
+#ifndef DLL
+#include "library.h"
+#endif
 
 int main(){
     #ifdef DLL
@@ -27,7 +32,7 @@ int main(){
     nanosleep(&t1, &t2);
 
     clock_getres(CLOCK_REALTIME, &t1);
-    clockid_t clk;
+    clockid_t clk=NULL;
     clock_gettime(clk, &t1); //niewygodne bo sec i nanosec osobno
     if (clock_settime(clk, &t2)!=0)
         printf("BLAD, brak dostepu?\n");
