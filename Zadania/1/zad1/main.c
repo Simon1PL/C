@@ -1,4 +1,3 @@
-//functions for dll library
 #include <stdio.h>
 #include <dlfcn.h>
 

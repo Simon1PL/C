@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+//#include <string.h>
 
 #include "library.h"
 
@@ -9,10 +9,23 @@ int free_blocks=0;
 char** wyniki=NULL;
 
 char** create_table(int rozmiar) {
-	wyniki=(calloc((size_t)rozmiar, sizeof(char*)));
+	wyniki=(calloc(rozmiar, sizeof(char)));
 	size=rozmiar;
 	free_blocks=rozmiar;
 	return wyniki;
+}
+
+int search_directory(char* dir, char* file, char* name_file_temp){
+	if (free_blocks==0) {
+		printf("brak miejsca na zapis wynikow\n");	
+		return -1;	
+	}
+	char komenda[100];
+	//sprintf(komenda, "find %s -name '%s'", dir, file);
+	//system(komenda);
+	sprintf(komenda,"find %s -name '%s' > %s", dir, file, name_file_temp);
+	system(komenda);
+	return (zapiszWynik(name_file_temp));	
 }
 
 int zapiszWynik(char* name_file_temp){
@@ -43,25 +56,12 @@ int zapiszWynik(char* name_file_temp){
 	}
 }
 
-int search_directory(char* dir, char* file, char* name_file_temp){
-	if (free_blocks==0) {
-		printf("brak miejsca na zapis wynikow\n");	
-		return -1;	
-	}
-	char komenda[100];
-	//sprintf(komenda, "find %s -name '%s'", dir, file);
-	//system(komenda);
-	sprintf(komenda,"find %s -name '%s' > %s", dir, file, name_file_temp);
-	system(komenda);
-	return (zapiszWynik(name_file_temp));	
-}
-
 void remove_block(int index){
 	if(index>size-1 || wyniki[index]==NULL){
 		printf("nie ma bloku o takim indeksie\n");	
 		return;	
 	}
-	free(wyniki[index]);
 	wyniki[index]=NULL;
+	free(wyniki[index]);
 	free_blocks++;	
 }
