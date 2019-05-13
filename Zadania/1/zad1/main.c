@@ -29,4 +29,5 @@ void (*remove_block)(int) = dlsym(handle, "remove_block");
   //close library after doing all stuff
   dlclose(handle);
 #endif
+return 0;
 }

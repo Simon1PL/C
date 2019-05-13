@@ -1,4 +1,6 @@
 static:
+	make -s static
+static1:
 	#clean up before you start
 	make clear
 	#first, .o files
