@@ -7,9 +7,17 @@
 #include<stdlib.h> //malloc
 #include <sys/times.h> //czas(tms)
 #include<stdlib.h> //alloc
+#include <dlfcn.h> //dll
 #include "library.h"
 
 int main(){
+    void *handle = dlopen("liblibrary.so", RTLD_LAZY);
+    if(!handle){printf("error dll\n");}
+    void (*lib_fun)();
+    lib_fun= (void (*)())dlsym(handle,"try_library");
+    if(dlerror() != NULL){printf("error dll 2\n");}
+    (*lib_fun)();
+    
     sleep(0.005);//w sec
 
     struct timespec t1, t2;
@@ -51,6 +59,6 @@ int main(){
     try_library("ALA");
     printf("%d\n", size);
 
-
+    dlclose(handle);
     return 0;
 }
