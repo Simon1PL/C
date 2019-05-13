@@ -1,12 +1,24 @@
 all:
+	make -s shared
+
+static:
 	make clear
-	gcc -fPIC –c library.c
+	gcc -c library.c
+	ar rcs liblibrary.a library.o
+	gcc -c 1.c
+	gcc 1.o liblibrary.a -o main
+	./main
+	rm -f *.o
+
+shared:
+	make clear
+	gcc  –c -fPIC library.c
 	gcc -shared –W1,-soname,liblibrary.so.1 \ -o liblibrary.so.1.0.1 library.o –lc
 	ln –s liblibrary.so.1.0.1 liblibrary.so.1
 	ln –s liblibrary.so.1 liblibrary.so
 	gcc 1.c -llibrary -L ./ -o main
 	rm -f *.o
-
+	
 dll:
 	#Oh, three hours wasted... It was the main reason, why this tutorial was made. Enjoy!
 
