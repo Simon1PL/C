@@ -1,5 +1,5 @@
 all:
-	make shared
+	make -s dll
 
 static:
 	make clear
@@ -17,25 +17,13 @@ shared:
 	gcc 1.c -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
 	./main
-	
-dll:
-	#Oh, three hours wasted... It was the main reason, why this tutorial was made. Enjoy!
 
-	#clean up, .o files
+dll:
 	make clear
-	gcc -Wall -c lib1.c
-	gcc -Wall -c lib2.c
-	#create dynamic library
-	gcc -Wall -shared -fPIC -o liblibrary.so lib1.o lib2.o
-	#and now is the magic. For DLL you need some extra code in main.c file, check it out.
-		#-L. - we know it
-		#-ldl - for dll library
-		#-D DLL - in main.c we can see several "#ifdef DLL" commands.
-		#-D option could be understood like: compiler add command "#define DLL" to our main.c file
+	gcc -c library.c
+	gcc -shared -fPIC -o liblibrary.so library.o
 	gcc -Wall main.c -o main -L. -ldl -D DLL
-	#clean up
 	rm -f *.o
-	#Hurray!
 
 clear:
 	rm -f *.o *.a *.so main
