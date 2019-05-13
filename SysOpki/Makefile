@@ -4,7 +4,6 @@ all:
 	gcc -c 1.c
 	gcc 1.o –l library –L ./ -o main
 	./main
-	m -f *.o
 static:
 	#clean up before you start
 	make clear
