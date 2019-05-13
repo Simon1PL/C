@@ -1,5 +1,5 @@
 all:
-	make static
+	make -s static
 static:
 	gcc -c library.c
 	ar rcs liblibrary.a library.o
