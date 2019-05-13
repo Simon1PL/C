@@ -1,5 +1,5 @@
 static:
-	make -s static
+	make -s static1
 static1:
 	#clean up before you start
 	make clear
