@@ -3,11 +3,11 @@ all:
 
 static:
 	make clear
-	gcc -c library.c
+	gcc -Wall -c library.c
 	ar rcs liblibrary.a library.o
 	#gcc -c 1.c
 	#gcc 1.o liblibrary.a -o main
-	gcc 1.c -o main -L. -llibrary
+	gcc -Wall 1.c -o main -L. -llibrary
 	rm -f *.o
 	./main
 
