@@ -22,7 +22,7 @@ dll:
 	make clear
 	gcc -c -fPIC library.c
 	gcc -shared -o liblibrary.so library.o
-	gcc -Wall main.c -o main -L. -ldl -D DLL
+	gcc -Wall 1.c -o main -L. -ldl -D DLL
 	rm -f *.o
 
 clear:
