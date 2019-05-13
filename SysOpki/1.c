@@ -8,7 +8,7 @@
 #include <sys/times.h> //czas(tms)
 #include<stdlib.h> //alloc
 #include <dlfcn.h> //dll
-#include "library.h"
+//#include "library.h"
 
 int main(){
     void *handle = dlopen("liblibrary.so", RTLD_LAZY);
