@@ -3,8 +3,8 @@ static:
 shared:
 	make -s shared1
 dll:
-	make -s dll
-	
+	make -s dll1
+
 static1:
 	#clean up before you start
 	make clear
