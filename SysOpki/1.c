@@ -8,7 +8,9 @@
 #include <sys/times.h> //czas(tms)
 #include<stdlib.h> //alloc
 #include <dlfcn.h> //dll
-//#include "library.h"
+#ifndef DLL
+#include "library.h"
+#endif
 
 int main(){
     #ifndef DLL
