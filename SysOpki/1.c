@@ -6,6 +6,7 @@
 #include<stdlib.h> //malloc
 #include <sys/times.h> //czas(tms)
 #include<stdlib.h> //alloc
+#include "library.h"
 
 int main(){
     sleep(0.005);//w sec
@@ -45,6 +46,8 @@ int main(){
     int *a=malloc(4*sizeof(int));
     realloc(a, 5*sizeof(int));
     free(a);
-
+    
+    try_library("ALA");
+    printf(size);
     return 0;
 }
