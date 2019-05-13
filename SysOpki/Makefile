@@ -2,7 +2,7 @@ all:
 	gcc -c library.c
 	ar rcs liblibrary.a library.o
 	gcc -c 1.c
-	gcc 1.o –l library –L ./ -o main
+	gcc 1.o liblibrary.a –o main
 	./main
 static:
 	#clean up before you start
