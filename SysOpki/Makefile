@@ -16,7 +16,7 @@ shared:
 	make -s clear
 	gcc $(CFLAGS) -fPIC library.c
 	gcc -shared -o liblibrary.so library.o
-	gcc 1.c -o main -L. -llibrary -Wl,-rpath=.
+	gcc 1.c -o main -L. -llibrary -Wl,-rpath=..
 	rm -f *.o
 	./main
 
