@@ -2,6 +2,6 @@
 #include "library.h"
 
 int main(){
-    printf(size);
+    printf("%d\n", size);
     return 0;
 }

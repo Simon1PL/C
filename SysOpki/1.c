@@ -1,3 +1,4 @@
+//git pull
 //scp C:\Users\Szymon\Documents\GitHub\SysOpy\SysOpki\1.c szielins@jagular.iisg.agh.edu.pl:~/sys.c
 //scp C:\Users\Szymon\Documents\GitHub\SysOpy\SysOpki\1.c szielins@jabba.icsr.agh.edu.pl:~/sys.c
 #include<unistd.h> //sleep
@@ -48,6 +49,6 @@ int main(){
     free(a);
     
     try_library("ALA");
-    printf(size);
+    printf("%d\n", size);
     return 0;
 }
