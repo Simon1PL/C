@@ -1,5 +1,10 @@
 static:
 	make -s static1
+shared:
+	make -s shared1
+dll:
+	make -s dll
+	
 static1:
 	#clean up before you start
 	make clear
@@ -16,7 +21,7 @@ static1:
 	#clean up before you finish
 	rm -f *.o
 
-shared:
+shared1:
 	make clear
 	#as with static library, we need .o files
 	gcc -c -fPIC lib1.c
@@ -32,13 +37,13 @@ shared:
 	#clean up!
 	rm -f *.o
 
-dll:
+dll1:
 	#Oh, three hours wasted... It was the main reason, why this tutorial was made. Enjoy!
 	#clean up, .o files
 	make clear
-	gcc -c lib1.c
+	gcc -c -fPIC lib1.c
 	#create dynamic library
-	gcc -shared -fPIC -o liblibrary.so lib1.o
+	gcc -shared -o liblibrary.so lib1.o
 	#and now is the magic. For DLL you need some extra code in main.c file, check it out.
 		#-L. - we know it
 		#-ldl - for dll library
