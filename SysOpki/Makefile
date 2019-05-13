@@ -1,5 +1,5 @@
 all:
-	make static
+	make shared
 
 static:
 	make clear
