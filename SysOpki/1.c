@@ -8,12 +8,9 @@
 #include <sys/times.h> //czas(tms)
 #include<stdlib.h> //alloc
 #include <dlfcn.h> //dll
-#ifndef DLL
-#include "library.h"
-#endif
 
 int main(){
-    #ifndef DLL
+    #ifdef DLL
     void *handle = dlopen("liblibrary.so", RTLD_LAZY);
     if(!handle){printf("error dll\n");}
     void (*try_library)(char*)= dlsym(handle,"try_library");
@@ -58,10 +55,10 @@ int main(){
     a=realloc(a, 5*sizeof(int));
     free(a);
     
-    (*try_library)("ALA");
+    try_library("ALA");
     //printf("%d\n", size);
 
-    #ifndef DLL
+    #ifdef DLL
     dlclose(handle);
     #endif
     return 0;
