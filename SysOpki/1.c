@@ -58,7 +58,7 @@ int main(){
     a=realloc(a, 5*sizeof(int));
     free(a);
     
-    try_library("ALA");
+    (*try_library)("ALA");
     //printf("%d\n", size);
 
     #ifndef DLL
