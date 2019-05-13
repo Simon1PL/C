@@ -13,14 +13,13 @@ static:
 shared:
 	make clear
 	#export LD_LIBRARY_PATH=/home/students/s/z/szielins/SysOpy/SysOpki/library:$LD_LIBRARY_PATH
-	gcc -c -Wall -fPIC library.c
-	gcc -Wall -shared -fPIC -o liblibrary.so library.o
-	#gcc -Wall -Werror -fpic –c library.c
+	gcc -c -fPIC library.c
+	gcc -shared  -W1,-soname,liblibrary.so.1 \ -o liblibrary.so.1.0.1 library.o -lc
 	#gcc -shared –W1,-soname,liblibrary.so.1 \ -o liblibrary.so.1.0.1 library.o –lc
-	#ln –s liblibrary.so.1.0.1 liblibrary.so.1
-	#ln –s liblibrary.so.1 liblibrary.so
+	ln –s liblibrary.so.1.0.1 liblibrary.so.1
+	ln –s liblibrary.so.1 liblibrary.so
 	#gcc 1.c -llibrary -L ./ -o main
-	gcc 1.c -Wall -o main -L. -llibrary -Wl,-rpath=`pwd`
+	gcc 1.c -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
 	
 dll:

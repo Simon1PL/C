@@ -45,12 +45,12 @@ int main(){
         tab[i]=(double*)calloc(5, sizeof(double));
     free(tab);
     int *a=malloc(4*sizeof(int));
-    realloc(a, 5*sizeof(int));
+    a=realloc(a, 5*sizeof(int));
     free(a);
     
     try_library("ALA");
     printf("%d\n", size);
 
-    
+
     return 0;
 }
