@@ -14,8 +14,8 @@ shared:
 	make clear
 	gcc -c -fPIC library.c
 	gcc -shared -o liblibrary.so library.o
-	ln –s liblibrary.so.1.0.1 liblibrary.so
-	ln –s liblibrary.so.1 liblibrary.so
+	ln –s liblibrary.so liblibrary.so.1.0.1
+	ln –s liblibrary.so liblibrary.so.1
 	#gcc 1.c -llibrary -L ./ -o main
 	gcc 1.c -Wall -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
