@@ -18,13 +18,13 @@ static:
 dynamic:
 	make clear
 	#as with static library, we need .o files
-	gcc -Wall -c lib1.c
-	gcc -Wall -c lib2.c
+	gcc -Wall -c -fPIC lib1.c
+	gcc -Wall -c -fPIC lib2.c
 	#now, cteate library.
 		#-shared -fPIC - options for dynamic library
 		#-o lib<libraryName>.so - our library file
 		#then - .o files
-	gcc -Wall -shared -fPIC -o liblibrary.so lib1.o lib2.o
+	gcc -Wall -shared -o liblibrary.so lib1.o lib2.o
 	#compile everything together
 		#I'm not sure, what "-Wl,-rpath=`pwd`" options do, but it's necessary :)
 			#tkanks, krk_!
