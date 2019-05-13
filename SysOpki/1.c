@@ -17,7 +17,7 @@
 int main(){
     #ifdef DLL
     void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
-    int size=dlsym(handle, "size");
+    void (*try_library)(char*)= dllimport(handle,"try_library");
     #endif
     
     sleep(0.005);//w sec
@@ -59,7 +59,6 @@ int main(){
     free(a);
     
     try_library("ALA");
-
     #ifdef DLL
     dlclose(handle);
     #endif
