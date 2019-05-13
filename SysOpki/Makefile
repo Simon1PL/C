@@ -16,7 +16,7 @@ shared:
 	gcc -c -fPIC library.c
 	#gcc -shared -o liblibrary.so library.o
 	#gcc -Wall -Werror -fpic –c library.c
-	gcc -shared –W1,-soname,liblibrary.so.1 \ -o liblibrary.so.1.0.1 library.o –lc
+	gcc -shared –Wl,-soname,liblibrary.so.1 \ -o liblibrary.so.1.0.1 library.o –lc
 	#ln –s liblibrary.so.1.0.1 liblibrary.so.1
 	#ln –s liblibrary.so.1 liblibrary.so
 	#gcc 1.c -llibrary -L ./ -o main
