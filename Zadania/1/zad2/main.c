@@ -98,14 +98,14 @@ void make_raport() {
 	create_table(50000);
 	print_clock("creatTab(50000)", raport, my_clock);
 	//SMALL
-	search_directory(".", "*.c", tmp);
+	search_directory(".", "*", tmp);
 	print_clock("search(small)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(small)", raport, my_clock);
 	remove_block(1);
 	print_clock("remove(small)", raport, my_clock);
 	//MEDIUM
-	search_directory("~/SysOpy", "*.c", tmp);
+	search_directory("~/SysOpy", "*", tmp);
 	print_clock("search(medium)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(medium)", raport, my_clock);

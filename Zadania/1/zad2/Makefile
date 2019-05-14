@@ -18,4 +18,4 @@ clear:
 
 clean: 
 	make clear
-	rm raport.txt
+	rm report.txt
