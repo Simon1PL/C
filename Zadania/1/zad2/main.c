@@ -6,13 +6,13 @@
 
 #include "../zad1/library.h"
 
-char** wyniki=NULL;
+char** results=NULL;
 int rozmiar;
 
 void make_raport();
 void help();
 int parse_tasks(char** tasks, int i);
-void print_wyniki();
+void print_results();
 
 struct Times {
 	clock_t real_time;
@@ -35,7 +35,7 @@ int main(int argc, char ** tasks) {
 		return-1;
 	}
 	rozmiar=atoi(tasks[1]);
-	wyniki=create_table(atoi(tasks[1]));
+	results=create_table(atoi(tasks[1]));
 	int i=2;
 	while (tasks[i]) {
 		printf("%s:\n", tasks[i]);
@@ -77,11 +77,11 @@ int parse_tasks(char** tasks, int i) {
 	}
 }
 
-void print_wyniki(){
-	printf("WYNIKI:\n");
+void print_results(){
+	printf("results:\n");
 	int i;
 	for (i=0; i<rozmiar; i++){
-		if (wyniki[i]!=NULL) printf("%s\n", wyniki[i]);
+		if (results[i]!=NULL) printf("%s\n", results[i]);
 	}
 }
 
@@ -95,38 +95,38 @@ void make_raport() {
 	create_table(50000);
 	print_clock("creatTab(50000)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
-	search_directory(".", "aaanaconda", "wyniki.txt");
+	search_directory(".", "aaanaconda", "results.txt");
 	print_clock("search(small)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/usr/share", "aaanaconda", "wyniki.txt");
+	search_directory("/usr/share", "aaanaconda", "results.txt");
 	print_clock("search(medium)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/", "aaanaconda", "wyniki.txt");
+	search_directory("/", "aaanaconda", "results.txt");
 	print_clock("search(big)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/usr/share", "anaconda", "wyniki.txt");
+	search_directory("/usr/share", "anaconda", "results.txt");
 	print_clock("save(small)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/usr/share", "ana*", "wyniki.txt");
+	search_directory("/usr/share", "ana*", "results.txt");
 	print_clock("save(medium)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/usr/share", "a*", "wyniki.txt");
+	search_directory("/usr/share", "a*", "results.txt");
 	print_clock("save(big)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
 	int i;
 	for (i=0; i<500; i++) {
-		search_directory(".", "m*", "wyniki.txt");
+		search_directory(".", "m*", "results.txt");
 		remove_block(0);	
 	}
 	print_clock("sea&rem(*500)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
-	system("wyniki.txt");
+	system("results.txt");
 	system("clear");
 }
 
