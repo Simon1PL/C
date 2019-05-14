@@ -100,30 +100,30 @@ void make_raport() {
 	wyniki=create_table(rozmiar);
 	print_clock("creatTab(50000)", raport, my_clock);
 	//SMALL
-	search_directory(".", "*", tmp);
+	search_directory(".", "*.c", tmp);
 	print_clock("search(small)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(small)", raport, my_clock);
 	remove_block(1);
 	print_clock("remove(small)", raport, my_clock);
 	//MEDIUM
-	search_directory("~/SysOpy", "*", tmp);
+	search_directory("~/SysOpy", "*.c", tmp);
 	print_clock("search(medium)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(medium)", raport, my_clock);
 	remove_block(2);
 	print_clock("remove(medium)", raport, my_clock);
 	//BIG
-	search_directory("~", "*", tmp);
+	search_directory("~", "*.c", tmp);
 	print_clock("search(big)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(big)", raport, my_clock);
-	//remove_block(3);
-	//print_clock("remove(big)", raport, my_clock);
+	remove_block(3);
+	print_clock("remove(big)", raport, my_clock);
 	int i;
 	for (i=0; i<500; i++) {
 		search_directory(".", "*.c", tmp);
-		//remove_block(0);	
+		remove_block(0);	
 	}
 	print_clock("sea&rem(*500)", raport, my_clock);
 	system("rm results.txt");
