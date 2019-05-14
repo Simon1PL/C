@@ -59,7 +59,7 @@ int parse_tasks(char** tasks, int i) {
 		return 4;
 	}
 	else if (!strcmp(tasks[i], "remove_block")) {
-		if (!atoi(tasks[i+1])) {
+		if (atoi(tasks[i+1])) {
 			printf ("niepoprawny index\n");
 			help();
 			return 1;
