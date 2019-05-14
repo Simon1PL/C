@@ -99,9 +99,9 @@ void make_raport() {
 		fprintf(report, "		real_time:	sys_time:	user_time:\n");
 		fclose(report);	
 	}
-	rozmiar=50000-1;
+	rozmiar=50000-500;
 	my_clock=reset_time(my_clock);
-	wyniki=create_table(rozmiar+1);
+	wyniki=create_table(rozmiar+500);
 	print_clock("creatTab(50000)", raport, my_clock);
 	//SMALL
 	search_directory(".", "*.c", tmp);
