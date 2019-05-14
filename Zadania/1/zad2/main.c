@@ -86,7 +86,7 @@ int parse_tasks(char** tasks, int i) {
 void print_results(){
 	printf("results:\n");
 	int i;
-	for (i=0; i<5000; i++){
+	for (i=0; i<49000; i++){
 		if (wyniki[i]!=NULL) printf("%s\n", wyniki[i]);
 	}
 }
