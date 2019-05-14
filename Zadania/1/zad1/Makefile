@@ -1,4 +1,5 @@
 static:
+	#not to have unwanted text in the console
 	make -s static1
 shared:
 	make -s shared1
@@ -26,7 +27,7 @@ shared1:
 	#as with static library, we need .o files
 	gcc -c -fPIC lib1.c
 	#now, cteate library.
-		#-shared -fPIC - options for shared library
+		#-shared -fPIC - options for dynamic library
 		#-o lib<libraryName>.so - our library file
 		#then - .o files
 	gcc -shared -o liblibrary.so lib1.o

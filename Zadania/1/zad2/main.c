@@ -1,22 +1,14 @@
-//functions for dll library
 #include <stdio.h>
-#include <dlfcn.h>
-#include <string.h>
 #include <stdlib.h>
-#include <time.h>
+#include <string.h>
 #include <sys/times.h>
-#include <unistd.h>
 
-#ifndef DLL
-//DLL library doesn't need this header file
 #include "../zad1/library.h"
-#endif
 
 void make_raport();
 void help();
 int parse_tasks(char** tasks, int i);
-void print_wyniki();
-void make_raport();
+void print_wyniki(int rozmiar);
 
 struct Times {
 	clock_t real_time;
@@ -29,21 +21,9 @@ struct Times* set_clock(struct Times* clock);
 void print_clock(const char * time_description, const char* report_file, struct Times* clock);
 
 struct Times* my_clock=NULL;
+char** wyniki=NULL;
 
 int main(int rozmiar, char ** tasks) {
-#ifdef DLL
-//open library
-//function returns library handler
-//takes dynamic library path and a flag
-void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
-
-//now - pointers to all used functions
-//function dlsym takes library handler and function name, returns function pointer
-char** (*create_table)(int) = dlsym(handle, "create_table");
-int (*search_directory)(char*, char*, char*) = dlsym(handle, "search_directory");
-void (*remove_block)(int) = dlsym(handle, "remove_block");
-//ok, we can use functions from our DLL library
-#endif
 	if (!tasks[1]) { help(); return-1; }
 	if (!strcmp(tasks[1], "report")) { make_raport(); return 1; }
 	if (!atoi(tasks[1])) {
@@ -51,17 +31,12 @@ void (*remove_block)(int) = dlsym(handle, "remove_block");
 		help();
 		return-1;
 	}
-	create_table(atoi(tasks[1]));
+	wyniki=create_table(atoi(tasks[1]));
 	int i=2;
 	while (tasks[i]) {
-		printf("\n	%s:\n", tasks[i]);
+		printf("%s:\n", tasks[i]);
 		i+=parse_tasks(tasks, i);
 	}
-
-#ifdef DLL
-  //close library after doing all stuff
-  dlclose(handle);
-#endif
 }
 
 void help() {
@@ -78,7 +53,7 @@ int parse_tasks(char** tasks, int i) {
 		return 4;
 	}
 	else if (!strcmp(tasks[i], "remove_block")) {
-		if (!atoi(tasks[1])) {
+		if (!atoi(tasks[i+1])) {
 			printf ("niepoprawny index\n");
 			help();
 			return 1;
@@ -97,10 +72,10 @@ int parse_tasks(char** tasks, int i) {
 	}
 }
 
-void print_wyniki(){
+void print_wyniki(int rozmiar){
 	printf("WYNIKI:\n");
 	int i;
-	for (i=0; i<size; i++){
+	for (i=0; i<rozmiar; i++){
 		if (wyniki[i]!=NULL) printf("%s\n", wyniki[i]);
 	}
 }
@@ -108,45 +83,45 @@ void print_wyniki(){
 void make_raport() {
 	FILE* report=fopen("raport2.txt", "a");
 	if (report) {
-		fprintf(report, "		real_time: sys_time: user_time: \n");
+		fprintf(report, "		real_time:	sys_time:	user_time:\n");
 		fclose(report);	
 	}
 	my_clock=reset_time(my_clock);
 	create_table(50000);
-	print_clock("creatTab(50000)", "raport2.txt", my_clock);
+	print_clock("creatTab(50000)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
-	search_directory(".", "aaanaconda", "repport.txt");
-	print_clock("search(small)", "raport2.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("/usr/share", "aaanaconda", "repport.txt");
-	print_clock("search(medium)", "raport2.txt", my_clock);
+	search_directory(".", "aaanaconda", "wyniki.txt");
+	print_clock("search(small)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/", "aa	anaconda", "repport.txt");
-	print_clock("search(big)", "raport2.txt", my_clock);
+	search_directory("/usr/share", "aaanaconda", "wyniki.txt");
+	print_clock("search(medium)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/usr/share", "anaconda", "repport.txt");
-	print_clock("save(small)", "raport2.txt", my_clock);
+	search_directory("/", "aaanaconda", "wyniki.txt");
+	print_clock("search(big)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/usr/share", "ana*", "repport.txt");
-	print_clock("save(medium)", "raport2.txt", my_clock);
+	search_directory("/usr/share", "anaconda", "wyniki.txt");
+	print_clock("save(small)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
-	search_directory("/usr/share", "a*", "repport.txt");
-	print_clock("save(big)", "raport2.txt", my_clock);
+	search_directory("/usr/share", "ana*", "wyniki.txt");
+	print_clock("save(medium)", "raport.txt", my_clock);
+	my_clock=reset_time(my_clock);
+	remove_block(0);
+	search_directory("/usr/share", "a*", "wyniki.txt");
+	print_clock("save(big)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
 	remove_block(0);
 	int i;
 	for (i=0; i<500; i++) {
-		search_directory(".", "m*", "repport.txt");
+		search_directory(".", "m*", "wyniki.txt");
 		remove_block(0);	
 	}
-	print_clock("sea&rem(*500)", "raport2.txt", my_clock);
+	print_clock("sea&rem(*500)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
-	system("rm repport.txt");
+	system("wyniki.txt");
 	system("clear");
 }
 
