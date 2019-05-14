@@ -153,12 +153,12 @@ void print_clock(const char * time_description, const char* report_file, struct 
 	if (clock==NULL) { printf("ERROR!@!"); return; }
 	struct Times* current_time=NULL;
 	current_time=reset_time(current_time); 
-	double real_time=(double)((current_time->real_time-clock->real_time)/sysconf(_SC_CLK_TCK));
-	double sys_time=(double)((current_time->sys_time-clock->sys_time)/sysconf(_SC_CLK_TCK));
-	double user_time=(double)((current_time->user_time-clock->user_time)/sysconf(_SC_CLK_TCK));
+	double real_time=(double)(current_time->real_time-clock->real_time)/sysconf(_SC_CLK_TCK);
+	double sys_time=(double)(current_time->sys_time-clock->sys_time)/sysconf(_SC_CLK_TCK);
+	double user_time=(double)(current_time->user_time-clock->user_time)/sysconf(_SC_CLK_TCK);
 	FILE* report=fopen(report_file, "a");
 	if (report) {
-		fprintf(report, "%s %lf %lf %lf\n", time_description, real_time, sys_time, user_time);
+		fprintf(report, "%s %lf 	%lf		%lf\n", time_description, real_time, sys_time, user_time);
 		fclose(report);	
 	}
 }
