@@ -6,7 +6,7 @@
 
 #include "../zad1/library.h"
 
-char** results=NULL;
+char** wyniki=NULL;
 int rozmiar;
 
 void make_raport();
@@ -35,7 +35,7 @@ int main(int argc, char ** tasks) {
 		return-1;
 	}
 	rozmiar=atoi(tasks[1]);
-	results=create_table(atoi(tasks[1]));
+	wyniki=create_table(atoi(tasks[1]));
 	int i=2;
 	while (i<argc-1) {
 		printf("%s:\n", tasks[i]);
