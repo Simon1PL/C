@@ -86,7 +86,7 @@ int parse_tasks(char** tasks, int i) {
 void print_results(){
 	printf("results:\n");
 	int i;
-	for (i=0; i<rozmiar; i++){
+	for (i=0; i<4; i++){
 		if (wyniki[i]!=NULL) printf("%s\n", wyniki[i]);
 	}
 }
@@ -99,9 +99,9 @@ void make_raport() {
 		fprintf(report, "		real_time:	sys_time:	user_time:\n");
 		fclose(report);	
 	}
-	rozmiar=50000-500;
+	rozmiar=50000-1;
 	my_clock=reset_time(my_clock);
-	wyniki=create_table(rozmiar+500);
+	wyniki=create_table(rozmiar+1);
 	print_clock("creatTab(50000)", raport, my_clock);
 	//SMALL
 	search_directory(".", "*.c", tmp);
