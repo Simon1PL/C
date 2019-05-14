@@ -116,8 +116,8 @@ void make_raport() {
 	print_clock("search(big)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(big)", raport, my_clock);
-	remove_block(1);
-	print_clock("remove(big)", raport, my_clock);
+	//remove_block(3);
+	//print_clock("remove(big)", raport, my_clock);
 	int i;
 	for (i=0; i<500; i++) {
 		search_directory(".", "*.c", tmp);
