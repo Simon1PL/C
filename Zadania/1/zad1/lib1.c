@@ -9,7 +9,7 @@ int free_blocks=0;
 char** results=NULL;
 
 char** create_table(int rozmiar) {
-	results=(calloc(rozmiar, sizeof(char)));
+	results=(calloc(rozmiar, sizeof(char*)));
 	int i;
 	for (i = 0; i < 17000; i++)
 	{
