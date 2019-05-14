@@ -12,7 +12,7 @@ char** create_table(int rozmiar) {
 	results=(calloc(rozmiar, sizeof(char)));
 	int i;
 	for (i=0; i<rozmiar; i++){
-		printf("%d\t", wyniki[i]);
+		printf("%d\t", results[i]);
 		printf("%d\n", i);
 	}
 	size=rozmiar;
