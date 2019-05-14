@@ -126,7 +126,7 @@ void make_raport() {
 	}
 	print_clock("sea&rem(*500)", "raport.txt", my_clock);
 	my_clock=reset_time(my_clock);
-	system("results.txt");
+	system("rm results.txt");
 	system("clear");
 }
 

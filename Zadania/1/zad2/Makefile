@@ -4,15 +4,13 @@ static:
 	rm -f *.o
 
 dynamic:
-	#NIE DZIALA!!!
 	make clear
-	gcc main.c -Wall -o main -L../zad1 -llibrary -Wl,-rpath=`pwd`
+	gcc main.c -Wall -o main -L../zad1 -llibrary -Wl,-rpath=../zad1
 	rm -f *.o
 
 dll:
-	#NIE DZIALA!!! jak wczytac zmienne globalne?
 	make clear
-	gcc -Wall main.c -o main -L. -ldl -D DLL
+	gcc -Wall main.c -o main -L../zad1 -ldl -D DLL
 	rm -f *.o
 
 clear:
@@ -20,4 +18,4 @@ clear:
 
 clean: 
 	make clear
-	rm wynik.txt
+	rm raport.txt
