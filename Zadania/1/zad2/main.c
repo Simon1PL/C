@@ -113,7 +113,19 @@ void make_raport() {
 	print_clock("save(medium)", raport, my_clock);
 	remove_block(2);
 	print_clock("remove(medium)", raport, my_clock);
-	
+	//BIG
+	search_directory("~", "*.c", tmp);
+	print_clock("search(big)", raport, my_clock);
+	zapiszWynik(tmp);
+	print_clock("save(big)", raport, my_clock);
+	remove_block(3);
+	print_clock("remove(big)", raport, my_clock);
+	int i;
+	for (i=0; i<500; i++) {
+		search_directory(".", "*.c", tmp);
+		remove_block(0);	
+	}
+	print_clock("sea&rem(*500)", raport, my_clock);
 	system("rm results.txt");
 	//system("clear");
 }
