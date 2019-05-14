@@ -127,7 +127,7 @@ void make_raport() {
 	}
 	print_clock("sea&rem(*500)", raport, my_clock);
 	system("rm results.txt");
-	//system("clear");
+	system("clear");
 }
 
 struct Times* reset_time(struct Times* clock) {
