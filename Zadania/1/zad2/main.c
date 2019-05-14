@@ -132,8 +132,8 @@ void make_raport() {
 
 struct Times* reset_time(struct Times* clock) {
 	if(clock!=NULL) {
-		free(clock);
 		clock=NULL;
+		free(clock);
 	}
 	return set_clock(clock);
 }
