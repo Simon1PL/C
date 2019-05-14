@@ -37,7 +37,7 @@ int main(int argc, char ** tasks) {
 	rozmiar=atoi(tasks[1]);
 	results=create_table(atoi(tasks[1]));
 	int i=2;
-	while (tasks[i]) {
+	while (i<argc-1) {
 		printf("%s:\n", tasks[i]);
 		i+=parse_tasks(tasks, i);
 	}
