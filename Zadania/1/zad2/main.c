@@ -99,7 +99,7 @@ void make_raport() {
 		fprintf(report, "		real_time:	sys_time:	user_time:\n");
 		fclose(report);	
 	}
-	rozmiar=6250-1;
+	rozmiar=6252-1;
 	my_clock=reset_time(my_clock);
 	wyniki=create_table(rozmiar+1);
 	print_clock("creatTab(50000)", raport, my_clock);
