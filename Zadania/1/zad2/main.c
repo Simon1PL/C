@@ -46,7 +46,6 @@ int main(int argc, char ** tasks) {
 		i+=parse_tasks(tasks, i);
 	}
 	print_results();
-	free(wyniki);
 	return 0;
 }
 
