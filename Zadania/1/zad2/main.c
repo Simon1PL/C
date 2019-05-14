@@ -88,7 +88,7 @@ void print_results(){
 	int i;
 	for (i=0; i<7000; i++){
 		//printf("%d\n", i);
-		if (wyniki[i]!=NULL) printf("%s\n", wyniki[i]);
+		if (wyniki[i]!=NULL) printf("%s\n", i);
 	}
 }
 
