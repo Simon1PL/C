@@ -86,9 +86,7 @@ void print_results(){
 	printf("results:\n");
 	int i;
 	for (i=0; i<rozmiar; i++){
-		printf("%d\n", i);
-		//if (wyniki[i]!=0) 
-		printf("%d\n", i);
+		if (wyniki[i]!=0) printf("%s\n", wyniki[i]);
 	}
 }
 
