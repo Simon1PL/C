@@ -6,13 +6,13 @@
 
 int size=0;
 int free_blocks=0;
-char** wyniki=NULL;
+char** results=NULL;
 
 char** create_table(int rozmiar) {
-	wyniki=(calloc(rozmiar, sizeof(char)));
+	results=(calloc(rozmiar, sizeof(char)));
 	size=rozmiar;
 	free_blocks=rozmiar;
-	return wyniki;
+	return results;
 }
 
 int search_directory(char* dir, char* file, char* name_file_temp){
@@ -43,8 +43,8 @@ int zapiszWynik(char* name_file_temp){
 		}
 		free(wiersz);
 		int i = 0;
-		while(wyniki[i]!=NULL) i++;
-		wyniki[i]=result;
+		while(results[i]!=NULL) i++;
+		results[i]=result;
 		free_blocks--;
 		fclose(wynik);
 		return i;
@@ -57,11 +57,11 @@ int zapiszWynik(char* name_file_temp){
 }
 
 void remove_block(int index){
-	if(index>size-1 || wyniki[index]==NULL){
+	if(index>size-1 || results[index]==NULL){
 		printf("nie ma bloku o takim indeksie\n");	
 		return;	
 	}
-	wyniki[index]=NULL;
-	free(wyniki[index]);
+	results[index]=NULL;
+	free(results[index]);
 	free_blocks++;	
 }
