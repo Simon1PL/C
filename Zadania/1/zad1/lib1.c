@@ -11,7 +11,7 @@ char** results=NULL;
 char** create_table(int rozmiar) {
 	results=(calloc(rozmiar, sizeof(char)));
 	int i;
-	for (int i = 0; i < 17000; i++)
+	for (i = 0; i < 17000; i++)
 	{
 		printf("1:%d\n", results[i]);
 		printf("1:%d\n", i);
