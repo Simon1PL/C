@@ -105,7 +105,7 @@ void make_raport() {
 	wyniki=create_table(rozmiar+1);
 	print_clock("creatTab(50000)", raport, my_clock);
 	//SMALL
-	search_directory(".", "*.c", tmp);
+	search_directory(".", "*s.c", tmp);
 	print_clock("search(small)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(small)", raport, my_clock);
