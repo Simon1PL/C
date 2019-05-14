@@ -17,8 +17,6 @@ char** create_table(int rozmiar) {
 	}
 	size=rozmiar;
 	free_blocks=rozmiar;
-	printf("1:%d\n", results[6251]);
-	printf("2:%d\n", results[6252]);
 	return results;
 }
 
