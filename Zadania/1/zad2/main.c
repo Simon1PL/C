@@ -84,11 +84,11 @@ int parse_tasks(char** tasks, int i) {
 
 void print_results(){
 	printf("results:\n");
-	//int i;
-	//for (i=0; i<rozmiar; i++){
-		//printf("%d\n", i);
-//		if (wyniki[i]!=NULL) printf("%d\n", i);
-//	}
+	int i;
+	for (i=0; i<rozmiar; i++){
+		printf("%d\n", i);
+		if (wyniki[i]!=NULL) printf("%d\n", i);
+	}
 }
 
 void make_raport() {
