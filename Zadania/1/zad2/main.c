@@ -40,6 +40,7 @@ int main(int argc, char ** tasks) {
 		printf("%s:\n", tasks[i]);
 		i+=parse_tasks(tasks, i);
 	}
+	return 0;
 }
 
 void help() {
