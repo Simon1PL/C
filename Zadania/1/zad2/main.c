@@ -28,7 +28,6 @@ struct Times* my_clock=NULL;
 
 int main(int argc, char ** tasks) {
 	if (!tasks[1]) { help(); return-1; }
-	if (!strcmp(tasks[1], "report")) { make_raport(); print_results(); free(wyniki); return 1;}
 	if (!atoi(tasks[1])) {
 		printf ("niepoprawny rozmiar\n");
 		help();
@@ -36,6 +35,7 @@ int main(int argc, char ** tasks) {
 	}
 	rozmiar=atoi(tasks[1]);
 	wyniki=create_table(atoi(tasks[1]));
+	if (!strcmp(tasks[1], "report")) { make_raport(); print_results(); free(wyniki); return 1;}
 	int i=2;
 	while (i<argc-1) {
 		printf("%s:\n", tasks[i]);
