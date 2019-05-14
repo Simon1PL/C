@@ -21,7 +21,7 @@ void (*remove_block)(int) = dlsym(handle, "remove_block");
 //ok, we can use functions from our DLL library
 #endif
 
-	create_table(10);
+	create_table(20000);
 	printf("indeks:%d\n\n", search_directory(".", "l*", "wynik.txt"));
 	remove_block(0);
 
