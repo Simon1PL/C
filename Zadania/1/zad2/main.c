@@ -5,10 +5,13 @@
 
 #include "../zad1/library.h"
 
+char** wyniki=NULL;
+int rozmiar;
+
 void make_raport();
 void help();
 int parse_tasks(char** tasks, int i);
-void print_wyniki(int rozmiar);
+void print_wyniki();
 
 struct Times {
 	clock_t real_time;
@@ -21,9 +24,8 @@ struct Times* set_clock(struct Times* clock);
 void print_clock(const char * time_description, const char* report_file, struct Times* clock);
 
 struct Times* my_clock=NULL;
-char** wyniki=NULL;
 
-int main(int rozmiar, char ** tasks) {
+int main(int argc, char ** tasks) {
 	if (!tasks[1]) { help(); return-1; }
 	if (!strcmp(tasks[1], "report")) { make_raport(); return 1; }
 	if (!atoi(tasks[1])) {
@@ -31,6 +33,7 @@ int main(int rozmiar, char ** tasks) {
 		help();
 		return-1;
 	}
+	rozmiar=atoi(tasks[1]);
 	wyniki=create_table(atoi(tasks[1]));
 	int i=2;
 	while (tasks[i]) {
@@ -72,7 +75,7 @@ int parse_tasks(char** tasks, int i) {
 	}
 }
 
-void print_wyniki(int rozmiar){
+void print_wyniki(){
 	printf("WYNIKI:\n");
 	int i;
 	for (i=0; i<rozmiar; i++){
