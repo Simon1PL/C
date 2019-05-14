@@ -28,7 +28,7 @@ struct Times* my_clock=NULL;
 
 int main(int argc, char ** tasks) {
 	if (!tasks[1]) { help(); return-1; }
-	if (!strcmp(tasks[1], "report")) { make_raport(); return 1; print_results();}
+	if (!strcmp(tasks[1], "report")) { make_raport(); print_results(); return 1;}
 	if (!atoi(tasks[1])) {
 		printf ("niepoprawny rozmiar\n");
 		help();
