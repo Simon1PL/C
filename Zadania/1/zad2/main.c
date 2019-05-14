@@ -86,7 +86,7 @@ void print_results(){
 }
 
 void make_raport() {
-	FILE* report=fopen("raport2.txt", "a");
+	FILE* report=fopen("raport.txt", "a");
 	if (report) {
 		fprintf(report, "		real_time:	sys_time:	user_time:\n");
 		fclose(report);	
