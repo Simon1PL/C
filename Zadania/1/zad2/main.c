@@ -112,7 +112,7 @@ void make_raport() {
 	remove_block(2);
 	print_clock("remove(medium)", raport, my_clock);
 	//BIG
-	search_directory("~", "*.c", tmp);
+	search_directory("~", "*", tmp);
 	print_clock("search(big)", raport, my_clock);
 	zapiszWynik(tmp);
 	print_clock("save(big)", raport, my_clock);
