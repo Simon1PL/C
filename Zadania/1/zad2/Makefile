@@ -3,7 +3,7 @@ static:
 	gcc -Wall main.c -o main -L../zad1 -llibrary
 	rm -f *.o
 
-dynamic:
+shared:
 	make clear
 	gcc main.c -Wall -o main -L../zad1 -llibrary -Wl,-rpath=../zad1
 	rm -f *.o
