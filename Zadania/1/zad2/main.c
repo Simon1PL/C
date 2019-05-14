@@ -82,7 +82,7 @@ void print_results(){
 	printf("results:\n");
 	int i;
 	for (i=0; i<rozmiar; i++){
-		if (results[i]!=NULL) printf("%s\n", results[i]);
+		if (wyniki[i]!=NULL) printf("%s\n", wyniki[i]);
 	}
 }
 
