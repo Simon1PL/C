@@ -87,46 +87,43 @@ void print_results(){
 }
 
 void make_raport() {
-	FILE* report=fopen("raport.txt", "a");
+	char* tmp="results.txt";
+	char* raport="report.txt";
+	FILE* report=fopen(raport, "a");
 	if (report) {
 		fprintf(report, "		real_time:	sys_time:	user_time:\n");
 		fclose(report);	
 	}
 	my_clock=reset_time(my_clock);
 	create_table(50000);
-	print_clock("creatTab(50000)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	search_directory(".", "*.c", "results.txt");
-	print_clock("search(small)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("~/SysOpy", "*.c", "results.txt");
-	print_clock("search(medium)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("~", "*.c", "results.txt");
-	print_clock("search(big)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("~", "s*.c", "results.txt");
-	print_clock("save(small)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("~", "*.c", "results.txt");
-	print_clock("save(medium)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("~", "*c*", "results.txt");
-	print_clock("save(big)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
+	print_clock("creatTab(50000)", raport, my_clock);
+	//SMALL
+	search_directory(".", "*.c", tmp);
+	print_clock("search(small)", raport, my_clock);
+	zapiszWynik(tmp);
+	print_clock("save(small)", raport, my_clock);
+	remove_block(1);
+	print_clock("remove(small)", raport, my_clock);
+	//MEDIUM
+	search_directory("~/SysOpy", "*.c", tmp);
+	print_clock("search(medium)", raport, my_clock);
+	zapiszWynik(tmp);
+	print_clock("save(medium)", raport, my_clock);
+	remove_block(2);
+	print_clock("remove(medium)", raport, my_clock);
+	//BIG
+	search_directory("~", "*.c", tmp);
+	print_clock("search(big)", raport, my_clock);
+	zapiszWynik(tmp);
+	print_clock("save(big)", raport, my_clock);
+	remove_block(1);
+	print_clock("remove(big)", raport, my_clock);
 	int i;
 	for (i=0; i<500; i++) {
-		search_directory(".", "s*", "results.txt");
+		search_directory(".", "*.c", tmp);
 		remove_block(0);	
 	}
-	print_clock("sea&rem(*500)", "raport.txt", my_clock);
-	my_clock=reset_time(my_clock);
+	print_clock("sea&rem(*500)", raport, my_clock);
 	system("rm results.txt");
 	//system("clear");
 }
@@ -162,4 +159,5 @@ void print_clock(const char * time_description, const char* report_file, struct 
 		fprintf(report, "%s	%lf 	%lf	%lf\n", time_description, real_time, sys_time, user_time);
 		fclose(report);	
 	}
+	clock=reset_time(clock);
 }
