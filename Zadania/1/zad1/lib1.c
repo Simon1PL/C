@@ -10,6 +10,11 @@ char** results=NULL;
 
 char** create_table(int rozmiar) {
 	results=(calloc(rozmiar, sizeof(char)));
+	int i;
+	for (i = 0; i < rozmiar; i++)
+	{
+		results[i]=NULL;
+	}
 	size=rozmiar;
 	free_blocks=rozmiar;
 	printf("1:%d\n", results[6251]);
