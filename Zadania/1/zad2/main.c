@@ -121,7 +121,7 @@ void make_raport() {
 	int i;
 	for (i=0; i<500; i++) {
 		search_directory(".", "*.c", tmp);
-		remove_block(0);	
+		//remove_block(0);	
 	}
 	print_clock("sea&rem(*500)", raport, my_clock);
 	system("rm results.txt");
