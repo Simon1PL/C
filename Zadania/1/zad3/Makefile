@@ -29,22 +29,22 @@ all:
 
 static:
 	make clear
-	gcc -c lib1.c
-	ar crs liblibrary.a lib1.o
+	gcc -c ../lib1.c
+	ar crs liblibrary.a ../lib1.o
 	gcc main.c -o main -L. -llibrary
 	rm -f *.o
 
 shared:
 	make clear
-	gcc -c -fPIC lib1.c
-	gcc -shared -o liblibrary.so lib1.o
+	gcc -c -fPIC ../lib1.c
+	gcc -shared -o liblibrary.so ../lib1.o
 	gcc main.c -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
 
 dll:
 	make clear
-	gcc -c -fPIC lib1.c
-	gcc -shared -o liblibrary.so lib1.o
+	gcc -c -fPIC ../lib1.c
+	gcc -shared -o liblibrary.so ../lib1.o
 	gcc -Wall main.c -o main -L. -ldl -D DLL
 	rm -f *.o
 
@@ -57,63 +57,63 @@ clean:
 
 staticO0:
 	make clear
-	$(CO0) -c lib1.c
-	ar crs liblibrary.a lib1.o
+	$(CO0) -c ../lib1.c
+	ar crs liblibrary.a ../lib1.o
 	$(CO0) main.c -o main -L. -llibrary
 	rm -f *.o
 
 sharedO0:
 	make clear
-	$(CO0) -c -fPIC lib1.c
-	$(CO0) -shared -o liblibrary.so lib1.o
+	$(CO0) -c -fPIC ../lib1.c
+	$(CO0) -shared -o liblibrary.so ../lib1.o
 	$(CO0) main.c -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
 
 dllO0:
 	make clear
-	$(CO0) -c -fPIC lib1.c
-	$(CO0) -shared -o liblibrary.so lib1.o
+	$(CO0) -c -fPIC ../lib1.c
+	$(CO0) -shared -o liblibrary.so ../lib1.o
 	$(CO0) main.c -o main -L. -ldl -D DLL
 	rm -f *.o
 
 staticO2:
 	make clear
-	$(CO2) -c lib1.c
-	ar crs liblibrary.a lib1.o
+	$(CO2) -c ../lib1.c
+	ar crs liblibrary.a ../lib1.o
 	$(CO2) main.c -o main -L. -llibrary
 	rm -f *.o
 
 sharedO2:
 	make clear
-	$(CO2) -c -fPIC lib1.c
-	$(CO2) -shared -o liblibrary.so lib1.o
+	$(CO2) -c -fPIC ../lib1.c
+	$(CO2) -shared -o liblibrary.so ../lib1.o
 	$(CO2) main.c -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
 
 dllO2:
 	make clear
-	$(CO2) -c -fPIC lib1.c
-	$(CO2) -shared -o liblibrary.so lib1.o
+	$(CO2) -c -fPIC ../lib1.c
+	$(CO2) -shared -o liblibrary.so ../lib1.o
 	$(CO2) main.c -o main -L. -ldl -D DLL
 	rm -f *.o
 
 staticOs:
 	make clear
-	$(COs) -c lib1.c
-	ar crs liblibrary.a lib1.o
+	$(COs) -c ../lib1.c
+	ar crs liblibrary.a ../lib1.o
 	$(COs) main.c -o main -L. -llibrary
 	rm -f *.o
 
 sharedOs:
 	make clear
-	$(COs) -c -fPIC lib1.c
-	$(COs) -shared -o liblibrary.so lib1.o
+	$(COs) -c -fPIC ../lib1.c
+	$(COs) -shared -o liblibrary.so ../lib1.o
 	$(COs) main.c -o main -L. -llibrary -Wl,-rpath=`pwd`
 	rm -f *.o
 
 dllOs:
 	make clear
-	$(COs) -c -fPIC lib1.c
-	$(COs) -shared -o liblibrary.so lib1.o
+	$(COs) -c -fPIC ../lib1.c
+	$(COs) -shared -o liblibrary.so ../lib1.o
 	$(COs) main.c -o main -L. -ldl -D DLL
 	rm -f *.o
