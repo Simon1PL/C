@@ -113,11 +113,12 @@ void make_raport() {
 		fclose(report);	
 	}
 	rozmiar=50000;
+	char* komenda=malloc(100);
+	sprintf(komenda,"%s\ncreatTab(50000)", tekst);
 	my_clock=reset_time(my_clock);
 	wyniki=create_table(rozmiar);
-	char* komenda=mallc(100);
-	sprintf(komenda,"%s\ncreatTab(50000)", tekst);
 	print_clock(komenda, raport, my_clock);
+	free(komenda);
 	//SMALL
 	search_directory(".", "*.c", tmp);
 	print_clock("search(small)", raport, my_clock);
