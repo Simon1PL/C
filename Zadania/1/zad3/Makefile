@@ -8,8 +8,8 @@ all:
 	./main report staticO0
 	make -s staticO2
 	./main report staticO2
-	make -s staticOs
-	./main report staticOs
+	#make -s staticOs
+	#./main report staticOs
 	make -s shared
 	./main report shared
 	make -s sharedO0
