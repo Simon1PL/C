@@ -6,7 +6,6 @@
 #include <sys/times.h>
 
 #ifndef DLL
-#include <dlsym.h>
 #include <dlfcn.h>
 #include "../zad1/library.h"
 #endif

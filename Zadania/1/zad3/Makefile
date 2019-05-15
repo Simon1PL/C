@@ -18,12 +18,12 @@ all:
 	./main report sharedO2
 	#make -s sharedOs
 	#./main report sharedOs
-	make -s dll
-	./main report dll
-	make -s dllO0
-	./main report dllO0
-	make -s dllO2
-	./main report dllO2
+	#make -s dll
+	#./main report dll
+	#make -s dllO0
+	#./main report dllO0
+	#make -s dllO2
+	#./main report dllO2
 	#make -s dllOs
 	#./main report dllOs
 
