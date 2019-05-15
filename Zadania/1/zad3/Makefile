@@ -53,7 +53,7 @@ clear:
 
 clean: 
 	make clear
-	rm wynik.txt
+	rm report.txt
 
 staticO0:
 	make clear
