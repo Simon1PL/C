@@ -1,22 +1,21 @@
-//functions for dll library
 #include <stdio.h>
-#include <dlfcn.h>
-#include <string.h>
 #include <stdlib.h>
-#include <time.h>
-#include <sys/times.h>
+#include <string.h>
 #include <unistd.h>
+#include <sys/times.h>
 
 #ifndef DLL
-//DLL library doesn't need this header file
 #include "../zad1/library.h"
 #endif
+
+char** wyniki=NULL;
+int rozmiar;
+char* tekst;
 
 void make_raport();
 void help();
 int parse_tasks(char** tasks, int i);
-void print_wyniki();
-void make_raport();
+void print_results();
 
 struct Times {
 	clock_t real_time;
@@ -30,38 +29,38 @@ void print_clock(const char * time_description, const char* report_file, struct 
 
 struct Times* my_clock=NULL;
 
-int main(int rozmiar, char ** tasks) {
-#ifdef DLL
-//open library
-//function returns library handler
-//takes dynamic library path and a flag
-void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
-
-//now - pointers to all used functions
-//function dlsym takes library handler and function name, returns function pointer
-char** (*create_table)(int) = dlsym(handle, "create_table");
-int (*search_directory)(char*, char*, char*) = dlsym(handle, "search_directory");
-void (*remove_block)(int) = dlsym(handle, "remove_block");
-//ok, we can use functions from our DLL library
-#endif
+int main(int argc, char ** tasks) {
+	#ifdef DLL
+	void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
+	char** (*create_table)(int) = dlsym(handle, "create_table");
+	int (*search_directory)(char*, char*, char*) = dlsym(handle, "search_directory");
+	void (*remove_block)(int) = dlsym(handle, "remove_block");
+	#endif
+	
 	if (!tasks[1]) { help(); return-1; }
-	if (!strcmp(tasks[1], "report")) { make_raport(); return 1; }
+	if (!strcmp(tasks[1], "report")) {
+		tekst=tasks[2];
+		make_raport(); 
+		print_results();
+		return 0;
+	}
 	if (!atoi(tasks[1])) {
 		printf ("niepoprawny rozmiar\n");
 		help();
 		return-1;
 	}
-	create_table(atoi(tasks[1]));
+	rozmiar=atoi(tasks[1]);
+	wyniki=create_table(atoi(tasks[1]));
 	int i=2;
-	while (tasks[i]) {
-		printf("\n	%s:\n", tasks[i]);
+	while (i<argc-1) {
+		printf("%s:\n", tasks[i]);
 		i+=parse_tasks(tasks, i);
 	}
-
-#ifdef DLL
-  //close library after doing all stuff
-  dlclose(handle);
-#endif
+	print_results();
+	#ifdef DLL
+	dlclose(handle);
+	#endif
+	return 0;
 }
 
 void help() {
@@ -78,7 +77,7 @@ int parse_tasks(char** tasks, int i) {
 		return 4;
 	}
 	else if (!strcmp(tasks[i], "remove_block")) {
-		if (!atoi(tasks[1])) {
+		if (atoi(tasks[i+1])) {
 			printf ("niepoprawny index\n");
 			help();
 			return 1;
@@ -97,63 +96,63 @@ int parse_tasks(char** tasks, int i) {
 	}
 }
 
-void print_wyniki(){
-	printf("WYNIKI:\n");
+void print_results(){
+	printf("results:\n");
 	int i;
-	for (i=0; i<size; i++){
-		if (wyniki[i]!=NULL) printf("%s\n", wyniki[i]);
+	for (i=0; i<rozmiar; i++){
+		if (wyniki[i]!=0) printf("%s\n", wyniki[i]);
 	}
 }
 
 void make_raport() {
-	FILE* report=fopen("raport3.txt", "a");
+	char* tmp="results.txt";
+	char* raport="report.txt";
+	FILE* report=fopen(raport, "a");
 	if (report) {
-		fprintf(report, "		real_time: sys_time: user_time: \n");
+		fprintf(report, "		real_time:	sys_time:	user_time:\n");
 		fclose(report);	
 	}
+	rozmiar=50000;
 	my_clock=reset_time(my_clock);
-	create_table(50000);
-	print_clock("creatTab(50000)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	search_directory(".", "aaanaconda", "repport.txt");
-	print_clock("search(small)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("/usr/share", "aaanaconda", "repport.txt");
-	print_clock("search(medium)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("/", "aa	anaconda", "repport.txt");
-	print_clock("search(big)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("/usr/share", "anaconda", "repport.txt");
-	print_clock("save(small)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("/usr/share", "ana*", "repport.txt");
-	print_clock("save(medium)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
-	search_directory("/usr/share", "a*", "repport.txt");
-	print_clock("save(big)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	remove_block(0);
+	wyniki=create_table(rozmiar);
+	char* komenda=mallc(100);
+	sprintf(komenda,"%s\ncreatTab(50000)", tekst);
+	print_clock(komenda, raport, my_clock);
+	//SMALL
+	search_directory(".", "*.c", tmp);
+	print_clock("search(small)", raport, my_clock);
+	zapiszWynik(tmp);
+	print_clock("save(small)", raport, my_clock);
+	remove_block(1);
+	print_clock("remove(small)", raport, my_clock);
+	//MEDIUM
+	search_directory("~/SysOpy", "*.c", tmp);
+	print_clock("search(medium)", raport, my_clock);
+	zapiszWynik(tmp);
+	print_clock("save(medium)", raport, my_clock);
+	remove_block(2);
+	print_clock("remove(medium)", raport, my_clock);
+	//BIG
+	search_directory("~", "*.c", tmp);
+	print_clock("search(big)", raport, my_clock);
+	zapiszWynik(tmp);
+	print_clock("save(big)", raport, my_clock);
+	remove_block(3);
+	print_clock("remove(big)", raport, my_clock);
 	int i;
 	for (i=0; i<500; i++) {
-		search_directory(".", "m*", "repport.txt");
-		remove_block(0);	
+		search_directory(".", "*.c", tmp);
+		remove_block(3);	
 	}
-	print_clock("sea&rem(*500)", "raport3.txt", my_clock);
-	my_clock=reset_time(my_clock);
-	system("rm repport.txt");
+	print_clock("sea&rem(*500)", raport, my_clock);
+	system("rm results.txt");
 	system("clear");
 }
 
 struct Times* reset_time(struct Times* clock) {
 	if(clock!=NULL) {
-		free(clock);
 		clock=NULL;
+		free(clock);
 	}
 	return set_clock(clock);
 }
@@ -173,12 +172,13 @@ void print_clock(const char * time_description, const char* report_file, struct 
 	if (clock==NULL) { printf("ERROR!@!"); return; }
 	struct Times* current_time=NULL;
 	current_time=reset_time(current_time); 
-	double real_time=(double)((current_time->real_time-clock->real_time)/sysconf(_SC_CLK_TCK));
-	double sys_time=(double)((current_time->sys_time-clock->sys_time)/sysconf(_SC_CLK_TCK));
-	double user_time=(double)((current_time->user_time-clock->user_time)/sysconf(_SC_CLK_TCK));
+	double real_time=(double)(current_time->real_time-clock->real_time)/sysconf(_SC_CLK_TCK);
+	double sys_time=(double)(current_time->sys_time-clock->sys_time)/sysconf(_SC_CLK_TCK);
+	double user_time=(double)(current_time->user_time-clock->user_time)/sysconf(_SC_CLK_TCK);
 	FILE* report=fopen(report_file, "a");
 	if (report) {
-		fprintf(report, "%s %lf %lf %lf\n", time_description, real_time, sys_time, user_time);
+		fprintf(report, "%s	%lf 	%lf	%lf\n", time_description, real_time, sys_time, user_time);
 		fclose(report);	
 	}
+	clock=reset_time(clock);
 }
