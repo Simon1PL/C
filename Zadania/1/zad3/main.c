@@ -41,7 +41,7 @@ int main(int argc, char ** tasks) {
 	if (!strcmp(tasks[1], "report")) {
 		tekst=tasks[2];
 		make_raport(); 
-		print_results();
+		//print_results();
 		return 0;
 	}
 	if (!atoi(tasks[1])) {
