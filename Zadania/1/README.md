@@ -1,6 +1,6 @@
-#Zarządzanie pamięcią, biblioteki, pomiar czasu 
+# Zarządzanie pamięcią, biblioteki, pomiar czasu 
 
-Zadanie 1. Alokacja tablicy z wskaźnikami na bloki pamięci zawierające znaki (25%)
+## Zadanie 1. Alokacja tablicy z wskaźnikami na bloki pamięci zawierające znaki
 
 Zaprojektuj i przygotuj zestaw funkcji (bibliotekę) do zarządzania tablicą bloków, w których to blokach pamięci zapisywane są rezultaty operacji
 
@@ -21,7 +21,8 @@ Biblioteka powinna umożliwiać:
 Tablice i bloki powinny być alokowane przy pomocy funkcji calloc (alokacja dynamiczna).
 
 Przygotuj plik Makefile, zawierający polecenia kompilujące pliki źródłowe biblioteki oraz tworzące biblioteki w dwóch wersjach: statyczną i współdzieloną.
-Zadanie 2. Program korzystający z biblioteki (25%)
+
+## Zadanie 2. Program korzystający z biblioteki
 
 Napisz program testujący działanie funkcji z biblioteki z zadania 1.
 
@@ -47,9 +48,9 @@ W programie zmierz, wypisz na konsolę i zapisz  do pliku z raportem  czasy real
 
 Mierząc czasy poszczególnych operacji zapisz trzy wartości: czas rzeczywisty, czas użytkownika i czas systemowy. Rezultaty umieść pliku raport2.txt i dołącz do archiwum zadania.
 
-Zadanie 3. Testy i pomiary (50%)
+## Zadanie 3. Testy i pomiary
 
-a) (25%) Przygotuj plik Makefile, zawierający polecenia kompilujące program z zad 2 na trzy sposoby:
+a) Przygotuj plik Makefile, zawierający polecenia kompilujące program z zad 2 na trzy sposoby:
 - z wykorzystaniem bibliotek statycznych,
 - z wykorzystaniem bibliotek dzielonych (dynamiczne, ładowane przy uruchomieniu programu),
 - z wykorzystaniem bibliotek ładowanych dynamicznie (dynamiczne, ładowane przez program),
@@ -57,7 +58,7 @@ oraz uruchamiający testy.
 
 Wyniki pomiarów zbierz w pliku results3a.txt. Otrzymane wyniki krótko skomentuj.
 
-b) (25%) Rozszerz plik Makefile z punktu 3a) dodając możliwość skompilowania programu na trzech różnych  poziomach optymalizacji -O0...-Os. Przeprowadź ponownie pomiary kompilując i uruchamiając program dla rożnych poziomów optymalizacji.
+b) Rozszerz plik Makefile z punktu 3a) dodając możliwość skompilowania programu na trzech różnych  poziomach optymalizacji -O0...-Os. Przeprowadź ponownie pomiary kompilując i uruchamiając program dla rożnych poziomów optymalizacji.
 
 Wyniki pomiarów dodaj do pliku results3b.txt. Otrzymane wyniki krotko skomentuj.
 
