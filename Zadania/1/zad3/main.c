@@ -143,8 +143,8 @@ void make_raport() {
 	remove_block(3);
 	print_clock("remove(big)", raport, my_clock);
 	int i;
-	for (i=0; i<500; i++) {
-		search_directory(".", "*.c", tmp);
+	for (i=0; i<50; i++) {
+		search_directory("~", "*.c", tmp);
 		remove_block(3);	
 	}
 	print_clock("sea&rem(*500)", raport, my_clock);
