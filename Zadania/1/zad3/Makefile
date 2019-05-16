@@ -19,8 +19,8 @@ all:
 	./main report sharedO2
 	make -s sharedOs
 	./main report sharedOs
-	#make -s dll
-	#./main report dll
+	make -s dll
+	./main report dll
 	#make -s dllO0
 	#./main report dllO0
 	#make -s dllO2
