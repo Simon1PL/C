@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../zad1/library.h"
+#include "library.h"
 
 int size=0;
 int free_blocks=0;

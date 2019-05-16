@@ -7,7 +7,7 @@
 
 #ifndef DLL
 #include <dlfcn.h>
-#include "../zad1/library.h"
+#include "library.h"
 #endif
 
 char** wyniki=NULL;
