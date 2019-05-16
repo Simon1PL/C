@@ -4,9 +4,9 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/times.h>
+#include <dlfcn.h>
 
 #ifndef DLL
-#include <dlfcn.h>
 #include "library.h"
 #endif
 
