@@ -2,6 +2,7 @@ CO0=gcc -Wall -O0
 COS=gcc -Wall -Os
 CO2=gcc -Wall -O2
 all:
+####Naprawic '#' oraz czas utime i stime czemu az tak male
 	make -s static
 	./main report static
 	make -s staticO0
@@ -18,8 +19,8 @@ all:
 	./main report sharedO2
 	#make -s sharedOs
 	#./main report sharedOs
-	make -s dll
-	./main report dll
+	#make -s dll
+	#./main report dll
 	#make -s dllO0
 	#./main report dllO0
 	#make -s dllO2
