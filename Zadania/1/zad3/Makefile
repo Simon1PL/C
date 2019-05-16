@@ -43,7 +43,7 @@ shared:
 
 dll:
 	make clear
-	gcc -c -fPIC lib1.c
+	gcc -c -fPIC ../zad1/lib1.c
 	gcc -shared -o liblibrary.so lib1.o
 	gcc -Wall main.c -o main -L. -ldl -D DLL
 	rm -f *.o
