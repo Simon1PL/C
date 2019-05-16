@@ -7,5 +7,4 @@
   - sleep functions
   - time measurement functions
   - dynamic memory allocation
-* **2.c** Examples for:
-  - 
+* **2.c** Examples of:
