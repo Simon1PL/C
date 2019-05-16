@@ -162,7 +162,7 @@ void make_raport() {
 	}
 	print_clock("sea&rem(*100)", raport, my_clock);
 	system("rm results.txt");
-	system("clear");
+	//system("clear");
 	#ifdef DLL
 	dlclose(handle);
 	#endif
