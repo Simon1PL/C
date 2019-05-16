@@ -57,7 +57,3 @@ dll1:
 
 clear:
 	rm -f *.o *.a *.so main
-
-clean: 
-	make clear
-	rm wynik.txt
