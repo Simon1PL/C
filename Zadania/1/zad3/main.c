@@ -35,8 +35,6 @@ int main(int argc, char ** tasks) {
 	#ifdef DLL
 	void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
 	char** (*create_table)(int) = dlsym(handle, "create_table");
-	int (*search_directory)(char*, char*, char*) = dlsym(handle, "search_directory");
-	void (*remove_block)(int) = dlsym(handle, "remove_block");
 	#endif
 	
 	if (!tasks[1]) { help(); return-1; }
@@ -72,6 +70,8 @@ void help() {
 int parse_tasks(char** tasks, int i) {
 	#ifdef DLL
 	void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
+	int (*search_directory)(char*, char*, char*) = dlsym(handle, "search_directory");
+	void (*remove_block)(int) = dlsym(handle, "remove_block");
 	#endif
 	if (!strcmp(tasks[i], "search_directory")) {
 		if (!strcmp(tasks[i+3], "main.c") || !strcmp(tasks[i+3], "Makefile")) {
