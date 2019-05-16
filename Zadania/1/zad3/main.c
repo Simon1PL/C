@@ -70,6 +70,11 @@ void help() {
 }
 
 int parse_tasks(char** tasks, int i) {
+	#ifdef DLL
+	void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
+	int (*search_directory)(char*, char*, char*) = dlsym(handle, "search_directory");
+	void (*remove_block)(int) = dlsym(handle, "remove_block");
+	#endif
 	if (!strcmp(tasks[i], "search_directory")) {
 		if (!strcmp(tasks[i+3], "main.c") || !strcmp(tasks[i+3], "Makefile")) {
 			printf("permission denied, use (\") before and after file name\n");
@@ -87,6 +92,9 @@ int parse_tasks(char** tasks, int i) {
 		remove_block(atoi(tasks[i+1]));
 		return 2;
 	}
+	#ifdef DLL
+	dlclose(handle);
+	#endif
 	else if (!strcmp(tasks[i], "help")) {
 		help();
 		return 1;
@@ -107,6 +115,12 @@ void print_results(){
 }
 
 void make_raport() {
+	#ifdef DLL
+	void *handle = dlopen("./liblibrary.so", RTLD_LAZY);
+	char** (*create_table)(int) = dlsym(handle, "create_table");
+	int (*search_directory)(char*, char*, char*) = dlsym(handle, "search_directory");
+	void (*remove_block)(int) = dlsym(handle, "remove_block");
+	#endif
 	char* tmp="results.txt";
 	char* raport="report.txt";
 	FILE* report=fopen(raport, "a");
@@ -150,6 +164,9 @@ void make_raport() {
 	print_clock("sea&rem(*500)", raport, my_clock);
 	system("rm results.txt");
 	system("clear");
+	#ifdef DLL
+	dlclose(handle);
+	#endif
 }
 
 struct Times* reset_time(struct Times* clock) {
