@@ -3,29 +3,29 @@ COs=gcc -Wall -Os
 CO2=gcc -Wall -O2
 all:
 	make -s static
-	time ./main report static
+	./main report static
 	make -s staticO0
-	time ./main report staticO0
+	./main report staticO0
 	make -s staticO2
-	time ./main report staticO2
+	./main report staticO2
 	make -s staticOs
-	time ./main report staticOs
+	./main report staticOs
 	make -s shared
-	time ./main report shared
+	./main report shared
 	make -s sharedO0
-	time ./main report sharedO0
+	./main report sharedO0
 	make -s sharedO2
-	time ./main report sharedO2
+	./main report sharedO2
 	make -s sharedOs
-	time ./main report sharedOs
+	./main report sharedOs
 	make -s dll
-	time ./main report dll
+	./main report dll
 	make -s dllO0
-	time ./main report dllO0
+	./main report dllO0
 	make -s dllO2
-	time ./main report dllO2
+	./main report dllO2
 	make -s dllOs
-	time ./main report dllOs
+	./main report dllOs
 
 static:
 	make clear

@@ -134,7 +134,7 @@ void make_raport() {
 	wyniki=create_table(rozmiar);
 	print_clock(komenda, raport, my_clock);
 	free(komenda);
-	/*/SMALL
+	//SMALL
 	search_directory(".", "*.c", tmp);
 	print_clock("search(small)", raport, my_clock);
 	zapiszWynik(tmp);
@@ -154,15 +154,15 @@ void make_raport() {
 	zapiszWynik(tmp);
 	print_clock("save(big)", raport, my_clock);
 	remove_block(3);
-	print_clock("remove(big)", raport, my_clock);*/
+	print_clock("remove(big)", raport, my_clock);
 	int i;
 	for (i=0; i<100; i++) {
 		search_directory("~", "*.c", tmp);
-		remove_block(0);	
+		remove_block(3);	
 	}
 	print_clock("sea&rem(*100)", raport, my_clock);
 	system("rm results.txt");
-	//system("clear");
+	system("clear");
 	#ifdef DLL
 	dlclose(handle);
 	#endif
