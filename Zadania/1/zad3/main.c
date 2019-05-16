@@ -14,6 +14,7 @@ char** wyniki=NULL;
 int rozmiar;
 char* tekst;
 
+int main(int argc, char ** tasks);
 void make_raport();
 void help();
 int parse_tasks(char** tasks, int i);
@@ -60,7 +61,7 @@ int main(int argc, char ** tasks) {
 	}
 	print_results();
 	#ifdef DLL
-	//dlclose(handle);
+	dlclose(handle);
 	#endif
 	return 0;
 }
