@@ -1,4 +1,6 @@
-# SysOpy
-## Files:
-* **Zadania** Programs in C on Linux
-* **SysOpki** Examples of using commands
+# RUN:
+* make static/make shared
+* ./main  (there will be help)
+* ./main report (maiking report.txt file)
+* make clean (make clear + rm report.txt) 
+* make clear
