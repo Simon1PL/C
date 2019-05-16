@@ -14,7 +14,6 @@ char** wyniki=NULL;
 int rozmiar;
 char* tekst;
 
-int main(int argc, char ** tasks);
 void make_raport();
 void help();
 int parse_tasks(char** tasks, int i);
