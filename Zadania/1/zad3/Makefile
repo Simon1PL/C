@@ -3,22 +3,22 @@ COs=gcc -Wall -Os
 CO2=gcc -Wall -O2
 all:
 ####Naprawic '#' oraz czas utime i stime czemu az tak male
-	make -s static
-	./main report static
-	make -s staticO0
-	./main report staticO0
-	make -s staticO2
-	./main report staticO2
-	make -s staticOs
-	./main report staticOs
-	make -s shared
-	./main report shared
-	make -s sharedO0
-	./main report sharedO0
-	make -s sharedO2
-	./main report sharedO2
-	make -s sharedOs
-	./main report sharedOs
+	#make -s static
+	#./main report static
+	#make -s staticO0
+	#./main report staticO0
+	#make -s staticO2
+	#./main report staticO2
+	#make -s staticOs
+	#./main report staticOs
+	#make -s shared
+	#./main report shared
+	#make -s sharedO0
+	#./main report sharedO0
+	#make -s sharedO2
+	#./main report sharedO2
+	#make -s sharedOs
+	#./main report sharedOs
 	make -s dll
 	./main report dll
 	#make -s dllO0
