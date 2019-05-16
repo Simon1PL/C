@@ -60,7 +60,7 @@ int main(int argc, char ** tasks) {
 	}
 	print_results();
 	#ifdef DLL
-	dlclose(handle);
+	//dlclose(handle);
 	#endif
 	return 0;
 }
