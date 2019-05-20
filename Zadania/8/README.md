@@ -1,10 +1,10 @@
 # Filtrowanie obrazów
 Jedną z najprostszych operacji jaką można wykonać na obrazie jest operacja filtrowania (splotu). Operacja ta przyjmuje na wejściu dwie macierze:
 - Macierz IN×M reprezentującą obraz. Dla uproszczenia rozważamy jedynie obrazy w 256 odcieniach szarości. Każdy element macierzy I jest więc liczbą całkowitą z zakresu 0 do 255.
-- Macierz Kc×c reprezentującą filtr. Elementami tej macierzy są liczby zmiennoprzecinkowe. Dla uproszczenia zakładamy, że elementy macierzy K sumują się do jedności: ∑ci=1∑cj=1K[i,j]=1.
+- Macierz Kc×c reprezentującą filtr. Elementami tej macierzy są liczby zmiennoprzecinkowe. Dla uproszczenia zakładamy, że elementy macierzy K sumują się do jedności: ∑ci=1∑cj=1K[i,j]=1.  
 Operacja filtrowania tworzy nowy obraz J, którego piksele mają wartość:
-J[x,y]=round(sx,y),
-(sx,y)=∑ci=1∑cj=1I[max{1,x−ceil(c/2)+i},max{1,y−ceil(c/2)+j}]∗k[i,j].
+- J[x,y]=round(Sx,y)
+- (Sx,y)=∑ci=1∑cj=1I[max{1,x−ceil(c/2)+i},max{1,y−ceil(c/2)+j}]∗k[i,j]
 Operacja  round() oznacza zaokrąglenie do najbliższej liczby całkowitej a ceil() zaokrąglenie w górę do najbliższej liczby całkowitej.
 Zwróć uwagę, że w powyższym opisie przyjęto matematyczną konwencję indeksowania elementów macierzy - od indeksu 1.
 ## Zadanie 1
