@@ -6,17 +6,16 @@
 #include <pthread.h>
 #include <sys/time.h>
 
-struct Image{
+typedef struct{
     int width;
     int height;
     unsigned char **data;
-};
+} Image;
 
-struct Filter{
-    int width;
-    int height;
+typedef struct{
+    int size;
     float **data;
-};
+} Filter;
 
 Image *image;
 Filter *filter;
@@ -36,7 +35,7 @@ void readImage(File *imageToRead) {
 	}
     size = 9;
     getline(&line, &size, imageToRead);
-    image = malloc(sizeof(struct Image));
+    image = malloc(sizeof(Image));
     sscanf(line, "%d %d\n", &(image->width), &(image->height));
 	size=3;
     getline(&line, &size, imageToRead);
@@ -59,13 +58,11 @@ void readImage(File *imageToRead) {
 	free(value);
 }  
 
-Filter *readFilter(char *name) {
-    FILE *fd = fopen(name, "r");
-    if(fd == NULL) error_exit("File opening failure");
+void readFilter(File *filterToRead) {
     char *line = malloc(20);
     size_t size = 20;
-    if(getline(&line, &size, fd) == -1) error_exit("Line read failure");
-    Filter *filter = malloc(sizeof(Filter));
+    getline(&line, &size, filterToRead);
+    filter = malloc(sizeof(Filter));
     filter->size = atoi(line);
     filter->data = malloc(filter->size*sizeof(float*));
     int i, j;
@@ -74,12 +71,10 @@ Filter *readFilter(char *name) {
         filter->data[i] = malloc(filter->size*sizeof(float));
         size_t size = 10;
         for(j = 0; j < filter->size; j++) {
-            getdelim(&val, &size, ' ', fd);
+            getdelim(&val, &size, ' ', filterToRead);
             filter->data[i][j] = strtof(val, NULL);
         }
     }
-    fclose(fd);
-    return filter;
 }
 
 Image *create_empty(int width, int height) {
@@ -219,7 +214,7 @@ bool parser(char** argv, int argc) {
 		return false;
 	}
 	readImage(startImage);
-	filter = readFilter(filterFile);
+	readFilter(filterFile);
 	fclose(startImage);
 	fclose(filterFile);
 }
