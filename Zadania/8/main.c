@@ -25,7 +25,7 @@ int threadsAmmount;
 Image *new;
 pthread_t *threads;
 
-void readImage(File *imageToRead) {
+void readImage(File* imageToRead) {
     char *line = malloc(10);
     size_t size = 2;
     getline(&line, &size, imageToRead);
@@ -58,7 +58,7 @@ void readImage(File *imageToRead) {
 	free(value);
 }  
 
-void readFilter(File *filterToRead) {
+void readFilter(File* filterToRead) {
     char *line = malloc(20);
     size_t size = 20;
     getline(&line, &size, filterToRead);
