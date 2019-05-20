@@ -50,7 +50,7 @@ int main(){
     double utime=(double)(buff1.tms_utime-buff.tms_utime)/sysconf(_SC_CLK_TCK);
     printf("utime: %g\n", utime);
 
-    double **tab=(double**)calloc(10, sizeof(double*)); //sizeof(doule*)==sizeof(double)
+    double **tab=(double**)calloc(10, sizeof(double*));
     for (i = 0; i < 10; i++)
         tab[i]=(double*)calloc(5, sizeof(double));
     free(tab);
