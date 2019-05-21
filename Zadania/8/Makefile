@@ -3,7 +3,7 @@ OUTPUT=out.pgm
 MODE1=block
 FILTER2=filter2
 FILTER1=filter1
-MODE2=intervaled
+MODE2=interleaved
 all:
 	make -s clear
 	gcc main.c -o main -lpthread -lm
