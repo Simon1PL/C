@@ -191,6 +191,7 @@ bool parser(char** argv, int argc) {
 	readFilter(filterFile);
 	fclose(startImage);
 	fclose(filterFile);
+    return true;
 }
 
 int main(int argc, char **argv) {
