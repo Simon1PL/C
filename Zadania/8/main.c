@@ -36,8 +36,8 @@ void readImage(FILE *imageToRead) {
     char *line = malloc(10);
     size_t size = 2;
     getline(&line, &size, imageToRead);
-    if(strcmp(line, "P2")) {
-		printf("Wrong file format%s\nAHA", line);
+    if(strcmp(line, "P2\n")) {
+		printf("Wrong file format\n");
 		exit(0);
 	}
     size = 9;
