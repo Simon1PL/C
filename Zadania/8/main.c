@@ -122,7 +122,7 @@ void *blockFilter(void *threadNumber) {
     gettimeofday(&end,NULL);
     int *timeDifference=malloc(sizeof(int));
     *timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-    return ((void*)timeDifference);
+    pthread_exit ((void*)timeDifference);
 }
 
 void *InterleavedFilter(void *threadNumber) {
@@ -138,7 +138,7 @@ void *InterleavedFilter(void *threadNumber) {
     gettimeofday(&end,NULL);
     int *timeDifference=malloc(sizeof(int));
     *timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-    return ((void*)timeDifference);
+    pthread_exit ((void*)timeDifference);
 }
 
 void makeFilter(char *mode, int i, pthread_t *threads) {
