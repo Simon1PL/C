@@ -22,6 +22,15 @@ Filter *filter;
 Image *filteredImage;
 int threadsAmmount;
 
+void help(){
+    printf("Program przyjmuje w argumentach wywołania:\n");
+    printf("1. liczbę wątków\n");
+    printf("2. sposób podziału obrazu pomiędzy wątki, t.j. jedną z dwóch opcji: block / interleaved\n");
+    printf("3. nazwę pliku z wejściowym obrazem\n");
+    printf("4. nazwę pliku z definicją filtru\n");
+    printf("5. nazwę pliku wynikowego\n");
+}
+
 void readImage(FILE *imageToRead) {
     char *line = malloc(10);
     size_t size = 2;
@@ -41,13 +50,13 @@ void readImage(FILE *imageToRead) {
 		exit(0);
 	}
 	free(line);
-    image->data = calloc(image->height, sizeof(unsigned char*));
+    image->data = calloc(image->width, sizeof(unsigned char*));
     int i;
 	char *value=malloc(3);
-    for(i = 0; i < image->height; i++) {
-        image->data[i] = calloc(image->width, sizeof(unsigned char));
+    for(i = 0; i < image->width; i++) {
+        image->data[i] = calloc(image->height, sizeof(unsigned char));
         int j;
-        for(j = 0; j < image->width; j++) {
+        for(j = 0; j < image->height; j++) {
             fscanf(imageToRead, "%s", &value);
             image->data[i][j] = atoi(value);
         }
@@ -86,13 +95,13 @@ Image *createNewImage(int width, int height) {
     return image;
 }
 
-void filterMachine(Image *new, Image *image, Filter *filter, int x, int y) {
+void filterMachine(Image *new, Image *old, Filter *filter, int x, int y) {
     double sum = 0;
     int i, j;
     for(i = 0; i < filter->size; i++) {
         for(j = 0; j < filter->size; j++) {
-            sum += image->data[(int) (fmax(1, fmin(image->height - 1, x - ceil(filter->size/2) + i + 1)))]
-                [(int) (fmax(1, fmin(image->width -1, y - ceil(filter->size/2) + i + 1)))]*filter->data[i][j];
+            sum += image->data[(int) (fmax(1, fmin(image->width - 1, x - ceil(filter->size/2) + i + 1)))]
+                [(int) (fmax(1, fmin(image->height -1, y - ceil(filter->size/2) + j + 1)))]*filter->data[i][j];
         }
     }
     new->data[x][y] = (unsigned char) round(sum);
@@ -106,29 +115,27 @@ void blockFilter(void *threadNumber) {
     gettimeofday(&start,NULL);
     for(i = k*ceil(range); i < (k+1)*ceil(range); i++) {
         for(j = 0; j < image->height; j++) {
-            filterMachine(new, image, filter, i, j);
+            filterMachine(filteredImage, image, filter, i, j);
         }
     }
     gettimeofday(&end,NULL);
-    int *timeDifference = malloc(sizeof(int));
-    *timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-    pthread_exit((void*) timeDifference);
+    int timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
+    return timeDifference;
 }
 
-void InterleavedFilter(void *ptr) {
-    int k = *((int*) ptr);
+void InterleavedFilter(void *threadNumber) {
+    int k = (int) threadNumber;
     int i, j;
     struct timeval start, end;
     gettimeofday(&start,NULL);
-    for(j = k; j < image->width; j += threadsAmmount) {
-        for(i = 0; i < image->height; i++) {
-            filter(new, image, fil, i, j);
+    for(i = k; i < image->width; i += threadsAmmount) {
+        for(j = 0; j < image->height; j++) {
+            filterMachine(filteredImage, image, filter, i, j);
         }
     }
     gettimeofday(&end,NULL);
-    int *timeDifference = malloc(sizeof(int));
-    *timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-    pthread_exit((void*) timeDifference);
+    int timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
+    return timeDifference;
 }
 
 void makeFilter(char *mode, int i) {
@@ -140,28 +147,19 @@ void makeFilter(char *mode, int i) {
     } 
 }
 
-void save_image(Image *image, char *name) {
-    FILE *fd = fopen(name, "w+");
-    if(fd == NULL) error_exit("File opening failure");
-    char *line = malloc(20);
-    fwrite("P2\n", 1, 3, fd);
+void save_image(Image *image, FILE *file) {
+    fwrite("P2\n", 1, 3, file);
+    char *line = malloc(10);
     int len = sprintf(line, "%d %d\n", image->width, image->height);
-    fwrite(line, 1, len, fd);
-    fwrite("255\n", 1, 4, fd);
-    int counter = 0;
+    fwrite(line, 1, len, file);
+    fwrite("255", 1, 4, file);
     int i, j;
-    for(i = 0; i < image->height; i++) {
-        for(j = 0; j < image->width; j++) {
-            counter++;
-            if(counter < 17) {
-                fprintf(fd, "%3u ", image->data[i][j]);
-            } else {
-                counter = 0;
-                fprintf(fd, "%3u \n", image->data[i][j]);
-            }
+    for(i = 0; i < image->width; i++) {
+        fprintf(file, "\n");
+        for(j = 0; j < image->height; j++) 
+            fprintf(file, "%u ", image->data[i][j]);
         }
     }
-    fclose(fd);
 }
 
 bool parser(char** argv, int argc) {
@@ -221,7 +219,7 @@ int main(int argc, char **argv) {
         }
         gettimeofday(&end, NULL);
         for(i = 0; i < threadsAmmount; i++) {
-            printf("Thread: %d, time: %dus\n", i, times[i]);
+            printf("Thread: %d, time: %dus\n", i+1, times[i]);
         }
         int timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
         printf("Total time: %dus\n", timeDifference);
