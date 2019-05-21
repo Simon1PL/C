@@ -60,7 +60,7 @@ void readImage(FILE *imageToRead) {
         for(j = 0; j < image->height; j++) {
             fscanf(imageToRead, "%s", &value);
              printf("\nyyy\n");
-            image->data[i][j] = atoi(value);
+            image->data[i][j] = (char)atoi(value);
              printf("\naaa\n");
         }
     }
