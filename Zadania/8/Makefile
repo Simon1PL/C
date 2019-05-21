@@ -4,6 +4,9 @@ all:
 	rm -f *.o
 
 test:
+	make -s testwithecho
+
+testwithecho:
 	INPUT=balloons.pgm
 	OUTPUT=out.pgm
 	MODE=block
