@@ -108,7 +108,7 @@ void filterMachine(Image *new, Image *old, Filter *filter, int x, int y) {
     new->data[x][y] = (unsigned char) round(sum);
 }
 
-int *blockFilter(void *threadNumber) {
+void *blockFilter(void *threadNumber) {
     int k = *((int*) threadNumber);
     int i, j;
     struct timeval start, end;
@@ -122,10 +122,10 @@ int *blockFilter(void *threadNumber) {
     gettimeofday(&end,NULL);
     int *timeDifference=malloc(sizeof(int));
     *timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-    return (void *)timeDifference;
+    return timeDifference;
 }
 
-int *InterleavedFilter(void *threadNumber) {
+void *InterleavedFilter(void *threadNumber) {
     int k =  *((int*) threadNumber);
     int i, j;
     struct timeval start, end;
@@ -138,7 +138,7 @@ int *InterleavedFilter(void *threadNumber) {
     gettimeofday(&end,NULL);
     int *timeDifference=malloc(sizeof(int));
     *timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-    return (void *)timeDifference;
+    return timeDifference;
 }
 
 void makeFilter(char *mode, int i, pthread_t *threads) {
