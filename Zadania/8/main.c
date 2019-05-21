@@ -60,8 +60,7 @@ void readImage(FILE *imageToRead) {
         for(j = 0; j < image->height; j++) {
             fscanf(imageToRead, "%s", &value);
              printf("\nvalue:%si:%dj:%d\n", "affss", 1, 1);
-            image->data[i][j] = (char)atoi(value);
-             printf("\naaa\n");
+            //image->data[i][j] = (char)atoi(value);
         }
     }
 	free(value);
@@ -190,6 +189,7 @@ bool parser(char** argv, int argc) {
 		return false;
 	}
 	readImage(startImage);
+     printf("\naaa\n");
 	readFilter(filterFile);
 	fclose(startImage);
 	fclose(filterFile);
