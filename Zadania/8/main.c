@@ -58,7 +58,7 @@ void readImage(FILE *imageToRead) {
         image->data[i] = calloc(image->height, sizeof(char));
         int j;
         for(j = 0; j < image->height; j++) {
-            fscanf(imageToRead, "%s", &value);
+            fscanf(imageToRead, "%s", value);
              printf("\nvalue:%si:%dj:%d\n", value, 1, 1);
             //image->data[i][j] = (char)atoi(value);
         }
