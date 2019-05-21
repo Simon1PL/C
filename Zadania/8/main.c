@@ -37,7 +37,7 @@ void readImage(FILE *imageToRead) {
     size_t size = 2;
     getline(&line, &size, imageToRead);
     if(strcmp(line, "P2")) {
-		printf("Wrong file format");
+		printf("Wrong file format%s\nAHA", line);
 		exit(0);
 	}
     size = 9;
