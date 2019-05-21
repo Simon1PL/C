@@ -165,7 +165,7 @@ void save_image(Image *image, FILE *file) {
 }
 
 bool parser(char** argv, int argc) {
-	if(argc != 6) {
+	if(argc != 5) {
 		printf("Wrong number of arguments\n");
 		return false;
 	}
