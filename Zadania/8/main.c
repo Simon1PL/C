@@ -46,7 +46,7 @@ void readImage(FILE *imageToRead) {
     sscanf(line, "%d %d\n", &(image->width), &(image->height));
 	size=3;
     getline(&line, &size, imageToRead);
-    if(strcmp(line, "255")) {
+    if(strcmp(line, "255\n")) {
 		printf("Wrong grayscale");
 		exit(0);
 	}
