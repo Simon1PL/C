@@ -189,14 +189,13 @@ bool parser(char** argv, int argc) {
 	}
 	readImage(startImage);
 	readFilter(filterFile);
-    printf("\naaa\n");
 	fclose(startImage);
 	fclose(filterFile);
 }
 
 int main(int argc, char **argv) {
 	if(parser(argv, argc)){
-		FILE *resultImage = fopen(argv[5], "w+");
+		FILE *resultImage = fopen(argv[5], "a");
 		if (resultImage==NULL) {
 			printf ("nie mozna otworzyc pliku podanego jako 5 argument\n");
 			help();
