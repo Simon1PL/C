@@ -53,12 +53,14 @@ void readImage(FILE *imageToRead) {
 	free(line);
     image->data = calloc(image->width, sizeof(unsigned char*));
     int i;
-	char *value=malloc(10);
+	char *value=malloc(3);
     for(i = 0; i < image->width; i++) {
         image->data[i] = calloc(image->height, sizeof(unsigned char));
         int j;
         for(j = 0; j < image->height; j++) {
+             printf("\nyyy\n");
             fscanf(imageToRead, "%s", &value);
+             printf("\ntt1\n");
             image->data[i][j] = atoi(value);
         }
     }
