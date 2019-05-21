@@ -201,6 +201,7 @@ int main(int argc, char **argv) {
 			help();
 			return -1;
 		}
+        printf("\n111\n");
 		threadsAmmount = atoi(argv[1]);
 		char *mode = argv[2];
 		filteredImage = createNewImage(image->width, image->height);
@@ -210,6 +211,7 @@ int main(int argc, char **argv) {
         int times[threadsAmmount];
         gettimeofday(&start, NULL);
         int i;
+        printf("\n222\n");
         for(i = 0; i < threadsAmmount; i++) {
             makeFilter(mode, i, threads);
         }
@@ -219,6 +221,7 @@ int main(int argc, char **argv) {
                 exit(0);
             }
         }
+        printf("\n333\n");
         gettimeofday(&end, NULL);
         for(i = 0; i < threadsAmmount; i++) {
             printf("Thread: %d, time: %dus\n", i+1, times[i]);
