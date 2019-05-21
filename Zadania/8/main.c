@@ -59,7 +59,7 @@ void readImage(FILE *imageToRead) {
         int j;
         for(j = 0; j < image->height; j++) {
             fscanf(imageToRead, "%s", &value);
-             printf("\nvalue:%si:%dj:%d\n", "affss", 1, 1);
+             printf("\nvalue:%si:%dj:%d\n", value, 1, 1);
             //image->data[i][j] = (char)atoi(value);
         }
     }
