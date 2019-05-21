@@ -58,6 +58,7 @@ void readImage(FILE *imageToRead) {
         image->data[i] = calloc(image->height, sizeof(unsigned char));
         int j;
         for(j = 0; j < image->height; j++) {
+             printf("\n111\n");
             fscanf(imageToRead, "%s", &value);
             image->data[i][j] = atoi(value);
         }
@@ -187,9 +188,7 @@ bool parser(char** argv, int argc) {
 		printf ("nie mozna otworzyc pliku podanego jako 4 argument\n");
 		return false;
 	}
-     printf("\n111\n");
 	readImage(startImage);
-     printf("\n111\n");
 	readFilter(filterFile);
 	fclose(startImage);
 	fclose(filterFile);
