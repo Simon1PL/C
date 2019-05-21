@@ -187,14 +187,15 @@ bool parser(char** argv, int argc) {
 		printf ("nie mozna otworzyc pliku podanego jako 4 argument\n");
 		return false;
 	}
+     printf("\n111\n");
 	readImage(startImage);
+     printf("\n111\n");
 	readFilter(filterFile);
 	fclose(startImage);
 	fclose(filterFile);
 }
 
 int main(int argc, char **argv) {
-    printf("\n111\n");
 	if(parser(argv, argc)){
 		FILE *resultImage = fopen(argv[5], "w+");
 		if (resultImage==NULL) {
