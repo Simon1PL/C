@@ -5,6 +5,7 @@
 #include <math.h>
 #include <pthread.h>
 #include <sys/time.h>
+#include <stdbool.h>
 
 typedef struct{
     int width;
@@ -72,13 +73,13 @@ void readFilter(FILE *filterToRead) {
     filter->size = atoi(line);
     filter->data = calloc(filter->size, sizeof(float*));
     int i, j;
-    char *value = malloc(sizeof(float));
+    char *value = malloc(10);
     for(i = 0; i < filter->size; i++) {
         filter->data[i] = calloc(filter->size, sizeof(float));
         size_t size = sizeof(float);
         for(j = 0; j < filter->size; j++) {
             fscanf(filterToRead, "%f", &value);
-            filter->data[i][j] = value;
+            filter->data[i][j] = strtof(value, NULL);
         }
     }
 }
@@ -107,8 +108,8 @@ void filterMachine(Image *new, Image *old, Filter *filter, int x, int y) {
     new->data[x][y] = (unsigned char) round(sum);
 }
 
-void blockFilter(void *threadNumber) {
-    int k = (int) threadNumber;
+int blockFilter(void *threadNumber) {
+    int k = threadNumber;
     int i, j;
     struct timeval start, end;
     float range=image->width/threadsAmmount;
@@ -123,8 +124,8 @@ void blockFilter(void *threadNumber) {
     return timeDifference;
 }
 
-void InterleavedFilter(void *threadNumber) {
-    int k = (int) threadNumber;
+int InterleavedFilter(void *threadNumber) {
+    int k = threadNumber;
     int i, j;
     struct timeval start, end;
     gettimeofday(&start,NULL);
@@ -138,7 +139,7 @@ void InterleavedFilter(void *threadNumber) {
     return timeDifference;
 }
 
-void makeFilter(char *mode, int i) {
+void makeFilter(char *mode, int i, pthread_t *threads) {
    if(!strcmp(mode, "block")) {
         pthread_create(&(threads[i]), NULL, &blockFilter, &i);
     } 
@@ -158,7 +159,6 @@ void save_image(Image *image, FILE *file) {
         fprintf(file, "\n");
         for(j = 0; j < image->height; j++) 
             fprintf(file, "%u ", image->data[i][j]);
-        }
     }
 }
 
@@ -209,7 +209,7 @@ int main(int argc, char **argv) {
         gettimeofday(&start, NULL);
         int i;
         for(i = 0; i < threadsAmmount; i++) {
-            makeFilter(mode, i);
+            makeFilter(mode, i, threads);
         }
         for(i = 0; i < threadsAmmount; i++) {
             if(pthread_join(threads[i], (void**) times[i]) != 0) {
