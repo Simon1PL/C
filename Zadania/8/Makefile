@@ -1,4 +1,4 @@
-INPUT=balloons.pgm
+INPUT=MonaLisa.pgm
 OUTPUT=out.pgm
 MODE1=block
 FILTER2=filter2
