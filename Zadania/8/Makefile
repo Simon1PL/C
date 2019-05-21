@@ -54,7 +54,7 @@ testwithecho:
 	echo -e "\n4 threads"
 	./main 4 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
+	./main 16 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 
 clear:
 	rm -f *.o *.a *.so main
