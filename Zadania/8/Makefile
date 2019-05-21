@@ -15,7 +15,7 @@ testwithecho:
 	echo -e "\nfilter1 (5x5)"
 	FILTER=filter1
 	echo -e "\n1 thread"
-	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 1 $(MODE)  $(INPUT)  $(FILTER)  $(OUTPUT)
 	echo -e "\n2 threads"
 	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n4 threads"
