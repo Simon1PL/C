@@ -108,8 +108,8 @@ void filterMachine(Image *new, Image *old, Filter *filter, int x, int y) {
     new->data[x][y] = (unsigned char) round(sum);
 }
 
-int blockFilter(void *threadNumber) {
-    int k = threadNumber;
+int *blockFilter(void *threadNumber) {
+    int k = *((int*) threadNumber);
     int i, j;
     struct timeval start, end;
     float range=image->width/threadsAmmount;
@@ -124,8 +124,8 @@ int blockFilter(void *threadNumber) {
     return timeDifference;
 }
 
-int InterleavedFilter(void *threadNumber) {
-    int k = threadNumber;
+int *InterleavedFilter(void *threadNumber) {
+    int k =  *((int*) threadNumber);
     int i, j;
     struct timeval start, end;
     gettimeofday(&start,NULL);
@@ -141,10 +141,10 @@ int InterleavedFilter(void *threadNumber) {
 
 void makeFilter(char *mode, int i, pthread_t *threads) {
    if(!strcmp(mode, "block")) {
-        pthread_create(&(threads[i]), NULL, &blockFilter, &i);
+        pthread_create(&(threads[i]), NULL, blockFilter, &i);
     } 
     else {
-        pthread_create(&(threads[i]), NULL, &InterleavedFilter, &i);
+        pthread_create(&(threads[i]), NULL, InterleavedFilter, &i);
     } 
 }
 
@@ -212,7 +212,7 @@ int main(int argc, char **argv) {
             makeFilter(mode, i, threads);
         }
         for(i = 0; i < threadsAmmount; i++) {
-            if(pthread_join(threads[i], (void**) times[i]) != 0) {
+            if(pthread_join(threads[i], (void**) &times[i]) != 0) {
                 printf("blad przy odczycie returna watku\n");
                 exit(0);
             }
