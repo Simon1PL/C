@@ -215,10 +215,13 @@ int main(int argc, char **argv) {
             makeFilter(mode, i, threads);
         }
         for(i = 0; i < threadsAmmount; i++) {
-            if(pthread_join(threads[i], (void**) &times[i]) != 0) {
+            int *returnValue;
+            if(pthread_join(threads[i], (void**) &returnValue) != 0) {
                 printf("blad przy odczycie returna watku\n");
                 exit(0);
             }
+            times[i]=*returnValue;
+            free(returnValue);
         }
         gettimeofday(&end, NULL);
         for(i = 0; i < threadsAmmount; i++) {
