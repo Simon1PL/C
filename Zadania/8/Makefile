@@ -1,3 +1,9 @@
+INPUT=balloons.pgm
+OUTPUT=out.pgm
+MODE1=block
+FILTER2=filter2
+FILTER1=filter1
+MODE2=intervaled
 all:
 	make -s clear
 	gcc main.c -o main -lpthread -lm
@@ -7,61 +13,48 @@ test:
 	make -s testwithecho
 
 testwithecho:
-	INPUT=balloons.pgm
-	OUTPUT=out.pgm
-	MODE=block
 	echo -e "block test"
-
 	echo -e "\nfilter1 (5x5)"
-	FILTER=filter1
 	echo -e "\n1 thread"
-	./main 1 $(MODE)  $(INPUT)  $(FILTER)  $(OUTPUT)
+	./main 1 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 2 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 4 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
-
+	./main 8 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n-----------------------------"
-	echo -e "\nfilter2 (10x10)"
-	FILTER=filter2
+	echo -e "\nfilter2 (20x20)"
 	echo -e "\n1 thread"
-	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 1 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 2 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 4 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
-
+	./main 8 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n-----------------------------"
 	echo "-----------------------------"
 	echo -e "intervaled test"
-	MODE=intervaled
-
 	echo -e "\nfilter1 (5x5)"
-	FILTER=filter1
 	echo -e "\n1 thread"
-	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 1 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 2 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 4 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
-
+	./main 8 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT)
 	echo -e "\n-----------------------------"
 	echo -e "\nfilter2 (10x10)"
-	FILTER=filter2
 	echo -e "\n1 thread"
-	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 1 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 2 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 4 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
+	./main 8 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 
 clear:
 	rm -f *.o *.a *.so main
