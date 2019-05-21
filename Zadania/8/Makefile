@@ -49,7 +49,7 @@ testwithecho:
 	./main 8 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT)
 	rm out.pgm
 	echo -e "\n-----------------------------"
-	echo -e "\nfilter2 (10x10)"
+	echo -e "\nfilter2 (20x20)"
 	echo -e "\n1 thread"
 	./main 1 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n2 threads"
