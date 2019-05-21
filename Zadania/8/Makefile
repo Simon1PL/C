@@ -12,25 +12,25 @@ test:
 	echo -e "\nfilter1 (5x5)"
 	FILTER=filter1
 	echo -e "\n1 thread"
-	./main 1 $MODE $INPUT $FILTER $OUTPUT
+	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $MODE $INPUT $FILTER $OUTPUT
+	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $MODE $INPUT $FILTER $OUTPUT
+	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $MODE $INPUT $FILTER $OUTPUT
+	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 
 	echo -e "\n-----------------------------"
 	echo -e "\nfilter2 (10x10)"
 	FILTER=filter2
 	echo -e "\n1 thread"
-	./main 1 $MODE $INPUT $FILTER $OUTPUT
+	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $MODE $INPUT $FILTER $OUTPUT
+	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $MODE $INPUT $FILTER $OUTPUT
+	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $MODE $INPUT $FILTER $OUTPUT
+	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 
 	echo -e "\n-----------------------------"
 	echo "-----------------------------"
@@ -40,25 +40,25 @@ test:
 	echo -e "\nfilter1 (5x5)"
 	FILTER=filter1
 	echo -e "\n1 thread"
-	./main 1 $MODE $INPUT $FILTER $OUTPUT
+	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $MODE $INPUT $FILTER $OUTPUT
+	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $MODE $INPUT $FILTER $OUTPUT
+	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $MODE $INPUT $FILTER $OUTPUT
+	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 
 	echo -e "\n-----------------------------"
 	echo -e "\nfilter2 (10x10)"
 	FILTER=filter2
 	echo -e "\n1 thread"
-	./main 1 $MODE $INPUT $FILTER $OUTPUT
+	./main 1 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n2 threads"
-	./main 2 $MODE $INPUT $FILTER $OUTPUT
+	./main 2 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n4 threads"
-	./main 4 $MODE $INPUT $FILTER $OUTPUT
+	./main 4 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $MODE $INPUT $FILTER $OUTPUT
+	./main 8 $(MODE) $(INPUT) $(FILTER) $(OUTPUT)
 
 clear:
 	rm -f *.o *.a *.so main
