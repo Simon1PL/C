@@ -59,8 +59,7 @@ void readImage(FILE *imageToRead) {
         int j;
         for(j = 0; j < image->height; j++) {
             fscanf(imageToRead, "%s", value);
-             printf("\nvalue:%si:%dj:%d\n", value, 1, 1);
-            //image->data[i][j] = (char)atoi(value);
+            image->data[i][j] = atoi(value);
         }
     }
 	free(value);
@@ -79,7 +78,7 @@ void readFilter(FILE *filterToRead) {
         filter->data[i] = calloc(filter->size, sizeof(float));
         size_t size = sizeof(float);
         for(j = 0; j < filter->size; j++) {
-            fscanf(filterToRead, "%f", &value);
+            fscanf(filterToRead, "%f", value);
             filter->data[i][j] = strtof(value, NULL);
         }
     }
