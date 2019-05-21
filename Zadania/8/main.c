@@ -188,8 +188,8 @@ bool parser(char** argv, int argc) {
 		return false;
 	}
 	readImage(startImage);
-     printf("\naaa\n");
 	readFilter(filterFile);
+    printf("\naaa\n");
 	fclose(startImage);
 	fclose(filterFile);
 }
