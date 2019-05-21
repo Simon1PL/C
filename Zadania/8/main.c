@@ -173,7 +173,7 @@ bool parser(char** argv, int argc) {
 		printf ("argument 1 musi byc liczba\n");
 		return false;
 	}
-	if (!strcmp(argv[2], "block") || !strcmp(argv[2], "interleaved")) {
+	if (strcmp(argv[2], "block") || strcmp(argv[2], "interleaved")) {
 		printf ("argument 2 musi byc  jedną z dwóch opcji: block / interleaved\n");
 		return false;
 	}
