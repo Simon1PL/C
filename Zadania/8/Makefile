@@ -13,6 +13,7 @@ test:
 	make -s testwithecho
 
 testwithecho:
+	rm out.pgm
 	echo -e "block test"
 	echo -e "\nfilter1 (5x5)"
 	echo -e "\n1 thread"
@@ -57,8 +58,7 @@ testwithecho:
 	echo -e "\n4 threads"
 	./main 4 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
 	echo -e "\n8 threads"
-	./main 8 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT)
-	rm out.pgm
+	./main 8 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT) >> "Times.txt"
 
 clear:
 	rm -f *.o *.a *.so main
