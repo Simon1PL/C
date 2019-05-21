@@ -96,7 +96,7 @@ Image *createNewImage(int width, int height) {
     return image;
 }
 
-void filterMachine(Image *new, Image *old, Filter *filter, int x, int y) {
+void filterMachine(Image *old, Filter *filter, int x, int y) {
     double sum = 0;
     int i, j;
     for(i = 0; i < filter->size; i++) {
@@ -105,7 +105,7 @@ void filterMachine(Image *new, Image *old, Filter *filter, int x, int y) {
                 [(int) (fmax(1, fmin(image->height -1, y - ceil(filter->size/2) + j + 1)))]*filter->data[i][j];
         }
     }
-    new->data[x][y] = (unsigned char) round(sum);
+    filteredImage->data[x][y] = (unsigned char) round(sum);
 }
 
 void *blockFilter(void *threadNumber) {
@@ -116,7 +116,7 @@ void *blockFilter(void *threadNumber) {
     gettimeofday(&start,NULL);
     for(i = k*ceil(range); i < (k+1)*ceil(range); i++) {
         for(j = 0; j < image->height; j++) {
-            filterMachine(filteredImage, image, filter, i, j);
+            filterMachine(image, filter, i, j);
         }
     }
     gettimeofday(&end,NULL);
@@ -132,7 +132,7 @@ void *InterleavedFilter(void *threadNumber) {
     gettimeofday(&start,NULL);
     for(i = k; i < image->width; i += threadsAmmount) {
         for(j = 0; j < image->height; j++) {
-            filterMachine(filteredImage, image, filter, i, j);
+            filterMachine(image, filter, i, j);
         }
     }
     gettimeofday(&end,NULL);
