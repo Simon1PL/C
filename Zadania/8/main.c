@@ -79,9 +79,7 @@ void readFilter(FILE *filterToRead) {
         size_t size = sizeof(float);
         for(j = 0; j < filter->size; j++) {
             fscanf(filterToRead, "%s", value);
-            printf("%s \n", value);
             filter->data[i][j] = strtof(value, NULL);
-            printf("%f \n", filter->data[i][j]);
         }
     }
 }
@@ -108,7 +106,7 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
             sum = image->data[wsp1][wsp2]*filter->data[i][j];
         }
     }
-    //printf("%d %d %d %lf %lf\n",wsp1, wsp2, image->data[wsp1][wsp2], filter->data[i-1][j-1], sum);
+    printf("%d %d %d %lf %lf\n",wsp1, wsp2, image->data[wsp1][wsp2], filter->data[i-1][j-1], sum);
     filteredImage->data[x][y] = (unsigned char) round(sum);
 }   
 
