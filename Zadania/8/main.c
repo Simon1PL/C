@@ -154,7 +154,7 @@ void save_image(Image *image, FILE *file) {
     for(i = 0; i < image->width; i++) {
         for(j = 0; j < image->height; j++) {
             fprintf(file, "%u ", image->data[i][j]);
-            if((i+1)*(j+1)%image->width==0)  
+            if(j==image->width-1)  
                 fprintf(file, "\n");
         }
     }
