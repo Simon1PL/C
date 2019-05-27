@@ -98,11 +98,12 @@ Image *createNewImage(int width, int height) {
 
 void filterMachine(Image *old, Filter *filter, int x, int y) {
     int sum = 0;
-    int i, j;
+    int i, j, wsp1, wsp2;
     for(i = 0; i < filter->size; i++) {
         for(j = 0; j < filter->size; j++) {
-            sum += image->data[(int) fmin(fmax(0, x - ceil(filter->size/2) + i + 1), image->width-1)]
-                [(int) fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height-1)]*filter->data[i][j];
+            wsp1 = fmin(fmax(0, x - ceil(filter->size/2) + i + 1), image->width-1);
+            wsp2 = fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height-1)
+            sum += image->data[(int) wsp1][(int) wsp2]*filter->data[i][j];
         }
     }
     printf("%d\n",sum);
