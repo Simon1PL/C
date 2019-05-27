@@ -78,7 +78,7 @@ void readFilter(FILE *filterToRead) {
         filter->data[i] = calloc(filter->size, sizeof(float));
         size_t size = sizeof(float);
         for(j = 0; j < filter->size; j++) {
-            fscanf(filterToRead, "%f", value);
+            fscanf(filterToRead, "%s", value);
             printf("%s \n", value);
             filter->data[i][j] = strtof(value, NULL);
             printf("%f \n", filter->data[i][j]);
