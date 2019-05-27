@@ -169,7 +169,7 @@ void save_image(Image *image, FILE *file) {
     for(i = 0; i < image->height; i++) {
         fprintf(file, "\n");
         for(j = 0; j < image->width; j++) 
-            fprintf(file, "%u\t", image->data[i][j]);
+            fprintf(file, "%u\t", image->data[j][i]);
     }
 }
 
