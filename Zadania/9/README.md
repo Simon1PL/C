@@ -8,28 +8,28 @@ Po torze w wesołym miasteczku porusza się kilka wagoników  roller coaster. Wa
 
 Zaimplementuj poprawne rozwiązanie problemu synchronizacji wagoników roller coaster, w którym każdy pasażer i każdy wagonik to osobny wątek. Wagonik wypisuje komunikaty o następujących zdarzeniach:
 
-    Zamknięcie drzwi.
-    Rozpoczęcie jazdy. Zakładamy, że jazda trwa pewien losowy okres czasu. Na potrzeby zadania można przyjąć czas w przedziale od 0 do kilku milisekund.
-    Zakończenie jazdy.
-    Otwarcie drzwi.
-    Zakończenie pracy wątku.
+  1 Zamknięcie drzwi.
+  2 Rozpoczęcie jazdy. Zakładamy, że jazda trwa pewien losowy okres czasu. Na potrzeby zadania można przyjąć czas w przedziale od 0 do kilku milisekund.
+  3 Zakończenie jazdy.
+  4 Otwarcie drzwi.
+  5 Zakończenie pracy wątku.
 
 Pasażer wypisuje komunikaty o następujących zdarzeniach:
 
-    Wejście do wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.
-    Opuszczenie wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.
-    Naciśnięcie przycisku start.
-    Zakończenie pracy wątku.
+  1 Wejście do wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.
+  2 Opuszczenie wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.
+  3 Naciśnięcie przycisku start.
+  4 Zakończenie pracy wątku.
 
 Każdy wypisywany komunikat musi zawierać znacznik czasowy z dokładnością do milisekund oraz identyfikator, odpowiednio, wagonika lub pasażera. Sekwencja zdarzeń musi gwarantować poprawy przewóz pasażerów. Niedopuszczalne jest na przykład:
 
-    wejście pasażera do wagonika gdy w wagoniku znajduje się pasażer z poprzedniej jazdy,
-    wejście do wagonika więcej niż c pasażerów,
-    naciśnięcie przycisku start gdy w wagoniku jest mniej niż c pasażerów,
-    zamknięcie drzwi przed naciśnięciem przycisku start,
-    podjechanie wagonika do platformy zanim poprzedni wagonik z niej odjedzie,
-    zmiana kolejności wagoników na torze (podjeżdżają do platformy w kolejności innej, niż z niej uprzednio odjechały),
-    etc.
+  - wejście pasażera do wagonika gdy w wagoniku znajduje się pasażer z poprzedniej jazdy,
+  - wejście do wagonika więcej niż c pasażerów,
+  - naciśnięcie przycisku start gdy w wagoniku jest mniej niż c pasażerów,
+  - zamknięcie drzwi przed naciśnięciem przycisku start,
+  - podjechanie wagonika do platformy zanim poprzedni wagonik z niej odjedzie,
+  - zmiana kolejności wagoników na torze (podjeżdżają do platformy w kolejności innej, niż z niej uprzednio odjechały),
+  - etc.
 
 Niedopuszczalne jest również rozwiązanie, w którym niektóre wątki są głodzone (niektórzy pasażerowie w ogóle nie wsiadają do wagoników, podczas gdy inni jeżdżą wielokrotnie).
 
