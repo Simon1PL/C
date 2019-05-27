@@ -113,6 +113,11 @@ void *blockFilter(void *threadNumber) {
             filterMachine(image, filter, i, j);
         }
     }
+    for(i = 0; i < image->width; i++) {
+        for(j = 0; j < image->height; j++) {
+            filterMachine(image, filter, i, j);
+        }
+    }
     gettimeofday(&end,NULL);
     int *timeDifference=malloc(sizeof(int));
     *timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
@@ -207,7 +212,7 @@ int main(int argc, char **argv) {
         int times[threadsAmmount];
         gettimeofday(&start, NULL);
         int i;
-        /*for(i = 0; i < threadsAmmount; i++) {
+        for(i = 0; i < threadsAmmount; i++) {
             makeFilter(mode, i, threads);
         }
         for(i = 0; i < threadsAmmount; i++) {
@@ -224,7 +229,7 @@ int main(int argc, char **argv) {
             printf("Thread: %d, time: %dus\n", i+1, times[i]);
         }
         int timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-        printf("Total time: %dus\n", timeDifference);*/
+        printf("Total time: %dus\n", timeDifference);
         save_image(filteredImage, resultImage);
     }
 	else help();
