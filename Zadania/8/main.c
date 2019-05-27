@@ -166,9 +166,9 @@ void save_image(Image *image, FILE *file) {
     fwrite(line, 1, len, file);
     fwrite("255", 1, 4, file);
     int i, j;
-    for(i = 0; i < image->width; i++) {
+    for(i = 0; i < image->height; i++) {
         fprintf(file, "\n");
-        for(j = 0; j < image->height; j++) 
+        for(j = 0; j < image->width; j++) 
             fprintf(file, "%u\t", image->data[i][j]);
     }
 }
