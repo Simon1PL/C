@@ -110,12 +110,11 @@ void *blockFilter(void *threadNumber) {
     gettimeofday(&start,NULL);
     for(i = 0; i < image->width; i++) {
         for(j = 0; j < image->height; j++) {
-            filterMachine(image, filter, i, j);
-        }
-    }
-    for(i = 0; i < image->width; i++) {
-        for(j = 0; j < image->height; j++) {
-            filterMachine(image, filter, i, j);
+            if(i > k*ceil(range) && i < (k+1)*ceil(range)-1) 
+                filterMachine(image, filter, i, j);
+            else{
+                filteredImage->data[i][j] = image->data[i][j];
+            }
         }
     }
     gettimeofday(&end,NULL);
