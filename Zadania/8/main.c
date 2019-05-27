@@ -101,7 +101,7 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
     int i, j;
     for(i = 0; i < filter->size; i++) {
         for(j = 0; j < filter->size; j++) {
-            sum += image->data[(int) fmin(fmax(0, x - ceil(filter->size/2) + i + 1), image->width)-1]
+            sum += image->data[(int) fmin(fmax(0, x - ceil(filter->size/2) + i + 1), image->width-1)]
                 [(int) fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height-1)]*filter->data[i][j];
         }
     }
