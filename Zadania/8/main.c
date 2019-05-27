@@ -106,7 +106,7 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
             sum = image->data[wsp1][wsp2]*filter->data[i][j];
         }
     }
-    printf("%d %d %d\n",wsp1, wsp2, image->data[wsp1][wsp2]);
+    printf("%d %d %d\n",wsp1, wsp2, filter->data[i][j]);
     filteredImage->data[x][y] = (unsigned char) round(sum);
 }   
 
