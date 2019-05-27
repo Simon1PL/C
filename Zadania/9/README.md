@@ -8,18 +8,18 @@ Po torze w wesołym miasteczku porusza się kilka wagoników  roller coaster. Wa
 
 Zaimplementuj poprawne rozwiązanie problemu synchronizacji wagoników roller coaster, w którym każdy pasażer i każdy wagonik to osobny wątek. Wagonik wypisuje komunikaty o następujących zdarzeniach:
 
-  1 Zamknięcie drzwi.
-  2 Rozpoczęcie jazdy. Zakładamy, że jazda trwa pewien losowy okres czasu. Na potrzeby zadania można przyjąć czas w przedziale od 0 do kilku milisekund.
-  3 Zakończenie jazdy.
-  4 Otwarcie drzwi.
-  5 Zakończenie pracy wątku.
+  1 Zamknięcie drzwi.  
+  2 Rozpoczęcie jazdy. Zakładamy, że jazda trwa pewien losowy okres czasu. Na potrzeby zadania można przyjąć czas w przedziale od 0 do kilku milisekund.  
+  3 Zakończenie jazdy.  
+  4 Otwarcie drzwi.  
+  5 Zakończenie pracy wątku.  
 
 Pasażer wypisuje komunikaty o następujących zdarzeniach:
 
-  1 Wejście do wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.
-  2 Opuszczenie wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.
-  3 Naciśnięcie przycisku start.
-  4 Zakończenie pracy wątku.
+  1 Wejście do wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.  
+  2 Opuszczenie wagonika. Komunikat ten zawiera aktualną liczbę pasażerów w wagoniku.  
+  3 Naciśnięcie przycisku start.  
+  4 Zakończenie pracy wątku.  
 
 Każdy wypisywany komunikat musi zawierać znacznik czasowy z dokładnością do milisekund oraz identyfikator, odpowiednio, wagonika lub pasażera. Sekwencja zdarzeń musi gwarantować poprawy przewóz pasażerów. Niedopuszczalne jest na przykład:
 
