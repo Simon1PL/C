@@ -79,6 +79,7 @@ void readFilter(FILE *filterToRead) {
         size_t size = sizeof(float);
         for(j = 0; j < filter->size; j++) {
             fscanf(filterToRead, "%f", value);
+            printf("%s \n", value);
             filter->data[i][j] = strtof(value, NULL);
             printf("%f \n", filter->data[i][j]);
         }
