@@ -219,13 +219,13 @@ int main(int argc, char **argv) {
             }
             times[i]=*returnValue;
             free(returnValue);
-        }*/
+        }
         gettimeofday(&end, NULL);
         for(i = 0; i < threadsAmmount; i++) {
             printf("Thread: %d, time: %dus\n", i+1, times[i]);
         }
         int timeDifference = ((end.tv_sec - start.tv_sec) * 1000000) + (end.tv_usec - start.tv_usec);
-        printf("Total time: %dus\n", timeDifference);
+        printf("Total time: %dus\n", timeDifference);*/
         save_image(filteredImage, resultImage);
     }
 	else help();
