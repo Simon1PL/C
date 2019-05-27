@@ -51,11 +51,11 @@ void readImage(FILE *imageToRead) {
 		exit(0);
 	}
 	free(line);
-    image->data = calloc(image->width, sizeof(char*));
+    image->data = calloc(image->width, sizeof(unsigned char*));
     int i;
 	char *value=malloc(4);
     for(i = 0; i < image->width; i++) {
-        image->data[i] = calloc(image->height, sizeof(char));
+        image->data[i] = calloc(image->height, sizeof(unsigned char));
         int j;
         for(j = 0; j < image->height; j++) {
             fscanf(imageToRead, "%s", value);
@@ -86,26 +86,28 @@ void readFilter(FILE *filterToRead) {
 
 Image *createNewImage(int width, int height) {
     Image *image = malloc(sizeof(Image));
-    image->data = calloc(height, sizeof(unsigned char*));
+    image->data = calloc(width sizeof(unsigned char*));
     image->width = width;
     image->height = height;
     int i;
-    for(i = 0; i < height; i++) {
-        image->data[i] = calloc(width, sizeof(unsigned char));
+    for(i = 0; i < width; i++) {
+        image->data[i] = calloc(height, sizeof(unsigned char));
     }
     return image;
 }
 
 void filterMachine(Image *old, Filter *filter, int x, int y) {
     double sum = 0;
-    int i, j;
+    /*int i, j;
     for(i = 0; i < filter->size; i++) {
         for(j = 0; j < filter->size; j++) {
             sum += image->data[(int) (fmax(1, fmin(image->width - 1, x - ceil(filter->size/2) + i + 1)))]
                 [(int) (fmax(1, fmin(image->height -1, y - ceil(filter->size/2) + j + 1)))]*filter->data[i][j];
         }
     }
-    filteredImage->data[x][y] = (unsigned char) round(sum);
+    filteredImage->data[x][y] = (unsigned char) round(sum);*/
+    sum = image->data[x][y];
+    filteredImage->data[x][y] = sum;
 }
 
 void *blockFilter(void *threadNumber) {
@@ -114,7 +116,12 @@ void *blockFilter(void *threadNumber) {
     struct timeval start, end;
     float range=image->width/threadsAmmount;
     gettimeofday(&start,NULL);
-    for(i = k*ceil(range); i < (k+1)*ceil(range); i++) {
+    /*for(i = k*ceil(range); i < (k+1)*ceil(range); i++) {
+        for(j = 0; j < image->height; j++) {
+            filterMachine(image, filter, i, j);
+        }
+    }*/
+    for(i = 0; i < image->width; i++) {
         for(j = 0; j < image->height; j++) {
             filterMachine(image, filter, i, j);
         }
