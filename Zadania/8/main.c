@@ -115,13 +115,9 @@ void *blockFilter(void *threadNumber) {
     struct timeval start, end;
     float range=image->width/threadsAmmount;
     gettimeofday(&start,NULL);
-    for(i = 0; i < image->width; i++) {
+    for(i = k*ceil(range); i < (k+1)*ceil(range)-1; i++) {
         for(j = 0; j < image->height; j++) {
-            if(i > k*ceil(range) && i < (k+1)*ceil(range)-1) 
-                filterMachine(image, filter, i, j);
-            else{
-                filteredImage->data[i][j] = image->data[i][j];
-            }
+            filterMachine(image, filter, i, j);
         }
     }
     gettimeofday(&end,NULL);
@@ -135,14 +131,9 @@ void *InterleavedFilter(void *threadNumber) {
     int i, j;
     struct timeval start, end;
     gettimeofday(&start,NULL);
-    for(i = 0; i < image->width; i ++) {
+    for(i = k; i < image->width; i threadsAmmount) {
         for(j = 0; j < image->height; j++) {
-            if(i-k%threadsAmmount==0)
-                filterMachine(image, filter, i, j);
-            else
-            {
-                filteredImage->data[i][j] = image->data[i][j];
-            }
+            filterMachine(image, filter, i, j);
         }
     }
     gettimeofday(&end,NULL);
@@ -222,7 +213,12 @@ int main(int argc, char **argv) {
         struct timeval start, end;
         int times[threadsAmmount];
         gettimeofday(&start, NULL);
-        int i;
+        int i, j;
+        for(i = 0; i < image->width; i ++) {
+            for(j = 0; j < image->height; j++) {
+                filteredImage->data[i][j] = image->data[i][j];
+            }
+        }
         for(i = 0; i < threadsAmmount; i++) {
             makeFilter(mode, i, threads);
         }
