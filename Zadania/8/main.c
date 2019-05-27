@@ -93,7 +93,6 @@ Image *createNewImage(int width, int height) {
     for(i = 0; i < width; i++) {
         imageNew->data[i] = calloc(height, sizeof(unsigned char));
     }
-    //memcpy(imageNew, image, width*sizeof(unsigned char*)*height*sizeof(unsigned char));
     return imageNew;
 }
 
