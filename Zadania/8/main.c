@@ -106,9 +106,9 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
             sum += image->data[wsp1][wsp2]*filter->data[i][j];
         }
     }
-    printf("%d\n",sum);
+    printf("%d\n",round(sum));
     filteredImage->data[x][y] = (unsigned char) round(sum);
-}
+}   
 
 void *blockFilter(void *threadNumber) {
     int k = *((int*) threadNumber);
