@@ -105,7 +105,6 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
                 [(int) fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height-1)]*filter->data[i][j];
         }
     }
-    sum=1;
     filteredImage->data[x][y] = (unsigned char) round(sum);
 }
 
