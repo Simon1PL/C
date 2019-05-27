@@ -18,10 +18,13 @@ testwithecho:
 	echo -e "\nfilter1 (5x5)" >> Times.txt
 	echo -e "\n1 thread" > Times.txt
 	./main 1 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n2 threads" >> Times.txt
 	./main 2 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n4 threads" >> Times.txt
 	./main 4 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n8 threads" >> Times.txt
 	./main 8 $(MODE1) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
 	rm out.pgm
@@ -29,10 +32,13 @@ testwithecho:
 	echo -e "\nfilter2 (20x20)" >> Times.txt
 	echo -e "\n1 thread" >> Times.txt
 	./main 1 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n2 threads" >> Times.txt
 	./main 2 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n4 threads" >> Times.txt
 	./main 4 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n8 threads" >> Times.txt
 	./main 8 $(MODE1) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
 	rm out.pgm
@@ -42,10 +48,13 @@ testwithecho:
 	echo -e "\nfilter1 (5x5)" >> Times.txt
 	echo -e "\n1 thread" >> Times.txt
 	./main 1 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n2 threads" >> Times.txt
 	./main 2 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n4 threads" >> Times.txt
 	./main 4 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n8 threads" >> Times.txt
 	./main 8 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
 	rm out.pgm
@@ -53,10 +62,13 @@ testwithecho:
 	echo -e "\nfilter2 (20x20)" >> Times.txt
 	echo -e "\n1 thread" >> Times.txt
 	./main 1 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n2 threads" >> Times.txt
 	./main 2 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n4 threads" >> Times.txt
 	./main 4 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
+	rm out.pgm
 	echo -e "\n8 threads" >> Times.txt
 	./main 8 $(MODE2) $(INPUT) $(FILTER2) $(OUTPUT) >> Times.txt
 
