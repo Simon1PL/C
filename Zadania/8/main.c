@@ -99,12 +99,12 @@ Image *createNewImage(int width, int height) {
 void filterMachine(Image *old, Filter *filter, int x, int y) {
     int sum = 0;
     int i, j;
-    /*for(i = 0; i < filter->size; i++) {
+    for(i = 0; i < filter->size; i++) {
         for(j = 0; j < filter->size; j++) {
-            sum += image->data[(int) fmin(fmax(0, x - ceil(filter->size/2) + i + 1), image->width)]
-                [(int) fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height)]*filter->data[i][j];
+            sum += image->data[(int) fmin(fmax(0, x - ceil(filter->size/2) + i + 1), image->width)-1]
+                [(int) fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height-1)]*filter->data[i][j];
         }
-    }*/
+    }
     sum=1;
     filteredImage->data[x][y] = (unsigned char) round(sum);
 }
