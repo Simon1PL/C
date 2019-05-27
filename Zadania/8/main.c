@@ -111,7 +111,7 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
 }
 
 void *blockFilter(void *threadNumber) {
-    int k = *((int*) threadNumber);
+    int k = ((int) threadNumber);
     int i, j;
     struct timeval start, end;
     float range=image->width/threadsAmmount;
@@ -135,7 +135,7 @@ void *blockFilter(void *threadNumber) {
 }
 
 void *InterleavedFilter(void *threadNumber) {
-    int k =  *((int*) threadNumber);
+    int k =  ((int) threadNumber);
     int i, j;
     struct timeval start, end;
     gettimeofday(&start,NULL);
