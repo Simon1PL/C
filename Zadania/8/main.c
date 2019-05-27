@@ -131,7 +131,7 @@ void *InterleavedFilter(void *threadNumber) {
     int i, j;
     struct timeval start, end;
     gettimeofday(&start,NULL);
-    for(i = k; i < image->width; i threadsAmmount) {
+    for(i = k; i < image->width; i+=threadsAmmount) {
         for(j = 0; j < image->height; j++) {
             filterMachine(image, filter, i, j);
         }
