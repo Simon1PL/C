@@ -8,8 +8,8 @@
 #include <stdbool.h>
 
 typedef struct{
-    int width;
     int height;
+    int width;
     unsigned char **data;
 } Image;
 
@@ -43,7 +43,7 @@ void readImage(FILE *imageToRead) {
     size = 9;
     getline(&line, &size, imageToRead);
     image = malloc(sizeof(Image));
-    sscanf(line, "%d %d\n", &(image->width), &(image->height));
+    sscanf(line, "%d %d\n", &(image->height), &(image->width));
 	size=3;
     getline(&line, &size, imageToRead);
     if(strcmp(line, "255\n")) {
@@ -51,13 +51,13 @@ void readImage(FILE *imageToRead) {
 		exit(0);
 	}
 	free(line);
-    image->data = calloc(image->width, sizeof(unsigned char*));
+    image->data = calloc(image->height, sizeof(unsigned char*));
     int i;
 	char *value=malloc(4);
-    for(i = 0; i < image->width; i++) {
-        image->data[i] = calloc(image->height, sizeof(unsigned char));
+    for(i = 0; i < image->height; i++) {
+        image->data[i] = calloc(image->width, sizeof(unsigned char));
         int j;
-        for(j = 0; j < image->height; j++) {
+        for(j = 0; j < image->width; j++) {
             fscanf(imageToRead, "%s", value);
             image->data[i][j] = atoi(value);
         }
@@ -84,14 +84,14 @@ void readFilter(FILE *filterToRead) {
     }
 }
 
-Image *createNewImage(int width, int height) {
+Image *createNewImage(int height, int width) {
     Image *imageNew = malloc(sizeof(Image));
-    imageNew->data = calloc(width, sizeof(unsigned char*));
-    imageNew->width = width;
+    imageNew->data = calloc(height, sizeof(unsigned char*));
     imageNew->height = height;
+    imageNew->width = width;
     int i;
-    for(i = 0; i < width; i++) {
-        imageNew->data[i] = calloc(height, sizeof(unsigned char));
+    for(i = 0; i < height; i++) {
+        imageNew->data[i] = calloc(width, sizeof(unsigned char));
     }
     return imageNew;
 }
@@ -107,10 +107,10 @@ void *blockFilter(void *threadNumber) {
     int k = ((int) threadNumber);
     int i, j;
     struct timeval start, end;
-    float range=image->width/threadsAmmount;
+    float range=image->height/threadsAmmount;
     gettimeofday(&start,NULL);
-    for(i = 0; i < image->width; i++) {
-        for(j = 0; j < image->height; j++) {
+    for(i = 0; i < image->height; i++) {
+        for(j = 0; j < image->width; j++) {
             filterMachine(image, filter, i, j);
         }
     }
@@ -125,8 +125,8 @@ void *InterleavedFilter(void *threadNumber) {
     int i, j;
     struct timeval start, end;
     gettimeofday(&start,NULL);
-    for(i = k; i < image->width; i += threadsAmmount) {
-        for(j = 0; j < image->height; j++) {
+    for(i = k; i < image->height; i += threadsAmmount) {
+        for(j = 0; j < image->width; j++) {
             filterMachine(image, filter, i, j);
         }
     }
@@ -148,14 +148,14 @@ void makeFilter(char *mode, int i, pthread_t *threads) {
 void save_image(Image *image, FILE *file) {
     fwrite("P2\n", 1, 3, file);
     char *line = malloc(10);
-    int len = sprintf(line, "%d %d\n", image->width, image->height);
+    int len = sprintf(line, "%d %d\n", image->height, image->width);
     fwrite(line, 1, len, file);
     fwrite("255", 1, 4, file);
     int i, j;
     for(i = 0; i < image->height; i++) {
         fprintf(file, "\n");
         for(j = 0; j < image->width; j++) {
-            fprintf(file, "%u ", image->data[j][i]);
+            fprintf(file, "%u ", image->data[i][j]);
         }
     }
 }
@@ -200,7 +200,7 @@ int main(int argc, char **argv) {
 		}
 		threadsAmmount = atoi(argv[1]);
 		char *mode = argv[2];
-		filteredImage = createNewImage(image->width, image->height);
+		filteredImage = createNewImage(image->height, image->width);
         pthread_t *threads;
         threads = calloc(threadsAmmount, sizeof(pthread_t));
         struct timeval start, end;
