@@ -150,11 +150,11 @@ void save_image(Image *image, FILE *file) {
     int len = sprintf(line, "%d %d\n", image->width, image->height);
     fwrite(line, 1, len, file);
     fwrite("255", 1, 4, file);
-    int i, j;
+    int i, j, toEnter=0;
     for(i = 0; i < image->width; i++) {
         for(j = 0; j < image->height; j++) {
             fprintf(file, "%u ", image->data[i][j]);
-            if(j==image->width-1)  
+            if(++toEnter%(image->width-1)==0)  
                 fprintf(file, "\n");
         }
     }
