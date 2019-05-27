@@ -149,7 +149,7 @@ void save_image(Image *image, FILE *file) {
     char *line = malloc(10);
     int len = sprintf(line, "%d %d\n", image->width, image->height);
     fwrite(line, 1, len, file);
-    fwrite("255", 1, 4, file);
+    fwrite("255\n", 1, 4, file);
     int i, j, toEnter=0;
     for(i = 0; i < image->width; i++) {
         for(j = 0; j < image->height; j++) {
