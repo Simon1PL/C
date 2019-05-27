@@ -86,7 +86,7 @@ void readFilter(FILE *filterToRead) {
 
 Image *createNewImage(int width, int height) {
     Image *image = malloc(sizeof(Image));
-    image->data = calloc(width sizeof(unsigned char*));
+    image->data = calloc(width, sizeof(unsigned char*));
     image->width = width;
     image->height = height;
     int i;
