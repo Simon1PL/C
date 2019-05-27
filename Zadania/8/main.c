@@ -85,29 +85,22 @@ void readFilter(FILE *filterToRead) {
 }
 
 Image *createNewImage(int width, int height) {
-    Image *image = malloc(sizeof(Image));
-    image->data = calloc(width, sizeof(unsigned char*));
-    image->width = width;
-    image->height = height;
+    Image *imageNew = malloc(sizeof(Image));
+    imageNew->data = calloc(width, sizeof(unsigned char*));
+    imageNew->width = width;
+    imageNew->height = height;
     int i;
     for(i = 0; i < width; i++) {
-        image->data[i] = calloc(height, sizeof(unsigned char));
+        imageNew->data[i] = calloc(height, sizeof(unsigned char));
     }
-    return image;
+    return imageNew;
 }
 
 void filterMachine(Image *old, Filter *filter, int x, int y) {
-    double sum = 0;
-    /*int i, j;
-    for(i = 0; i < filter->size; i++) {
-        for(j = 0; j < filter->size; j++) {
-            sum += image->data[(int) (fmax(1, fmin(image->width - 1, x - ceil(filter->size/2) + i + 1)))]
-                [(int) (fmax(1, fmin(image->height -1, y - ceil(filter->size/2) + j + 1)))]*filter->data[i][j];
-        }
-    }
-    filteredImage->data[x][y] = (unsigned char) round(sum);*/
+    int sum = 0;
     sum = image->data[x][y];
     filteredImage->data[x][y] = sum;
+    printf("A: %d\n", filteredImage->data[x][y]);
 }
 
 void *blockFilter(void *threadNumber) {
@@ -116,13 +109,6 @@ void *blockFilter(void *threadNumber) {
     struct timeval start, end;
     float range=image->width/threadsAmmount;
     gettimeofday(&start,NULL);
-    /*
-    for(i = k*ceil(range); i < (k+1)*ceil(range); i++) {
-        for(j = 0; j < image->height; j++) {
-            filterMachine(image, filter, i, j);
-        }
-    }
-    */
     for(i = 0; i < image->width; i++) {
         for(j = 0; j < image->height; j++) {
             filterMachine(image, filter, i, j);
@@ -166,10 +152,11 @@ void save_image(Image *image, FILE *file) {
     fwrite(line, 1, len, file);
     fwrite("255", 1, 4, file);
     int i, j;
-    for(i = 0; i < image->height; i++) {
+    for(i = 0; i < image->width; i++) {
         fprintf(file, "\n");
-        for(j = 0; j < image->width; j++) 
-            fprintf(file, "%u\t", image->data[j][i]);
+        for(j = 0; j < image->height; j++) {
+            fprintf(file, "%u ", image->data[i][j]);
+        }
     }
 }
 
@@ -241,5 +228,5 @@ int main(int argc, char **argv) {
         save_image(filteredImage, resultImage);
     }
 	else help();
-    return 0;
+    pthread_exit(NULL);
 }
