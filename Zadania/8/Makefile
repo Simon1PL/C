@@ -8,6 +8,7 @@ all:
 	make -s clear
 	gcc main.c -o main -lpthread -lm
 	rm -f *.o
+	./main 1 block MonaLisa.pgm filter1 out.pgm
 
 test:
 	make -s testwithecho
@@ -61,3 +62,7 @@ testwithecho:
 
 clear:
 	rm -f *.o *.a *.so main
+
+clean:
+	make clear
+	rm out.pgm
