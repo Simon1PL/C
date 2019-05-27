@@ -93,6 +93,7 @@ Image *createNewImage(int width, int height) {
     for(i = 0; i < width; i++) {
         imageNew->data[i] = calloc(height, sizeof(unsigned char));
     }
+    memcpy(imageNew, image, width*sizeof(unsigned char*)*height*sizeof(unsigned char));
     return imageNew;
 }
 
@@ -207,7 +208,7 @@ int main(int argc, char **argv) {
         int times[threadsAmmount];
         gettimeofday(&start, NULL);
         int i;
-        for(i = 0; i < threadsAmmount; i++) {
+        /*for(i = 0; i < threadsAmmount; i++) {
             makeFilter(mode, i, threads);
         }
         for(i = 0; i < threadsAmmount; i++) {
@@ -218,7 +219,7 @@ int main(int argc, char **argv) {
             }
             times[i]=*returnValue;
             free(returnValue);
-        }
+        }*/
         gettimeofday(&end, NULL);
         for(i = 0; i < threadsAmmount; i++) {
             printf("Thread: %d, time: %dus\n", i+1, times[i]);
