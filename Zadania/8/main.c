@@ -100,7 +100,6 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
     int sum = 0;
     sum = image->data[x][y];
     filteredImage->data[x][y] = sum;
-    printf("A: %d\n", filteredImage->data[x][y]);
 }
 
 void *blockFilter(void *threadNumber) {
