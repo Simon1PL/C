@@ -105,7 +105,8 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
                 [(int) fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height)]*filter->data[i][j];
         }
     }
-    filteredImage->data[x][y] = (unsigned char) round(sum);
+    //filteredImage->data[x][y] = (unsigned char) round(sum);
+    filteredImage->data[x][y] = 1;
 }
 
 void *blockFilter(void *threadNumber) {
