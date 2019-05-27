@@ -110,7 +110,6 @@ void *blockFilter(void *threadNumber) {
     gettimeofday(&start,NULL);
     for(i = 0; i < image->width; i++) {
         for(j = 0; j < image->height; j++) {
-            printf("\nAA\n");
             filterMachine(image, filter, i, j);
         }
     }
