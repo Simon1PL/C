@@ -144,7 +144,6 @@ void *InterleavedFilter(void *threadNumber) {
 }
 
 void makeFilter(char *mode, int i, pthread_t *threads) {
-    printf("aa");
     if(!strcmp(mode, "block")) {
         pthread_create(&(threads[i]), NULL, blockFilter, &i);
     } 
@@ -200,7 +199,6 @@ bool parser(char** argv, int argc) {
 }
 
 int main(int argc, char **argv) {
-    printf("aa");
 	if(parser(argv, argc)){
 		FILE *resultImage = fopen(argv[5], "a");
 		if (resultImage==NULL) {
