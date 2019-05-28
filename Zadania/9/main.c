@@ -61,16 +61,16 @@ void *run_Passenger(void *data) {
             pthread_mutex_unlock(&passenger_mutex);
         }
 
-        pthread_mutex_lock(&Trolleys_mutex[Passenger->trolley]);
+        pthread_mutex_lock(&Trolleys_mutex[passenger->trolley]);
         gettimeofday(&currentTime, NULL);
         Trolleys[trolleyOnStationID].busyPlaces++;
-        printf("Passenger number %d left, people in Trolley: %d, time: %ld.%06ld \n", Passenger->id, Trolleys[trolleyOnStationID].busyPlaces,currentTime.tv_sec, currentTime.tv_usec);
+        printf("Passenger number %d left, people in Trolley: %d, time: %ld.%06ld \n", passenger->id, Trolleys[trolleyOnStationID].busyPlaces,currentTime.tv_sec, currentTime.tv_usec);
         if(Trolleys[trolleyOnStationID].busyPlaces == Trolleys[trolleyOnStationID].size){
             pthread_cond_signal(&empty_condition);
             pthread_mutex_unlock(&emptyTrolley_mutex);
         }
-        pthread_mutex_unlock(&Trolleys_mutex[Passenger->Trolley]);
-        Passenger->trolley = -1;
+        pthread_mutex_unlock(&Trolleys_mutex[passenger->Trolley]);
+        passenger->trolley = -1;
     }
 }
 
@@ -169,7 +169,7 @@ int main(int argc, char **argv) {
     Passenger Passengers[passengersCount];
     Trolleys = malloc(sizeof(Trolley) * trolleysCount);
     for(i=0; i<trolleysCount; i++){
-         trolley->Passengers=malloc(sizeof(int) * trolleySize);
+         trolleysThreads[i]->passengers=malloc(sizeof(int) * trolleySize);
     }
     Trolleys_mutex = malloc(sizeof(pthread_mutex_t) * trolleysCount);
     Trolleys_cond = malloc(sizeof(pthread_cond_t) * trolleysCount);
