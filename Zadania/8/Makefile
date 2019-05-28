@@ -5,7 +5,7 @@ FILTER2=filter2
 FILTER1=filter1
 MODE2=interleaved
 all:
-	make -s clean
+	make -s clear
 	gcc main.c -o main -lpthread -lm
 	rm -f *.o
 	./main 1 block obraz.pgm filter1 out.pgm
