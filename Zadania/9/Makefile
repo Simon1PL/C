@@ -1,5 +1,5 @@
 main:
-	make -s clear
+	rm main
 	gcc -pthread main.c -o main
 	./main 15 3 3 2
 
