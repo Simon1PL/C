@@ -115,6 +115,7 @@ void *blockFilter(void *threadNumber) {
     struct timeval start, end;
     float range=image->width/threadsAmmount;
     gettimeofday(&start,NULL);
+    printf("aa");
     for(i = k*ceil(range); i <= (k+1)*ceil(range)-1; i++) {
         for(j = 0; j < image->height; j++) {
             printf("%d %d \n", i, j);
