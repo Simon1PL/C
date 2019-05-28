@@ -69,7 +69,7 @@ void *run_Passenger(void *data) {
             pthread_cond_signal(&empty_condition);
             pthread_mutex_unlock(&emptyTrolley_mutex);
         }
-        pthread_mutex_unlock(&Trolleys_mutex[passenger->Trolley]);
+        pthread_mutex_unlock(&Trolleys_mutex[passenger->trolley]);
         passenger->trolley = -1;
     }
 }
@@ -169,7 +169,7 @@ int main(int argc, char **argv) {
     Passenger Passengers[passengersCount];
     Trolleys = malloc(sizeof(Trolley) * trolleysCount);
     for(i=0; i<trolleysCount; i++){
-         trolleysThreads[i]->passengers=malloc(sizeof(int) * trolleySize);
+         Trolleys[i]->Passengers=malloc(sizeof(int) * trolleySize);
     }
     Trolleys_mutex = malloc(sizeof(pthread_mutex_t) * trolleysCount);
     Trolleys_cond = malloc(sizeof(pthread_cond_t) * trolleysCount);
