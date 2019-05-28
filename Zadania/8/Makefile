@@ -10,11 +10,11 @@ all:
 	rm -f *.o
 
 1:
-	./main 1 interleaved obraz.pgm filter1 out.pgm
+	./main 1 block obraz.pgm filter1 out.pgm
 	
 2:
 	rm out.pgm
-	./main 2 interleaved obraz.pgm filter1 out.pgm
+	./main 2 block obraz.pgm filter1 out.pgm
 
 3:
 	rm out.pgm
@@ -23,6 +23,21 @@ all:
 4:
 	rm out.pgm
 	./main 8 block obraz.pgm filter1 out.pgm
+
+5:
+	./main 1 interleaved obraz.pgm filter1 out.pgm
+	
+6:
+	rm out.pgm
+	./main 2 interleaved obraz.pgm filter1 out.pgm
+
+7:
+	rm out.pgm
+	./main 4 interleaved obraz.pgm filter1 out.pgm
+
+8:
+	rm out.pgm
+	./main 8 interleaved obraz.pgm filter1 out.pgm
 
 test:
 	make -s testwithecho
