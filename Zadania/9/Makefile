@@ -1,5 +1,5 @@
 main:
-	rm main
+	rm -f main
 	gcc -pthread main.c -o main
 	./main 15 3 3 2
 
