@@ -104,7 +104,6 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
             wsp1 = fmin(fmax(0, x - ceil(filter->size/2) + i), image->width-1);
             wsp2 = fmin(fmax(0, y - ceil(filter->size/2) + j), image->height-1);
             sum += image->data[wsp1][wsp2]*filter->data[i][j];
-            printf("%d %d %d %d\n", wsp1, wsp2, x, y);
         }
     }
     filteredImage->data[x][y] = (unsigned char) round(sum);
