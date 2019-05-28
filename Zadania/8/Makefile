@@ -8,7 +8,7 @@ all:
 	make -s clear
 	gcc main.c -o main -lpthread -lm
 	rm -f *.o
-	./main 8 interleaved MonaLisa.pgm filter1 out.pgm
+	./main 8 interleaved MonaLisa.pgm filter2 out.pgm
 
 test:
 	make -s testwithecho
