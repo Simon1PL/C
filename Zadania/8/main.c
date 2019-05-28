@@ -115,7 +115,6 @@ void *blockFilter(void *threadNumber) {
     struct timeval start, end;
     float range=image->width/threadsAmmount;
     gettimeofday(&start,NULL);
-    printf("aa");
     for(i = k*ceil(range); i <= (k+1)*ceil(range)-1; i++) {
         for(j = 0; j < image->height; j++) {
             printf("%d %d \n", i, j);
@@ -145,7 +144,8 @@ void *InterleavedFilter(void *threadNumber) {
 }
 
 void makeFilter(char *mode, int i, pthread_t *threads) {
-   if(!strcmp(mode, "block")) {
+    printf("aa");
+    if(!strcmp(mode, "block")) {
         pthread_create(&(threads[i]), NULL, blockFilter, &i);
     } 
     else {
