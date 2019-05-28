@@ -169,7 +169,7 @@ int main(int argc, char **argv) {
     Passenger Passengers[passengersCount];
     Trolleys = malloc(sizeof(Trolley) * trolleysCount);
     for(i=0; i<trolleysCount; i++){
-         Trolleys[i]->passengers=malloc(sizeof(int) * trolleySize);
+         Trolleys[i].passengers=malloc(sizeof(int) * trolleySize);
     }
     Trolleys_mutex = malloc(sizeof(pthread_mutex_t) * trolleysCount);
     Trolleys_cond = malloc(sizeof(pthread_cond_t) * trolleysCount);
