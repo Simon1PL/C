@@ -89,8 +89,8 @@ void *run_cart(void *data) {
     Cart *cart = (Cart *) data;
     if (cart->id == 0)
         pthread_mutex_lock(&passenger_mutex);
-
-    for (int i = 0; i < cart->raids; i++) {
+    int i;
+    for (i = 0; i < cart->raids; i++) {
         pthread_mutex_lock(&station_mutex);
         if (cart->id != station_cart_id) {
             pthread_cond_wait(&carts_cond[cart->id], &station_mutex);
@@ -167,12 +167,13 @@ int main(int argc, char **argv) {
     pthread_cond_init(&empty_condition, NULL);
     pthread_cond_init(&full_condition, NULL);
 
-    for (int i = 0; i < passengers_count; i++) {
+    int i;
+    for (i = 0; i < passengers_count; i++) {
         passengers[i].id = i;
         passengers[i].cart = -1;
     }
 
-    for (int i = 0; i < carts_count; i++) {
+    for (i = 0; i < carts_count; i++) {
         carts[i].id = i;
         carts[i].size = 0;
         carts[i].raids = raid_count;
@@ -181,22 +182,22 @@ int main(int argc, char **argv) {
         pthread_cond_init(&carts_cond[i], NULL);
     }
 
-    for (int i = 0; i < carts_count; i++) {
+    for (i = 0; i < carts_count; i++) {
         pthread_create(&cart_thr[i], NULL, run_cart, &carts[i]);
     }
 
-    for (int i = 0; i < passengers_count; i++) {
+    for (i = 0; i < passengers_count; i++) {
         pthread_create(&pass_thr[i], NULL, run_passenger, &passengers[i]);
     }
 
-    for (int i = 0; i < carts_count; i++) {
+    for (i = 0; i < carts_count; i++) {
         pthread_join(cart_thr[i], NULL);
     }
 
-    for (int i = 0; i < carts_count; i++) {
+    for (i = 0; i < carts_count; i++) {
         pthread_mutex_destroy(&carts_mutex[i]);
     }
-    for(int i = 0; i < carts_count; i++){
+    for(i = 0; i < carts_count; i++){
         free(carts[i].passengers);
     }
     free(carts);
