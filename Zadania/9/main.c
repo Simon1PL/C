@@ -65,7 +65,7 @@ void *run_Passenger(void *data) {
         gettimeofday(&currentTime, NULL);
         Trolleys[trolleyOnStationID].busyPlaces++;
         printf("Passenger number %d left, people in Trolley: %d, time: %ld.%06ld \n", passenger->id, Trolleys[trolleyOnStationID].busyPlaces,currentTime.tv_sec, currentTime.tv_usec);
-        if(Trolleys[trolleyOnStationID].busyPlaces == Trolleys[trolleyOnStationID].size){
+        if(Trolleys[trolleyOnStationID].busyPlaces == 0){
             pthread_cond_signal(&empty_condition);
             pthread_mutex_unlock(&emptyTrolley_mutex);
         }
@@ -140,21 +140,21 @@ void help(){
 
 int main(int argc, char **argv) {
     if (argc != 5){
-        printf("Wrong number of arguments");
+        printf("Wrong number of arguments\n");
         help();
     }
     int i;
     for(i=1; i<5; i++) {
         if (!atoi(argv[i])) {
-            printf("argument %d has to be a number", i);
+            printf("argument %d has to be a number\n", i);
             help();
         }
          if (atoi(argv[i])<=0) {
-            printf("argument %d has to be greater than zero", i);
+            printf("argument %d has to be greater than zero\n", i);
             help();
         }
         if(atoi(argv[2])*atoi(argv[3])>atoi(argv[1])){
-            printf("the ammount of people has to be greater than the number of seats", i);
+            printf("the ammount of people has to be greater than the number of seats\n", i);
             help();
         }
     }
