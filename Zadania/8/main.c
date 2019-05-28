@@ -116,7 +116,7 @@ void *blockFilter(void *threadNumber) {
     struct timeval start, end;
     float range=image->width/threadsAmmount;
     gettimeofday(&start,NULL);
-    for(i = k*ceil(range); i <= (k+1)*ceil(range)-1; i++) {
+    for(i = k*ceil(range); i < (k+1)*ceil(range)-1; i++) {
         for(j = 0; j < image->height; j++) {
             filterMachine(image, filter, i, j);
         }
