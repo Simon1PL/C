@@ -13,18 +13,19 @@
 
 typedef struct Passenger{
     int id;
-    int Trolley;
+    int trolley;
 } Passenger;
 
 typedef struct Trolley{
     int id;
-    int size;
+    int busyPlaces;
     int tripsAmmount;
-    Passenger* Passengers;
+    int size;
+    Passenger* passengers;
 } Trolley;
 
-int trolleysCount;
-int trolleySize;
+struct timeval time;
+
 pthread_cond_t* Trolleys_cond;
 pthread_mutex_t* Trolleys_mutex;
 
@@ -37,59 +38,53 @@ pthread_cond_t empty_condition;
 pthread_cond_t full_condition;
 
 Trolley* Trolleys;
-int station_Trolley_id;
-struct timeval get_current_time() {
-    struct timeval curr;
-    gettimeofday(&curr, NULL);
-    return curr;
-}
+int trolleyOnStationID;
 
 void *run_Passenger(void *data) {
-    Passenger *Passenger = (Passenger *) data;
+    Passenger *passenger = (Passenger *) data;
     while (1) {
         pthread_mutex_lock(&passenger_mutex);
+        passenger->trolley = trolleyOnStationID;
+        Trolleys[trolleyOnStationID].Passengers[Trolleys[trolleyOnStationID].busyPlaces] = *Passenger;
+        Trolleys[trolleyOnStationID].busyPlaces += 1;
+        gettimeofday(&time, NULL);
+        printf("Passenger number %d entered the Trolley, people inside: %d, time: %ld.%06ld\n", Passenger->id,Trolleys[trolleyOnStationID].busyPlaces, time.tv_sec, time.tv_usec);
 
-        Passenger->Trolley = station_Trolley_id;
-        Trolleys[station_Trolley_id].Passengers[Trolleys[station_Trolley_id].size] = *Passenger;
-        Trolleys[station_Trolley_id].size = Trolleys[station_Trolley_id].size + 1;
-        struct timeval curr = get_current_time();
-        printf("Passenger %d entered the Trolley, people inside: %d, time: %ld.%06ld \n", Passenger->id,Trolleys[station_Trolley_id].size, curr.tv_sec, curr.tv_usec);
-
-        if(Trolleys[station_Trolley_id].size == trolleySize){
+        if(Trolleys[trolleyOnStationID].busyPlaces == Trolleys[trolleyOnStationID].size){
             srand(time(NULL));
-            curr = get_current_time();
-            printf("Passenger %d pressed start, people inside: %d, time: %ld.%06ld\n", Trolleys[station_Trolley_id].Passengers[rand()%Trolleys->size].id,Trolleys[station_Trolley_id].size, curr.tv_sec, curr.tv_usec);
+            gettimeofday(&time, NULL);
+            printf("Passenger number %d pressed start, time: %ld.%06ld\n", Trolleys[trolleyOnStationID].passengers[rand()%Trolleys[trolleyOnStationID]->size].id, time.tv_sec, time.tv_usec);
             pthread_cond_signal(&full_condition);
             pthread_mutex_unlock(&fullTrolley_mutex);
         } else {
             pthread_mutex_unlock(&passenger_mutex);
         }
 
-        pthread_mutex_lock(&Trolleys_mutex[Passenger->Trolley]);
-        curr = get_current_time();
-        Trolleys[station_Trolley_id].size--;
-        printf("Passenger %d left, people in Trolley: %d, time: %ld.%06ld \n", Passenger->id, Trolleys[station_Trolley_id].size,curr.tv_sec, curr.tv_usec);
-        if(Trolleys[station_Trolley_id].size == 0){
+        pthread_mutex_lock(&Trolleys_mutex[Passenger->trolley]);
+        gettimeofday(&time, NULL);
+        Trolleys[trolleyOnStationID].busyPlaces++;
+        printf("Passenger number %d left, people in Trolley: %d, time: %ld.%06ld \n", Passenger->id, Trolleys[trolleyOnStationID].busyPlaces,time.tv_sec, time.tv_usec);
+        if(Trolleys[trolleyOnStationID].busyPlaces == Trolleys[trolleyOnStationID].size){
             pthread_cond_signal(&empty_condition);
             pthread_mutex_unlock(&emptyTrolley_mutex);
         }
         pthread_mutex_unlock(&Trolleys_mutex[Passenger->Trolley]);
-        Passenger->Trolley = -1;
+        Passenger->trolley = -1;
     }
 }
 
 void *run_Trolley(void *data) {
-    Trolley *Trolley = (Trolley *) data;
+    Trolley *trolley = (Trolley *) data;
     if (Trolley->id == 0)
         pthread_mutex_lock(&passenger_mutex);
     int i;
     for (i = 0; i < Trolley->tripsAmmount; i++) {
         pthread_mutex_lock(&stationBusy_mutex);
-        if (Trolley->id != station_Trolley_id) {
+        if (Trolley->id != trolleyOnStationID) {
             pthread_cond_wait(&Trolleys_cond[Trolley->id], &stationBusy_mutex);
         }
-        struct timeval curr = get_current_time();
-        printf("Trolley %d arrived, time: %ld.%06ld\n", Trolley->id, curr.tv_sec, curr.tv_usec);
+        gettimeofday(&time, NULL);
+        printf("Trolley %d arrived, time: %ld.%06ld\n", Trolley->id, time.tv_sec, time.tv_usec);
 
         if (i != 0) {
             pthread_mutex_unlock(&Trolleys_mutex[Trolley->id]);
@@ -100,34 +95,38 @@ void *run_Trolley(void *data) {
         pthread_mutex_unlock(&passenger_mutex);
         pthread_cond_wait(&full_condition, &fullTrolley_mutex);
 
-        curr = get_current_time();
-        printf("Trolley %d is full, time: %ld.%06ld\n", Trolley->id, curr.tv_sec, curr.tv_usec);
-        station_Trolley_id = (station_Trolley_id + 1) % trolleysCount;
+        gettimeofday(&time, NULL);
+        printf("Trolley %d is full, time: %ld.%06ld\n", Trolley->id, time.tv_sec, time.tv_usec);
+        gettimeofday(&time, NULL);
+        printf("Trolley %d closed the door, time: %ld.%06ld\n", Trolley->id, time.tv_sec, time.tv_usec);
+        trolleyOnStationID = (trolleyOnStationID + 1) % trolleysCount;
 
-        pthread_cond_signal(&Trolleys_cond[station_Trolley_id]);
+        pthread_cond_signal(&Trolleys_cond[trolleyOnStationID]);
         pthread_mutex_unlock(&stationBusy_mutex);
     }
 
     pthread_mutex_lock(&stationBusy_mutex);
 
-    if(Trolley->id != station_Trolley_id) {
+    if(Trolley->id != trolleyOnStationID) {
         pthread_cond_wait(&Trolleys_cond[Trolley->id], &stationBusy_mutex);
     }
 
-    struct timeval curr = get_current_time();
-    printf("Trolley %d arrived, time: %ld.%06ld\n", Trolley->id, curr.tv_sec, curr.tv_usec);
+    gettimeofday(&time, NULL);
+    printf("Trolley %d arrived, time: %ld.%06ld\n", Trolley->id, time.tv_sec, time.tv_usec);
+    gettimeofday(&time, NULL);
+    printf("Trolley %d opend the door, time: %ld.%06ld\n", Trolley->id, time.tv_sec, time.tv_usec);
 
-    station_Trolley_id = Trolley->id;
+    trolleyOnStationID = Trolley->id;
 
     pthread_mutex_unlock(&Trolleys_mutex[Trolley->id]);
     pthread_cond_wait(&empty_condition,&emptyTrolley_mutex);
 
-    station_Trolley_id = (station_Trolley_id + 1)%trolleysCount;
+    trolleyOnStationID = (trolleyOnStationID + 1)%trolleysCount;
 
-    curr = get_current_time();
-    printf("Trolley %d finished, time: %ld.%06ld\n", Trolley->id, curr.tv_sec, curr.tv_usec);
-
-    pthread_cond_signal(&Trolleys_cond[station_Trolley_id]);
+    gettimeofday(&time, NULL);
+    printf("Trolley %d finished, time: %ld.%06ld\n", Trolley->id, time.tv_sec, time.tv_usec);
+    
+    pthread_cond_signal(&Trolleys_cond[trolleyOnStationID]);
     pthread_mutex_unlock(&stationBusy_mutex);
 
     pthread_exit(NULL);
@@ -163,7 +162,7 @@ int main(int argc, char **argv) {
     int trolleySize = atoi(argv[3]);
     int raidCount = atoi(argv[4]);
 
-    station_Trolley_id = 0;
+    trolleyOnStationID = 0;
     pthread_t passengersThreads[passengersCount];
     pthread_t trolleysThreads[trolleysCount];
     Passenger Passengers[passengersCount];
@@ -190,6 +189,7 @@ int main(int argc, char **argv) {
     for (i = 0; i < trolleysCount; i++) {
         Trolleys[i].id = i;
         Trolleys[i].size = trolleySize;
+        Trolleys[i].busyPlaces = 0;
         Trolleys[i].tripsAmmount = raidCount;
         Trolleys[i].Passengers = malloc(sizeof(Passenger) * trolleySize);
         pthread_mutex_init(&Trolleys_mutex[i], NULL);
