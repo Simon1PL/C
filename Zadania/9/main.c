@@ -69,8 +69,8 @@ void *run_Passenger(void *data) {
             pthread_cond_signal(&empty_condition);
             pthread_mutex_unlock(&emptyTrolley_mutex);
         }
-        passenger->trolley = -1;
         pthread_mutex_unlock(&Trolleys_mutex[passenger->trolley]);
+        passenger->trolley = -1;
     }
 }
 
