@@ -153,7 +153,7 @@ int main(int argc, char **argv) {
             printf("argument %d has to be greater than zero", i);
             help();
         }
-        if(atoi(argv[2])*atoi(argv[3])<atoi(argv[1])){
+        if(atoi(argv[2])*atoi(argv[3])>atoi(argv[1])){
             printf("the ammount of people has to be greater than the number of seats", i);
             help();
         }
