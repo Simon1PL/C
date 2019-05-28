@@ -101,8 +101,8 @@ void filterMachine(Image *old, Filter *filter, int x, int y) {
     int i, j, wsp1, wsp2;
     for(i = 0; i < filter->size; i++) {
         for(j = 0; j < filter->size; j++) {
-            wsp1 = fmin(fmax(0, x - ceil(filter->size/2) + i + 1), image->width-1);
-            wsp2 = fmin(fmax(0, y - ceil(filter->size/2) + j + 1), image->height-1);
+            wsp1 = fmin(fmax(0, x - ceil(filter->size/2) + i), image->width-1);
+            wsp2 = fmin(fmax(0, y - ceil(filter->size/2) + j), image->height-1);
             sum += image->data[wsp1][wsp2]*filter->data[i][j];
             printf("%d %d %d %d\n", wsp1, wsp2, x, y);
         }
