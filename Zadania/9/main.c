@@ -63,7 +63,7 @@ void *run_Passenger(void *data) {
 
         pthread_mutex_lock(&Trolleys_mutex[passenger->trolley]);
         gettimeofday(&currentTime, NULL);
-        Trolleys[trolleyOnStationID].busyPlaces++;
+        Trolleys[trolleyOnStationID].busyPlaces--;
         printf("Passenger number %d left, people in Trolley: %d, time: %ld.%06ld \n", passenger->id, Trolleys[trolleyOnStationID].busyPlaces,currentTime.tv_sec, currentTime.tv_usec);
         if(Trolleys[trolleyOnStationID].busyPlaces == 0){
             pthread_cond_signal(&empty_condition);
