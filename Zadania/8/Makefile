@@ -10,11 +10,11 @@ all:
 	rm -f *.o
 
 1:
-	./main 1 block obraz.pgm filter1 out.pgm
+	./main 1 interleaved obraz.pgm filter1 out.pgm
 	
 2:
 	rm out.pgm
-	./main 2 block obraz.pgm filter1 out.pgm
+	./main 2 interleaved obraz.pgm filter1 out.pgm
 
 3:
 	rm out.pgm
@@ -58,7 +58,7 @@ testwithecho:
 	rm out.pgm
 	echo -e "\n-----------------------------" >> Times.txt
 	echo "-----------------------------" >> Times.txt
-	echo -e "intervaled test" >> Times.txt
+	echo -e "interleaved test" >> Times.txt
 	echo -e "\nfilter1 (5x5)" >> Times.txt
 	echo -e "\n1 thread" >> Times.txt
 	./main 1 $(MODE2) $(INPUT) $(FILTER1) $(OUTPUT) >> Times.txt
