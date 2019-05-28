@@ -134,7 +134,7 @@ void *run_Trolley(void *data) {
 }
 
 void help(){
-    printf("use: ./main ammountOfPassengers ammountOfTrolleys trolleySize ammountOfTrolleyTrips\neg. ./main 10 3 3 2");
+    printf("use: ./main ammountOfPassengers ammountOfTrolleys trolleySize ammountOfTrolleyTrips\neg. ./main 15 3 3 2");
     exit(0);
 }
 
