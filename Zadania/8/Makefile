@@ -8,7 +8,21 @@ all:
 	make -s clear
 	gcc main.c -o main -lpthread -lm
 	rm -f *.o
+
+1:
 	./main 1 block obraz.pgm filter1 out.pgm
+	
+2:
+	rm out.pgm
+	./main 2 block obraz.pgm filter1 out.pgm
+
+3:
+	rm out.pgm
+	./main 4 block obraz.pgm filter1 out.pgm
+
+4:
+	rm out.pgm
+	./main 8 block obraz.pgm filter1 out.pgm
 
 test:
 	make -s testwithecho
