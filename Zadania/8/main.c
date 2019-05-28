@@ -200,6 +200,7 @@ bool parser(char** argv, int argc) {
 }
 
 int main(int argc, char **argv) {
+    printf("aa");
 	if(parser(argv, argc)){
 		FILE *resultImage = fopen(argv[5], "a");
 		if (resultImage==NULL) {
