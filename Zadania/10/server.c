@@ -22,5 +22,6 @@ int main(){
     int send_status=send(client_socket, server_message, sizeof(server_message), 0);
     //close the socket
     close(server_socket);
+    printf("aaAAAAAAAAAAAAAAAAAAAAAAAAAaa");
     return 0;
 }
