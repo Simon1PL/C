@@ -5,6 +5,7 @@
 #include <netinet/in.h> //struck sockaddr_in
 
 int main() {
+        printf("aaAAAAAAAAAAAAAAAAAAAAAAAAAaa");
     //create a socket
     int network_socket = socket(AF_INET, SOCK_STREAM, 0);
     //specify an address for the socket
