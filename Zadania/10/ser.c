@@ -17,7 +17,7 @@
        int client_socket; 
        client_socket = accept(server_socket, NULL, NULL); 
        int send_status; 
-       char server_message[100] = ""; 
+    server_message = ""; 
        send_status=send(client_socket, server_message, sizeof(server_message), 0); 
        close(server_socket);
         return 0; 
