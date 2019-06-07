@@ -12,4 +12,4 @@ client:
 
 
 clean:
-rm -rf client server
+	rm -rf client server
