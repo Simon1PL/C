@@ -19,9 +19,10 @@ int main(){
     listen(server_socket, 10);
     int client_socket=accept(server_socket, NULL, NULL);
     //send the message
+    printf("aaAAAAAAAAAAAAAAAAAAAAAAAAAaa");
     int send_status=send(client_socket, server_message, sizeof(server_message), 0);
     //close the socket
-    close(server_socket);
     printf("aaAAAAAAAAAAAAAAAAAAAAAAAAAaa");
+    close(server_socket);
     return 0;
 }
