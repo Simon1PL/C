@@ -1,6 +1,15 @@
-main:
-	gcc -pthread main.c -o main
-	./main 15 3 3 2
+C = gcc -Wall -std=gnu99
 
-clear:
-	rm -f *.o *.a *.so main
+all: server client
+
+
+server:
+	$(CC) server.c -o server -lpthread
+
+
+client:
+	$(CC) client.c -o client -lpthread
+
+
+clean:
+rm -rf client server
