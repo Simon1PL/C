@@ -214,7 +214,7 @@ int main(int argc, char **argv) {
         int times[threadsAmmount];
         gettimeofday(&start, NULL);
         int i, j;
-        for(i = 0; i < image->width; i ++) {
+        for(i = 0; i < image->width; i++) {
             for(j = 0; j < image->height; j++) {
                 filteredImage->data[i][j] = image->data[i][j];
             }
