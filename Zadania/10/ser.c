@@ -4,7 +4,6 @@
 #include<sys/socket.h>
  #include<netinet/in.h> 
  int main() { 
-     char server_message[100] = "Message"; 
      int server_socket; 
      server_socket = socket(AF_INET, SOCK_STREAM, 0);
       struct sockaddr_in server_addr; 
@@ -17,7 +16,7 @@
        int client_socket; 
        client_socket = accept(server_socket, NULL, NULL); 
        int send_status; 
-    server_message = ""; 
+    char server_message[100] = ""; 
        send_status=send(client_socket, server_message, sizeof(server_message), 0); 
        close(server_socket);
         return 0; 
