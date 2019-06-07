@@ -12,7 +12,7 @@ int main(){
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET;
     server_address.sin_port = htons(9002);
-    server_address.sin_addr.s_addr = INADDR_ANY;
+    server_address.sin_addr.s_addr = htonl(INADDR_ANY);
     //bind the socket to our specified IP and port
     bind(server_socket, (struct sockaddr*) &server_address, sizeof(server_address));
     
