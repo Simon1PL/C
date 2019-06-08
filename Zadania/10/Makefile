@@ -2,6 +2,7 @@ C = gcc -Wall -std=gnu99
 
 all: server client
 
+a: clean all
 
 server:
 	$(CC) server.c -o server -lpthread
