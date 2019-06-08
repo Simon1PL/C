@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include<stdlib.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h> //struck sockaddr_in
+//#include <sys/types.h>
+//#include <sys/socket.h>
+//#include <netinet/in.h> //struck sockaddr_in
 
 int main(){
     printf("aaAAAAAAAAAAAAAAAAAAAAAAAAAaa");
