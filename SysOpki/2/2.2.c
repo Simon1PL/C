@@ -48,6 +48,7 @@ int main(){
     //printf("%s", asctime(localtime(&fileinfo.st_mtime)));
     closedir(dir);
 
+    chdir ("c:/Users/Szymon");
     nftw(".", fnFiles, 100, FTW_F);
     printf("Files number: %d\n", files);
     return 0;
