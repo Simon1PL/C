@@ -9,7 +9,8 @@
 int main(){
     //creat("plik.txt", O_RDWR);
     int plik=open("plik.txt", O_RDWR | O_APPEND | O_CREAT | O_TRUNC);
-    write(plik, "Ala ma kota\n", 12);
+    int b=write(plik, "Ala ma kota\n", 12);
+    printf("%d %d\n", plik, b);
     char dane[12];
     int a=read(plik, &dane, 11);
     if(a!=11)
