@@ -11,8 +11,9 @@ int main(){
     int plik=open("plik.txt", O_RDWR | O_APPEND | O_CREAT | O_TRUNC);
     write(plik, "Ala ma kota\n", 12);
     char dane[12];
-    if(read(plik, &dane, 11)!=11)
-        printf("blad odczytu %s", dane);
+    int a=read(plik, &dane, 11);
+    if(a!=11)
+        printf("blad odczytu %d", a);
     close(plik);
     return 0;
 }
