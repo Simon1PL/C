@@ -13,7 +13,7 @@ int main(){
     if(childPid==0){
         //child (proces potomny)
         execl("/bin/ls", "ls", "-l", NULL); //odapala inny plik np. main2.c
-        _exit(2);
+        exit(2);
     }
     else{
         //parent
