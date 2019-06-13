@@ -14,7 +14,7 @@ char* formatdate(char* str, time_t val)
         return str;
 }
 
-int fnFiles(const char *filepath, const struct stat *statptr, int fileflags, struct FTW *pftw) {
+int fnFiles() {
     files++;
     return 0;
 }
