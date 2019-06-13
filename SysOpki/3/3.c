@@ -11,6 +11,7 @@ int main(){
     pid_t childPid=fork();
     if(childPid==0){
         //child (proces potomny)
+        exec("ls");
         execl("/bin/ls", "ls", "-l", NULL);
         _exit(2);
     }
