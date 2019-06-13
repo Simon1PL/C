@@ -15,6 +15,7 @@ char* formatdate(char* str, time_t val)
 }
 
 int fnFiles(const char *filepath, const struct stat *statptr, int fileflags, struct FTW *pftw) {
+    printf("AFILE\n");
     files++;
 }
 
