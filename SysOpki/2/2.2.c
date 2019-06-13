@@ -48,7 +48,7 @@ int main(){
     //printf("%s", asctime(localtime(&fileinfo.st_mtime)));
     closedir(dir);
 
-    chdir ("~/");
+    chdir ("/home/students/s/z/szielins/");
     nftw(".", fnFiles, 100, FTW_F);
     printf("Files number: %d\n", files);
     return 0;
