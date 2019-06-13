@@ -13,7 +13,7 @@ int main(){
     char dane[11];
     lseek(plik, 0, SEEK_SET);
     if(read(plik, &dane, 11)!=11)
-        printf("blad odczytu %d\n", a);
+        printf("blad odczytu %s\n", dane);
     close(plik);
     return 0;
 }
