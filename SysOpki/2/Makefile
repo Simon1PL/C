@@ -1,5 +1,4 @@
 all:
-	rm plik.txt
 	gcc 2.c
 	./a.out
 
