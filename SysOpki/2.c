@@ -9,6 +9,7 @@
 int main(){
     int plik=creat("./plik.txt", O_RDWR);
     //open("./plik.txt", O_RDWR || O_CREAT || O_APPEND);
-    write(plik, "ala ma kota\n", 12);
+    int ret=write(plik, "ala ma kota\n", 12);
+    printf("%d\n", ret);
     return 0;
 }
