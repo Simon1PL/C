@@ -31,7 +31,7 @@ int main(){
 
     clock_getres(CLOCK_REALTIME, &t1);
     printf("rozdzielczosc REALTIMEA sec: %d\nnanosec: %d\n", t1.tv_sec, t1.tv_nsec);
-    clockid_t clk=NULL;
+    clockid_t clk=1;
     clock_gettime(clk, &t1); //niewygodne bo sec i nanosec osobno
     printf("mineło sec: %d\nnanosec: %d\n", t1.tv_sec, t1.tv_nsec);
     if (clock_settime(clk, &t2)!=0)
