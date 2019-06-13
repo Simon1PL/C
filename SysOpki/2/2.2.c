@@ -5,8 +5,8 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <ftw.h>
-#include <limits.h>
 
+#define __USE_XOPEN_EXTENDED 500
 #define _XOPEN_SOURCE 500
 
 int files=0, dires=0;
