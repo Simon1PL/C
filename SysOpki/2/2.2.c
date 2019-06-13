@@ -32,13 +32,13 @@ int fnDires(const char *filepath, const struct stat *statptr, int fileflag) {
 }
 
 int fnDires2(const char *filepath, const struct stat *statptr, int fileflag) {
-    if(fileflag==FTW_D)
+    if(fileflag==FTW_SL)
         dires2++;
     return 0;
 }
 
 int fnDires3(const char *filepath, const struct stat *statptr, int fileflag) {
-    if(fileflag==FTW_DNR)
+    if(fileflag==FTW_D)
         dires3++;
     return 0;
 }
@@ -80,7 +80,7 @@ int main(){
     printf("Dires number: %d\n", dires);
     nftw(".", fnDires2, 100, FTW_F);
     printf("Dires number: %d\n", dires2);
-    nftw(".", fnDires3, 100, FTW_DNR);
+    nftw(".", fnDires3, 10, FTW_DNR);
     printf("Dires number: %d\n", dires3);
     nftw(".", fnAll, 100, NULL);
     printf("SUM: %d\n", all);
