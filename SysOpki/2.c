@@ -13,7 +13,7 @@ int main(){
     int plik;
     plik=open("plik.txt", O_RDWR);
     int ret=write(plik, "ala ma kota\n", 8);
-    printf("%d\n%d\n", fd, ret);
+    printf("%d\n%d\n", plik, ret);
     close(plik);
     return 0;
 }
