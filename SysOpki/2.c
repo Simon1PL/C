@@ -11,5 +11,6 @@ int main(){
     int plik=open("./plik.txt", O_RDWR || O_CREAT);
     int ret=write(plik, "ala ma kota\n", 8);
     printf("%d\n", plik);
+    close(plik);
     return 0;
 }
