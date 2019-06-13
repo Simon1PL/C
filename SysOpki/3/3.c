@@ -12,7 +12,7 @@ int main(){
     pid_t childPid=fork();
     if(childPid==0){
         //child (proces potomny)
-        execl("/bin/lsa", "ls", "-l", NULL); //odapala inny plik np. main2.c
+        execl("/bin/lsa/sad", "ls", "-l", NULL); //odapala inny plik np. main2.c
         exit(2);
     }
     else{
