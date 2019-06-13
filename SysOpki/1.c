@@ -30,7 +30,7 @@ int main(){
     nanosleep(&t1, &t2);
 
     clock_getres(CLOCK_REALTIME, &t1);
-    printf("rozdzielczosc REALTIMEA sec: %d nanosec: %d\n", t1.tv_sec, t1.tv_nsec);
+    printf("rozdzielczosc REALTIMEA sec: %lu nanosec: %lu\n", t1.tv_sec, t1.tv_nsec);
     if (clock_settime(CLOCK_REALTIME, &t2)!=0)
         printf("BLAD, brak dostepu?\n");
     clock_gettime(CLOCK_REALTIME, &t2);
