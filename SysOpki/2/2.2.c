@@ -32,13 +32,13 @@ int fnDires(const char *filepath, const struct stat *statptr, int fileflag) {
 }
 
 int fnDires2(const char *filepath, const struct stat *statptr, int fileflag) {
-    if(fileflag==FTW_SL)
+    if(fileflag==FTW_D)
         dires2++;
     return 0;
 }
 
 int fnDires3(const char *filepath, const struct stat *statptr, int fileflag) {
-    if(fileflag==FTW_D)
+    if(fileflag==FTW_SL)
         dires3++;
     return 0;
 }
