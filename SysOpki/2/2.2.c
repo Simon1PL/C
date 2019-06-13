@@ -26,13 +26,13 @@ int fnDires(const char *filepath, const struct stat *statptr, int fileflag) {
     return 0;
 }
 
-int fnDires2() {
+int fnDires2(int fileflag) {
     if(fileflag==FTW_D)
         dires2++;
     return 0;
 }
 
-int fnDires3() {
+int fnDires3(int fileflag) {
     if(fileflag==FTW_DNR)
         dires3++;
     return 0;
