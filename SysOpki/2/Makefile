@@ -1,6 +1,6 @@
 all:
 	rm plik.txt
-	gcc -c 1.c
+	gcc -c 2.c
 	./a.out
 
 clear:
