@@ -6,7 +6,7 @@
 #include <time.h>
 #include <ftw.h>
 
-int files=0, dires=0, links=0;
+int files=0, dires=0, links=0, dires2=0, dires3=0;
 
 char* formatdate(char* str, time_t val)
 {
@@ -14,8 +14,23 @@ char* formatdate(char* str, time_t val)
         return str;
 }
 
-int fnFiles() {
+int fnFiles(const char *filepath, const struct stat *statptr, int fileflags, struct FTW *pftw) {
     files++;
+    return 0;
+}
+
+int fnDires(const char *filepath, const struct stat *statptr, int fileflags, struct FTW *pftw) {
+    dires++;
+    return 0;
+}
+
+int fnDires2() {
+    dires2++;
+    return 0;
+}
+
+int fnDires3() {
+    dires3++;
     return 0;
 }
 
@@ -49,8 +64,14 @@ int main(){
     //printf("%s", asctime(localtime(&fileinfo.st_mtime)));
     closedir(dir);
 
-    chdir ("/home/students/s/z/szielins/");
-    nftw("/home/students/s/z/szielins/", fnFiles, 100, FTW_D);
+    chdir ("/home/students/s/z/szielins/Sysopy");
+    nftw(".", fnFiles, 100, FTW_F);
     printf("Files number: %d\n", files);
+    nftw(".", fnDires, 100, FTW_D);
+    printf("Dires number: %d\n", dires);
+    nftw(".", fnDires2, 100, FTW_D);
+    printf("Dires number: %d\n", dires2);
+    nftw(".", fnDires3, 100, FTW_D);
+    printf("Dires number: %d\n", dires3);
     return 0;
 }
