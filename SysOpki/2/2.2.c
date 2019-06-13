@@ -5,6 +5,7 @@
 #include <sys/stat.h>
 #include <time.h>
 #include <ftw.h>
+#include <limits.h>
 
 #define _XOPEN_SOURCE 500
 
