@@ -1,5 +1,6 @@
 all:
-	1 2
+	make 1 
+	make 2
 1:
 	gcc 2.1.c
 	./a.out
