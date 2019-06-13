@@ -71,7 +71,7 @@ int main(){
     printf("Dires number: %d\n", dires);
     nftw(".", fnDires2, 100, FTW_D);
     printf("Dires number: %d\n", dires2);
-    nftw(".", fnDires3, 100, FTW_D);
+    nftw(".", fnDires3, 100, FTW_DNR);
     printf("Dires number: %d\n", dires3);
     return 0;
 }
