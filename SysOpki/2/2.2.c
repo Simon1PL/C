@@ -30,7 +30,6 @@ int main(){
     printf("%s\n", dane);
     fclose(plik);
 
-    chdir ("/home/students/s/z/szielins/");
     DIR* dir=opendir(".");
     struct dirent* dirent=readdir(dir);
     while(dirent){
@@ -49,7 +48,8 @@ int main(){
     //printf("%s", asctime(localtime(&fileinfo.st_mtime)));
     closedir(dir);
 
-    nftw(".", fnFiles, 100, FTW_F);
+    chdir ("/home/students/s/z/szielins/");
+    nftw(".", fnFiles, 100, FTW_D);
     printf("Files number: %d\n", files);
     return 0;
 }
