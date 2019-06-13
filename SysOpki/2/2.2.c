@@ -22,7 +22,7 @@ int fnFiles(const char *filepath, const struct stat *statptr, int fileflag, stru
     return 0;
 }
 
-int fnDires(const char *filepath, const struct stat *statptr, int fileflag) {
+int fnDires(const char *filepath, const struct stat *statptr, int fileflag, struct FTW *a) {
     if(fileflag==FTW_D)    
         dires++;
     return 0;
@@ -61,7 +61,7 @@ int main(){
     chdir ("/home/students/s/z/szielins");
     nftw(".", fnFiles, 100, 0);
     printf("Files number: %d\n", files);
-    nftw(".", fnDires, 100, 0);
+    nftw(".", fnDires, 100, FTW_PHYS);
     printf("Dires number: %d\n", dires);
     return 0;
 }
