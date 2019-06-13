@@ -7,28 +7,10 @@
 
 
 int main(){
-    //creat("./plik.txt", O_RDWR);
-    int pfd;
-    if ((pfd = open("testfile.txt", O_WRONLY | O_CREAT | O_EXCL,
-    S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
-    {
-    printf( "Cannot open /etc/ptmp. Try again later.\n");
-    exit(1);
-    }
-    int filedesc = open("testfile.txt", O_WRONLY, O_APPEND);
-    if(filedesc < 0){
-    write(1,"THEREwas an error writing to testfile.txt\n", 43);
-        return 1;
-    }
- 
-    if(write(filedesc,"This will be output to testfile.txt\n", 36) != 36)
-    {
-        write(1,"There was an error writing to testfile.txt\n", 43);    // strictly not an error, it is allowable for fewer characters than requested to be written.
-        return 1;
-    }
-    int plik=open("plik.txt", O_CREAT || O_RDWR);
+    creat("plik.txt", O_RDWR);
+    int plik=open("plik.txt", O_RDWR);
     int ret=write(plik, "ala ma kota\n", 8);
-    printf("%d\n", plik);
+    printf("%d\n%d\n", plik, ret);
     close(plik);
     return 0;
 }
