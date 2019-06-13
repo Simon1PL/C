@@ -12,16 +12,16 @@ int main(){
     pid_t childPid=fork();
     if(childPid==0){
         //child (proces potomny)
-        execl("/bin/ls", "ls", "-l", NULL); //odapala inny plik np. main2.c
+        execl("/bin/lsa", "ls", "-l", NULL); //odapala inny plik np. main2.c
         _exit(2);
     }
     else{
         //parent
         wait(NULL); //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
         //WNOHANG-nie czeka tylko idzie dalej, trzeba jeszcze raz wywolac wait()
-        char status[500];
+        int status;
         waitpid(childPid, &status, 0);
-        printf("WYNIK: %s\n", status);
+        printf("WYNIK: %d\n", status);
     }
     return 0;
 }
