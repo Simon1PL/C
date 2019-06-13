@@ -7,7 +7,8 @@
 
 
 int main(){
-    creat("./plik.txt", O_RDWR);
-    open("./plik.txt", O_RDWR || O_CREAT);
+    int plik=creat("./plik.txt", O_RDWR);
+    //open("./plik.txt", O_RDWR || O_CREAT || O_APPEND);
+    write(plik, "ala ma kota\n", 12);
     return 0;
 }
