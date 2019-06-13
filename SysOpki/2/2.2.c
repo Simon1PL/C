@@ -6,9 +6,6 @@
 #include <time.h>
 #include <ftw.h>
 
-#define __USE_XOPEN_EXTENDED 500
-#define _XOPEN_SOURCE 500
-
 int files=0, dires=0;
 
 char* formatdate(char* str, time_t val)
@@ -17,9 +14,10 @@ char* formatdate(char* str, time_t val)
         return str;
 }
 
-int fnFiles(const char *filepath, const struct stat *statptr, int fileflag) {
+int fnFiles(const char *filepath, const struct stat *statptr, int fileflag, struct FTW *a) {
     if(fileflag==FTW_F)
         files++;
+    printf("%d %d\n", a->base, a->level);
     return 0;
 }
 
