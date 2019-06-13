@@ -70,9 +70,9 @@ int main(){
     chdir ("/home/students/s/z/szielins");
     nftw(".", fnFiles, 100, NULL);
     printf("Files number: %d\n", files);
-    nftw(".", fnDires, 100, FTW_D);
+    nftw(".", fnDires, 100, FTW_PHYS);
     printf("Dires number: %d\n", dires);
-    nftw(".", fnDires2, 1, FTW_F);
+    nftw(".", fnDires2, 1, NULL);
     printf("Dires number: %d\n", dires2);
     nftw(".", fnAll, 100, NULL);
     printf("SUM: %d\n", all);
