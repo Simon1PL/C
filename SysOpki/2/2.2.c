@@ -18,7 +18,9 @@ char* formatdate(char* str, time_t val)
 int fnFiles(const char *filepath, const struct stat *statptr, int fileflag, struct FTW *a) {
     if(fileflag==FTW_F)
         files++;
-    //printf("%d %d\n", a->base, a->level);
+    //printf("%d %d\n", a->base, a->level); 
+    //base-przesunięcie nazwy pliku w scierzce podanej w path
+    //level-glebokosc w drzewie katalogow
     return 0;
 }
 
