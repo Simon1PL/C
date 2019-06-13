@@ -8,6 +8,6 @@
 
 int main(){
     creat("./plik.txt", O_RDWR);
-    open("./plik.txt", O_RDWR);
+    open("./plik.txt", O_RDWR || O_CREAT);
     return 0;
 }
