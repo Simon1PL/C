@@ -7,7 +7,7 @@
 
 
 int main(){
-    creat("./plik.txt", )
-    open("./plik.txt", )
+    creat("./plik.txt", O_RDWR);
+    open("./plik.txt", O_RDWR);
     return 0;
 }
