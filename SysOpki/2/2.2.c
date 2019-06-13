@@ -14,23 +14,27 @@ char* formatdate(char* str, time_t val)
         return str;
 }
 
-int fnFiles(const char *filepath, const struct stat *statptr, int fileflags, struct FTW *pftw) {
-    files++;
+int fnFiles(const char *filepath, const struct stat *statptr, int fileflag) {
+    if(fileflag==FTW_F)
+        files++;
     return 0;
 }
 
-int fnDires(const char *filepath, const struct stat *statptr, int fileflags, struct FTW *pftw) {
-    dires++;
+int fnDires(const char *filepath, const struct stat *statptr, int fileflag) {
+    if(fileflag==FTW_D)    
+        dires++;
     return 0;
 }
 
 int fnDires2() {
-    dires2++;
+    if(fileflag==FTW_D)
+        dires2++;
     return 0;
 }
 
 int fnDires3() {
-    dires3++;
+    if(fileflag==FTW_DNR)
+        dires3++;
     return 0;
 }
 
@@ -65,7 +69,7 @@ int main(){
     closedir(dir);
 
     chdir ("/home/students/s/z/szielins");
-    nftw(".", fnFiles, 100, FTW_F);
+    nftw(".", fnFiles, 100, NULL);
     printf("Files number: %d\n", files);
     nftw(".", fnDires, 100, FTW_D);
     printf("Dires number: %d\n", dires);
