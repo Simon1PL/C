@@ -12,7 +12,7 @@ int main(){
     if ((pfd = open("testfile.txt", O_WRONLY | O_CREAT | O_EXCL,
     S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
     {
-    fprintf(stderr, "Cannot open /etc/ptmp. Try again later.\n");
+    printf( "Cannot open /etc/ptmp. Try again later.\n");
     exit(1);
     }
     int filedesc = open("testfile.txt", O_WRONLY, O_APPEND);
