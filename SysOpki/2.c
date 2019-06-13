@@ -8,7 +8,7 @@
 
 int main(){
     //creat("./plik.txt", O_RDWR);
-    int filedesc = open("testfile.txt", O_WRONLY | O_APPEND);
+    int filedesc = open("testfile.txt", O_WRONLY, O_APPEND);
     if(filedesc < 0){
     write(1,"THEREwas an error writing to testfile.txt\n", 43);
         return 1;
