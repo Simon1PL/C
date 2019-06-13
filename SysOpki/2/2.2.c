@@ -61,7 +61,7 @@ int main(){
     chdir ("/home/students/s/z/szielins");
     nftw(".", fnFiles, 100, 0);
     printf("Files number: %d\n", files);
-    nftw(".", (__nftw_func_t)fnDires, 100, FTW_PHYS);
+    nftw(".", fnDires, 100, FTW_PHYS);
     printf("Dires number: %d\n", dires);
     return 0;
 }
