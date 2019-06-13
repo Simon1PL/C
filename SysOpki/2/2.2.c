@@ -15,7 +15,6 @@ char* formatdate(char* str, time_t val)
 }
 
 int fnFiles(const char *filepath, const struct stat *statptr, int fileflags, struct FTW *pftw) {
-    printf("AFILE\n");
     files++;
 }
 
@@ -50,7 +49,7 @@ int main(){
     closedir(dir);
 
     chdir ("/home/students/s/z/szielins/");
-    nftw(".", fnFiles, 100, FTW_D);
+    nftw("/home/students/s/z/szielins/", fnFiles, 100, FTW_D);
     printf("Files number: %d\n", files);
     return 0;
 }
