@@ -8,7 +8,7 @@
 
 int main(){
     //creat("./plik.txt", O_RDWR);
-    int plik=open("./plik.txt", O_RDWR || O_CREAT || O_APPEND);
+    int plik=open("./plik.txt", O_RDWR || O_CREAT);
     int ret=write(plik, "ala ma kota\n", 8);
     printf("%d\n", ret);
     return 0;
