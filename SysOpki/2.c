@@ -9,7 +9,7 @@
 int main(){
     //creat("plik.txt", O_RDWR);
     int plik=open("plik.txt", O_RDWR | O_APPEND | O_CREAT);
-    int ret=write(plik, "ala ma kota\n", 8);
+    int ret=write(plik, "ala ma kota\na", 13);
 
     close(plik);
     return 0;
