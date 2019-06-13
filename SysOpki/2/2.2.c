@@ -6,12 +6,17 @@
 #include <time.h>
 #include <ftw.h>
 
-int files=0, dires=0, links=0, dires2=0, dires3=0;
+int files=0, dires=0, links=0, dires2=0, dires3=0, all=0;
 
 char* formatdate(char* str, time_t val)
 {
         strftime(str, 36, "%d.%m.%Y %H:%M:%S"/*"%c"*/, localtime(&val));
         return str;
+}
+
+int fnAll() {
+    all++;
+    return 0;
 }
 
 int fnFiles(const char *filepath, const struct stat *statptr, int fileflag) {
@@ -26,13 +31,13 @@ int fnDires(const char *filepath, const struct stat *statptr, int fileflag) {
     return 0;
 }
 
-int fnDires2(int fileflag) {
+int fnDires2(const char *filepath, const struct stat *statptr, int fileflag) {
     if(fileflag==FTW_D)
         dires2++;
     return 0;
 }
 
-int fnDires3(int fileflag) {
+int fnDires3(const char *filepath, const struct stat *statptr, int fileflag) {
     if(fileflag==FTW_DNR)
         dires3++;
     return 0;
@@ -77,5 +82,7 @@ int main(){
     printf("Dires number: %d\n", dires2);
     nftw(".", fnDires3, 100, FTW_DNR);
     printf("Dires number: %d\n", dires3);
+    nftw(".", fnAll, 100, NULL);
+    printf("SUM: %d\n", all);
     return 0;
 }
