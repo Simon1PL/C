@@ -9,13 +9,11 @@
 int main(){
     //creat("plik.txt", O_RDWR);
     int plik=open("plik.txt", O_RDWR | O_APPEND | O_CREAT | O_TRUNC);
-    int b=write(plik, "Ala ma kota\n", 12);
-    printf("%d %d\n", plik, b);
+    write(plik, "Ala ma kota\n", 12);ss
     char dane[11];
     lseek(plik, 0, SEEK_SET);
-    int a=read(plik, &dane, 11);
-    if(a!=11)
-        printf("blad odczytu %d", a);
+    if(read(plik, &dane, 11)!=11)
+        printf("blad odczytu %d\n", a);
     close(plik);
     return 0;
 }
