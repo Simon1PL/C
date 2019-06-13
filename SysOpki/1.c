@@ -34,6 +34,7 @@ int main(){
     if (clock_settime(CLOCK_REALTIME, &t2)!=0)
         printf("BLAD, brak dostepu?\n");
     clock_gettime(CLOCK_REALTIME, &t2);
+    sleep(1);
     clock_gettime(CLOCK_REALTIME, &t1); //niewygodne bo sec i nanosec osobno
     printf("mineło sec: %d\nnanosec: %d\n", t1.tv_sec-t2.tv_sec, t1.tv_nsec-t2.tv_nsec);
     
