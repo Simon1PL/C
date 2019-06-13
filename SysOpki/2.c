@@ -9,7 +9,7 @@
 int main(){
     //creat("./plik.txt", O_RDWR);
     int pfd;
-    if ((pfd = open(LOCKFILE, O_WRONLY | O_CREAT | O_EXCL,
+    if ((pfd = open("testfile.txt", O_WRONLY | O_CREAT | O_EXCL,
     S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) == -1)
     {
     fprintf(stderr, "Cannot open /etc/ptmp. Try again later.\n");
