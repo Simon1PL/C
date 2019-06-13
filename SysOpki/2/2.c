@@ -11,10 +11,11 @@ int main(){
     int plik=open("plik.txt", O_RDWR | O_APPEND | O_CREAT | O_TRUNC);
     int b=write(plik, "Ala ma kota\n", 12);
     printf("%d %d\n", plik, b);
-    char* dane=malloc(11);
+    char dane[11];
     int a=read(plik, &dane, 11);
     if(a!=11)
         printf("blad odczytu %d", a);
+    lseek(plik, 0, SEEK_SET);
     close(plik);
     return 0;
 }
