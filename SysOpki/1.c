@@ -36,7 +36,7 @@ int main(){
     clock_gettime(CLOCK_REALTIME, &t2);
     clock_gettime(CLOCK_REALTIME, &t1); //niewygodne bo sec i nanosec osobno
     printf("mineło sec: %lu\nnanosec: %lu\n", t1.tv_sec-t2.tv_sec, t1.tv_nsec-t2.tv_nsec);
-    
+
     struct tms buff, buff1;
     clock_t start, stop, tstart, tstop;
     start=clock();
@@ -55,6 +55,8 @@ int main(){
     double **tab=(double**)calloc(10, sizeof(double*));
     for (i = 0; i < 10; i++)
         tab[i]=(double*)calloc(5, sizeof(double));
+    for (i = 0; i < 10; i++)
+        free(tab[i]);
     free(tab);
     int *a=malloc(4*sizeof(int));
     a=realloc(a, 5*sizeof(int));
