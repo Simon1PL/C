@@ -18,7 +18,8 @@ int main(){
     }
     int fd1[2];
     pipe(fd1);
-    dup2(fd1[0], STDOUT_FILENO);
+    int a=dup2(fd1[0], STDOUT_FILENO);
+    printf("%d\n", a);
     pid_t pid = fork();
     if (pid == 0) { // dziecko
         close(fd1[1]); 
