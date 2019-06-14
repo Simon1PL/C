@@ -7,7 +7,7 @@
 #include <signal.h>
 
 void obsluga(int signal, siginfo_t *si, void *data){
-    printf("A; %d", data.sival_int);
+    printf("A; %d", data->sival_int);
     printf("BOOM!\n");
     exit(1);
 }
