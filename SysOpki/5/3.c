@@ -15,9 +15,10 @@ int main(){
     else{
         close(fd[0]);
         write(fd[1], "ala ma kota\n", 12);
-        FILE* grep_input = popen("grep Ala", "w");
-        fputs("3.c", grep_input);
-        pclose(grep_input);
+        FILE *date = popen("date", "r");
+        char dateRes[200];
+        fgets(dateRes, 200, date);
+        printf("%s\n", dateRes);
     }
     return 0;
 }
