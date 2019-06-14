@@ -16,12 +16,12 @@ int main(){
         close(fd[0]);
         write(fd[1], "ala ma kota\n", 12);
     }
-     int fd1[2];
+    int fd1[2];
     pipe(fd1);
+    dup2(fd1[0], STDOUT_FILENO);
     pid_t pid = fork();
     if (pid == 0) { // dziecko
         close(fd1[1]); 
-        dup2(fd1[0], STDOUT_FILENO);
     }
     else { // rodzic
         close(fd1[0]);
