@@ -1,6 +1,6 @@
 all: clear
-	gcc -Wall server.c -o server -lpthread
-	gcc -Wall client.c -o client -lpthread
+	gcc -Wall -std=c99 server.c -o server -lpthread
+	gcc -Wall -std=c99 client.c -o client -lpthread
 
 clear:
 	rm -f server
