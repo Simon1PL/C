@@ -24,7 +24,7 @@ int main(){
             }
         }
         else{
-            kill(child2, SIGABORT);
+            kill(child2, SIGKILL);
             //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
             //WNOHANG-nie czeka tylko wychodzi z funkcji
             waitpid(child2, NULL, 0);
