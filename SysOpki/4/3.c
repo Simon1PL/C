@@ -6,8 +6,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 
-void obsluga(int signal, siginfo_t *si, void *data){
-    printf("A; %d", data->sival_int);
+void obsluga(int signal){
     printf("BOOM!\n");
     exit(1);
 }
