@@ -9,7 +9,7 @@ int main(){
     if(child==0){
         close(fd[1]);
         char dane[12];
-        read(fd[0], dane, 12)
+        read(fd[0], dane, 12);
         printf("%s", dane);
     }
     else{
