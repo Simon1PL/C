@@ -7,7 +7,7 @@
 #include <signal.h>
 
 void obsluga(int signum){
-    printf("BOOM!");
+    printf("BOOM!\n");
 }
 
 int main(){
