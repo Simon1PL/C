@@ -16,5 +16,15 @@ int main(){
         close(fd[0]);
         write(fd[1], "ala ma kota\n", 12);
     }
+    pid_t pid = fork();
+    if (pid == 0) { // dziecko
+        close(fd[1]); 
+        dup2(fd[0],STDIN_FILENO);
+        execlp("grep", "grep","Ala", NULL);
+    }
+    else { // rodzic
+        close(fd[0]);
+        write(fd[1], "ma kota\n", 8);
+    }
     return 0;
 }
