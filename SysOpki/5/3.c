@@ -7,14 +7,14 @@ int main(){
     int fd[2];
     pipe(fd);
     if(child==0){
-        close(fd[0]);
+        close(fd[1]);
         char dane[20];
-        read(fd[1], dane, 12);
+        read(fd[0], dane, 12);
         printf("%s\n", dane);
     }
     else{
-        close(fd[1]);
-        write(fd[0], "ala ma kota\n", 12);
+        close(fd[0]);
+        write(fd[1], "ala ma kota\n", 12);
     }
     return 0;
 }
