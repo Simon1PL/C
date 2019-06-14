@@ -19,6 +19,7 @@ int main(){
         //parent
         pid_t child2=fork();
         if (child2==0){
+            printf("ala");
             exit(9);
         }
         else{
