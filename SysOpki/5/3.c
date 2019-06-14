@@ -26,6 +26,7 @@ int main(){
     else { // rodzic
         close(fd1[0]);
         write(fd1[1],"makota",6);
+        printf("SHIET");
     }
     return 0;
 }
