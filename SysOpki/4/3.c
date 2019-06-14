@@ -13,7 +13,7 @@ void obsluga(int signum){
 
 int main(){
     //signal(SIGINT, obsluga);
-    struck sigaction sig;
+    struct sigaction sig;
     act.sa_handler=obsluga;
     sigemptyset(&act.sa_mask);
     act.sa_flags=0;
