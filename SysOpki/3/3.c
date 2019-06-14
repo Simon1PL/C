@@ -17,17 +17,15 @@ int main(){
     }
     else{
         //parent
+        wait(NULL);
         pid_t child2=fork();
         if (child2==0){
-            printf("ala");
-            exit(9);
+            exit(2);
         }
         else{
             //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
-            //WNOHANG-nie czeka tylko idzie dalej, trzeba jeszcze raz wywolac wait()
-            int status;
-            waitpid(child2, &status, 0);
-            printf("WYNIK: %d\n", status);
+            //WNOHANG-nie czeka tylko wychodzi z funkcji
+            waitpid(child2, NULL, 0);
         }
     }
     return 0;
