@@ -16,6 +16,7 @@ int main(){
     else{
         close(fd[0]);
         write(fd[1], "ala ma kota\n", 12);
+        wait(NULL);
     }
     return 0;
 }
