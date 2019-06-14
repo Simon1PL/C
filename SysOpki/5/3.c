@@ -18,6 +18,7 @@ int main(){
         int fd1[2];
         pipe(fd1);
         int a=dup2(STDOUT_FILENO,fd1[0]);
+        write(fd1[1],"makota",6);
         pid_t pid = fork();
         if (pid == 0) { // dziecko
             close(fd1[1]); 
