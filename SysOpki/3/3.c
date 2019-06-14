@@ -9,7 +9,7 @@ int main(){
     pid_t myPid=getpid();
     pid_t PPid=getppid();
     //printf("my pid: %d parent pid: %d\n", myPid, PPid);
-    pid_t childPid=fork();
+    pid_t childPid=vfork();
     if(childPid==0){
         //child (proces potomny)
         execl("/bin/lsa/sad", "ls", "-l", NULL); //odapala inny plik np. main2.c
@@ -17,7 +17,7 @@ int main(){
     }
     else{
         //parent
-        wait(NULL); //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
+        //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
         //WNOHANG-nie czeka tylko idzie dalej, trzeba jeszcze raz wywolac wait()
         int status;
         waitpid(childPid, &status, 0);
