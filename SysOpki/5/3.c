@@ -19,7 +19,7 @@ int main(){
     pid_t pid = fork();
     if (pid == 0) { // dziecko
         close(fd[1]); 
-        dup2(fd[0],STDOUT_FILENO);
+        dup2(fd[0],STDIN_FILENO);
     }
     else { // rodzic
         close(fd[0]);
