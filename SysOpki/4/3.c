@@ -24,7 +24,7 @@ int main(){
     union sigval sig;
     sig.sival_int=1;
     sig.sival_ptr="ala ma kota";
-    sigqueue(getpid(), SIGINT, sig); 
+    sigqueue(getpid(), SIGINT, &sig); 
     //pause(); //czeka na sygnal
     return 0;
 }
