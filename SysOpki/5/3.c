@@ -8,9 +8,10 @@ int main(){
     pid_t child=fork();
     if(child==0){
         close(fd[1]);
-        char dane[20];
+        char dane[11];
         sleep(1);
-        read(fd[1], dane, 12);
+        if(read(fd[1], dane, 11)!=11)
+            printf("abababa");
         printf("%s\n", dane);
     }
     else{
