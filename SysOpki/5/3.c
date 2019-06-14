@@ -21,7 +21,7 @@ int main(){
     pid_t pid = fork();
     if (pid == 0) { // dziecko
         close(fd1[1]); 
-        dup2(fd1[0], STDIN_FILENO);
+        dup2(fd1[0], STDOUT_FILENO);
     }
     else { // rodzic
         close(fd1[0]);
