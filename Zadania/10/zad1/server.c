@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <qemu-common.h>
-#include <signal.h>
+
 #include <string.h>
 #include <pthread.h>
 #include <sys/un.h>
@@ -17,6 +17,7 @@
 #include "common.h"
 #include <sys/resource.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 size_t get_file_size(const char *file_name) {
     int fd;
