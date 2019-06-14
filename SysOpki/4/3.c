@@ -8,7 +8,7 @@
 
 void obsluga(int signum){
     printf("BOOM!\n");
-    return(1);
+    exit(1);
 }
 
 int main(){
