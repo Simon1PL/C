@@ -18,7 +18,7 @@ int main(){
         FILE *date = popen("date", "r");
         char dateRes[200];
         fgets(dateRes, 200, date);
-        printf("%s\n", dateRes);
+        //printf("%s\n", dateRes);
     }
     return 0;
 }
