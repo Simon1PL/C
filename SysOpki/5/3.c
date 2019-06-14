@@ -15,10 +15,10 @@ int main(){
     else{
         close(fd[0]);
         write(fd[1], "ala ma kota\n", 12);
-        FILE *date = popen("date", "r");
+        FILE *file = popen("date", "r");
         char dateRes[200];
-        fgets(dateRes, 200, date);
-        printf("%s\n", dateRes);
+        fgets(dateRes, 200, file);
+        printf("%s", dateRes);
     }
     return 0;
 }
