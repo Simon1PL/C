@@ -18,7 +18,10 @@ int main(){
     sigemptyset(&act.sa_mask);
     act.sa_flags=0;
     sigaction(SIGINT, &act, NULL);
-    //sigqueue(getpid(), SIGINT, &sig); 
+    union sigval sig;
+    sig.sival_int=1;
+    sig.sival_ptr="ala ma kota";
+    sigqueue(getpid(), SIGINT, &sig); 
     while(1){}
     return 0;
 }
