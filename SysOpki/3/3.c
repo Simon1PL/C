@@ -21,11 +21,13 @@ int main(){
         if (child2==0){
             exit(9);
         }
-        //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
-        //WNOHANG-nie czeka tylko idzie dalej, trzeba jeszcze raz wywolac wait()
-        int status;
-        waitpid(child2, &status, 0);
-        printf("WYNIK: %d\n", status);
+        else{
+            //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
+            //WNOHANG-nie czeka tylko idzie dalej, trzeba jeszcze raz wywolac wait()
+            int status;
+            waitpid(child2, &status, 0);
+            printf("WYNIK: %d\n", status);
+        }
     }
     return 0;
 }
