@@ -17,8 +17,8 @@ int main(){
     act.sa_handler=obsluga;
     sigemptyset(&act.sa_mask);
     act.sa_flags=0;
-    siagaction(SIGINT, &act, NULL);
-    //sigqueue(getpid(), SIGINT, const union sigval value) 
+    sigaction(SIGINT, &act, NULL);
+    //sigqueue(getpid(), SIGINT, &sig); 
     while(1){}
     return 0;
 }
