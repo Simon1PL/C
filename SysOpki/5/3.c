@@ -18,7 +18,7 @@ int main(){
     }
     int fd1[2];
     pipe(fd1);
-    int a=dup2(fd1[0], STDOUT_FILENO);
+    int a=dup2(STDOUT_FILENO,fd1[0]);
     write(fd1[0], "dd\n", 3);
     pid_t pid = fork();
     if (pid == 0) { // dziecko
