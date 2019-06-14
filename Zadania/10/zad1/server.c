@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <common.h>
+#include <qemu-common.h>
 #include <signal.h>
 #include <string.h>
 #include <pthread.h>
