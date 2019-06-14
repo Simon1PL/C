@@ -17,15 +17,15 @@ int main(){
         write(fd[1], "ala ma kota\n", 12);
         int fd1[2];
         pipe(fd1);
-        int a=dup2(STDOUT_FILENO,fd1[0]);
-        write(fd1[0],"makota",6);
         pid_t pid = fork();
         if (pid == 0) { // dziecko
             close(fd1[1]); 
+            int a=dup2(STDOUT_FILENO,fd1[0]);
+            write(fd1[0],"makota",6);
         }
         else { // rodzic
             close(fd1[0]);
-            write(fd1[1],"makota",6);
+            write(fd1[1],"makotaa",6);
         }
     }
     return 0;
