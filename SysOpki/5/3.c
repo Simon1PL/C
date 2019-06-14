@@ -24,7 +24,7 @@ int main(){
     }
     else { // rodzic
         close(fd[0]);
-        write(fd[1], "makota\n", 7);
+        write(fd[1], "makota", 6);
     }
     return 0;
 }
