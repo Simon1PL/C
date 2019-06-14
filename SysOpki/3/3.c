@@ -12,19 +12,18 @@ int main(){
     pid_t childPid=vfork();
     if(childPid==0){
         //child (proces potomny)
+        while(1){}
         execl("/bin/ls", "ls", "-l", NULL); //odapala inny plik np. main2.c
-        exit(2);
+        _exit(2);
     }
     else{
         //parent
+        kill(childPid, SIGKILL);
         pid_t child2=fork();
         if (child2==0){
-            while(1){
-
-            }
+            exit(2);
         }
         else{
-            kill(child2, SIGKILL);
             //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
             //WNOHANG-nie czeka tylko wychodzi z funkcji
             waitpid(child2, NULL, 0);
