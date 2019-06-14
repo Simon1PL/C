@@ -17,11 +17,9 @@ int main(){
     }
     else{
         //parent
-        waitpid(childPid,NULL,0);
-        waitpid(childPid,NULL,0);
         pid_t child2=fork();
         if (child2==0){
-            exit(2);
+            
         }
         else{
             //wait(&status) to samo waitpid(-1, NULL, WNOHANG)
