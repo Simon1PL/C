@@ -19,12 +19,12 @@ int main(){
     struct sigaction act;
     act.sa_sigaction=obsluga1;
     sigemptyset(&act.sa_mask);
-    act.sa_flags=0;
+    act.sa_flags=SA_SIGINFO;
     sigaction(SIGINT, &act, NULL);
     union sigval sig;
     sig.sival_int=1;
     sig.sival_ptr="ala ma kota";
-    sigqueue(getpid(), SIGINT, &sig); 
+    sigqueue(getpid(), SIGINT, sig); 
     //pause(); //czeka na sygnal
     return 0;
 }
