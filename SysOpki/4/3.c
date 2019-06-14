@@ -11,13 +11,13 @@ void obsluga(int signal){
 }
 
 void obsluga1(int signal, siginfo_t *dane, void *idk){
-    printf("DANE: %d, %s\n", dane.si_int, dane.si_ptr);
+    printf("DANE: %d, %s\n", dane->si_int, dane->si_ptr);
 }
 
 int main(){
     //signal(SIGINT, obsluga);
     struct sigaction act;
-    act.sa_handler=obsluga1;
+    act.sa_sigaction=obsluga1;
     sigemptyset(&act.sa_mask);
     act.sa_flags=0;
     sigaction(SIGINT, &act, NULL);
