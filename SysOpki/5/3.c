@@ -19,7 +19,7 @@ int main(){
     int fd1[2];
     pipe(fd1);
     int a=dup2(fd1[0], STDOUT_FILENO);
-    fprintf(fd1[0], "%d\n", a);
+    write(fd1[0], "dd\n", 3);
     pid_t pid = fork();
     if (pid == 0) { // dziecko
         close(fd1[1]); 
