@@ -12,6 +12,9 @@
 #include <fcntl.h>
 #include <arpa/inet.h>
 #include "common.h"
+#include <sys/resource.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 size_t get_file_size(const char *file_name) {
     int fd;
