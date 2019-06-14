@@ -216,4 +216,5 @@ int main(int argc, char **argv) {
     free(Trolleys_mutex);
     free(Trolleys_cond);
     pthread_exit(NULL);
+    return 1;
 }
