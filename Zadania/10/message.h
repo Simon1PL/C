@@ -4,7 +4,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h> //struck sockaddr_in
 
-#define MAX_CLIENTS 10
+#define MAX_CLIENTS 9
 
 typedef enum MessageType {
     REGISTER = 0,
