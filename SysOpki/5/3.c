@@ -9,6 +9,7 @@ int main(){
     if(child==0){
         close(fd[1]);
         char dane[20];
+        sleep(1);
         read(fd[1], dane, 12);
         printf("%s\n", dane);
     }
