@@ -15,8 +15,8 @@ int main(){
     }
     else{
         waitpid(child, NULL, 0);
-        close(fd[0]);
-        write(fd[1], "ala ma kota\n", 12);
+        //close(fd[0]);
+       // write(fd[1], "ala ma kota\n", 12);
     }
     return 0;
 }
