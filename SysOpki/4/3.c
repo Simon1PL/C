@@ -13,11 +13,12 @@ void obsluga(int signum){
 
 int main(){
     //signal(SIGINT, obsluga);
-    struct sigaction sig;
+    struct sigaction act;
     act.sa_handler=obsluga;
     sigemptyset(&act.sa_mask);
     act.sa_flags=0;
     siagaction(SIGINT, &act, NULL);
+    //sigqueue(getpid(), SIGINT, const union sigval value) 
     while(1){}
     return 0;
 }
