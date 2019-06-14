@@ -20,7 +20,7 @@ int main(){
     if (pid == 0) { // dziecko
         close(fd[1]); 
         dup2(fd[0],STDIN_FILENO);
-        execlp("yes", "yes", NULL);
+        execlp("yes", NULL);
     }
     else { // rodzic
         close(fd[0]);
