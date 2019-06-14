@@ -17,8 +17,7 @@ int main(){
     }
     else{
         //parent
-        wait(NULL);
-        wait(NULL);
+        waitpid(childPid,NULL,0);
         pid_t child2=fork();
         if (child2==0){
             exit(2);
