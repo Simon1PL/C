@@ -16,7 +16,7 @@ int main(){
     else{
         close(fd[0]);
         write(fd[1], "ala ma kota\n", 12);
-        wait(NULL);
+        waitpid(child, NULL, 0);
     }
     return 0;
 }
