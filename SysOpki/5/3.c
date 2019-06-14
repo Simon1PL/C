@@ -3,17 +3,17 @@
 #include <stdlib.h> //alloc
 
 int main(){
-    pid_t child=fork();
     int fd[2];
     pipe(fd);
+    pid_t child=fork();
     if(child==0){
-        //close(fd[1]);
+        close(fd[1]);
         char dane[20];
         read(fd[1], dane, 12);
         printf("%s\n", dane);
     }
     else{
-        //close(fd[0]);
+        close(fd[0]);
         write(fd[0], "ala ma kota\n", 12);
     }
     return 0;
