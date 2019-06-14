@@ -3,7 +3,7 @@
 #include <stdlib.h> //alloc
 
 int main(){
-    int child=fork();
+    pid_t child=fork();
     int fd[2];
     pipe(fd);
     if(child==0){
