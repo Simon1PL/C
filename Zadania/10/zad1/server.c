@@ -1,3 +1,4 @@
+#define _XOPEN_SOURCE 500
 #include <sys/types.h>
 #include <stdlib.h>
 #include <stdio.h>
