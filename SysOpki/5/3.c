@@ -22,7 +22,6 @@ int main(){
         dup2(STDOUT_FILENO, fd[0]);
     }
     else { // rodzic
-        close(fd[0]);
         write(fd[1], "makota", 6);
     }
     return 0;
