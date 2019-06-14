@@ -19,11 +19,7 @@ int main(){
     pid_t pid = fork();
     if (pid == 0) { // dziecko
         close(fd[1]); 
-        dup2(fd[0],STDOUT_FILENO);
-        system("grep \"ala\" 3.c");
-        char dane[100];
-        read(fd[0], dane, 20);
-        printf("dane: %s\n", dane);
+        dup2(STDOUT_FILENO, fd[0]);
     }
     else { // rodzic
         close(fd[0]);
