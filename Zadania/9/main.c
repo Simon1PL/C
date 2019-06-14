@@ -126,7 +126,8 @@ void *run_Trolley(void *data) {
 
     gettimeofday(&currentTime, NULL);
     printf("Trolley %d finished, time: %ld.%06ld\n", trolley->id, currentTime.tv_sec, currentTime.tv_usec);
-    
+    if(trolley->id==trolleysCount-1)
+        exit(0);
     pthread_cond_signal(&Trolleys_cond[trolleyOnStationID]);
     pthread_mutex_unlock(&stationBusy_mutex);
 
