@@ -11,7 +11,7 @@ void obsluga(int signal){
 }
 
 void obsluga1(int signal, siginfo_t *dane, void *idk){
-    printf("DANE: %d, %s\n", *(dane->si_int), dane->si_ptr);
+    printf("DANE: %d, %s\n", dane->si_int, dane->si_ptr);
 }
 
 int main(){
