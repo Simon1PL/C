@@ -201,7 +201,6 @@ void init(char *connection_type, char *server_ip_path, char *port) {
         conn_type = LOCAL;
 
         char *unix_path = server_ip_path;
-        //todo -> check len of unix_path
         struct sockaddr_un local_address;
         local_address.sun_family = AF_UNIX;
         snprintf(local_address.sun_path, MAX_PATH, "%s", unix_path);
