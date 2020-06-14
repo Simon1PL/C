@@ -18,4 +18,4 @@
 # 5:
 * **3.c** cos z potoków nazwanych/nienazwanych (pipe)
 # 10:
-* **10...** client - server socket connection (eg. socket, connect, bind)
+* client and server socket connection (eg. socket, connect, bind)
